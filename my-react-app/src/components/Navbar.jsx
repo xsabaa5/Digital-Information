@@ -16,7 +16,7 @@ const dropdownItemStyle = {
   display: "block",
   padding: "12px 20px",
   color: "#9AABBF",
-  fontSize: 14,
+  fontSize: 17,
   textDecoration: "none",
   transition: "background 0.15s, color 0.15s",
 };
@@ -79,7 +79,7 @@ export default function Navbar() {
               href="#"
               style={{
                 color: "rgba(255,255,255,0.7)",
-                fontSize: 14,
+                fontSize: 18,
                 fontWeight: 400,
                 textDecoration: "none",
                 transition: "color 0.2s",
@@ -96,7 +96,7 @@ export default function Navbar() {
               to="/"
               style={{
                 color: "rgba(255,255,255,0.7)",
-                fontSize: 14,
+                fontSize: 18,
                 fontWeight: 400,
                 textDecoration: "none",
                 transition: "color 0.2s",
@@ -115,7 +115,7 @@ export default function Navbar() {
               href="#about"
               style={{
                 color: "rgba(255,255,255,0.7)",
-                fontSize: 14,
+                fontSize: 18,
                 fontWeight: 400,
                 textDecoration: "none",
                 transition: "color 0.2s",
@@ -132,7 +132,7 @@ export default function Navbar() {
               to="/#about"
               style={{
                 color: "rgba(255,255,255,0.7)",
-                fontSize: 14,
+                fontSize: 18,
                 fontWeight: 400,
                 textDecoration: "none",
                 transition: "color 0.2s",
@@ -155,7 +155,7 @@ export default function Navbar() {
             <button
               style={{
                 color: "rgba(255,255,255,0.7)",
-                fontSize: 14,
+                fontSize: 18,
                 fontWeight: 400,
                 background: "none",
                 border: "none",
@@ -235,47 +235,25 @@ export default function Navbar() {
         </div>
 
         {/* CTA Button */}
-        {isHome ? (
-          <a
-            href="#contact"
-            style={{
-              background: "#4F7BF7",
-              color: "#fff",
-              fontSize: 14,
-              fontWeight: 600,
-              padding: "10px 24px",
-              borderRadius: 999,
-              border: "none",
-              cursor: "pointer",
-              boxShadow:
-                "0 0 20px rgba(79,123,247,.35), 0 4px 12px rgba(79,123,247,.2)",
-              letterSpacing: "0.01em",
-              textDecoration: "none",
-            }}
-          >
-            Contact Us
-          </a>
-        ) : (
-          <Link
-            to="/#contact"
-            style={{
-              background: "#4F7BF7",
-              color: "#fff",
-              fontSize: 14,
-              fontWeight: 600,
-              padding: "10px 24px",
-              borderRadius: 999,
-              border: "none",
-              cursor: "pointer",
-              boxShadow:
-                "0 0 20px rgba(79,123,247,.35), 0 4px 12px rgba(79,123,247,.2)",
-              letterSpacing: "0.01em",
-              textDecoration: "none",
-            }}
-          >
-            Contact Us
-          </Link>
-        )}
+        <Link
+          to="/contact-us"
+          style={{
+            background: "#4F7BF7",
+            color: "#fff",
+            fontSize: 17,
+            fontWeight: 600,
+            padding: "10px 24px",
+            borderRadius: 999,
+            border: "none",
+            cursor: "pointer",
+            boxShadow:
+              "0 0 20px rgba(79,123,247,.35), 0 4px 12px rgba(79,123,247,.2)",
+            letterSpacing: "0.01em",
+            textDecoration: "none",
+          }}
+        >
+          Contact Us
+        </Link>
       </div>
     </nav>
   );

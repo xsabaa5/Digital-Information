@@ -84,7 +84,7 @@ export default function ERPDigital() {
           </h1>
           <p
             style={{
-              color: "#6B7A99",
+              color: "#8492af",
               fontSize: 16,
               lineHeight: 1.8,
               maxWidth: 660,
@@ -106,7 +106,7 @@ export default function ERPDigital() {
           <div style={{ ...card }}>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 16 }}>
               {erpModules.map((item, i) => (
-                <li key={i} style={{ color: "#9AABBF", fontSize: 15, lineHeight: 1.6, paddingLeft: 24, position: "relative" }}>
+                <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 24, position: "relative" }}>
                   <span style={{ position: "absolute", left: 0, color: "#4F7BF7", fontWeight: 700 }}>&#10003;</span>
                   {item}
                 </li>
@@ -118,15 +118,15 @@ export default function ERPDigital() {
         {/* Two columns: Transformation + Torch */}
         <section style={{ marginBottom: 64, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
           <div style={{ ...card }}>
-            <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 16 }}>
+            <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16 }}>
               Digital Transformation Services
             </h3>
-            <p style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7, marginBottom: 20 }}>
               More than software — we enable organizational transformation.
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
               {transformationServices.map((s, i) => (
-                <li key={i} style={{ color: "#9AABBF", fontSize: 14, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
+                <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
                   <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
                   {s}
                 </li>
@@ -149,16 +149,16 @@ export default function ERPDigital() {
             >
               Flagship Product
             </span>
-            <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 16 }}>
+            <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16 }}>
               Torch ERP Platform
             </h3>
-            <p style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.7, marginBottom: 20 }}>
+            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7, marginBottom: 20 }}>
               Our in-house enterprise platform designed for businesses in Iraq
               and the Middle East.
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
               {torchFeatures.map((f, i) => (
-                <li key={i} style={{ color: "#9AABBF", fontSize: 14, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
+                <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
                   <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
                   {f}
                 </li>
@@ -193,10 +193,10 @@ export default function ERPDigital() {
                 >
                   {i + 1}
                 </div>
-                <h4 style={{ fontSize: 14, fontWeight: 600, marginBottom: 6 }}>
+                <h4 style={{ fontSize: 20, fontWeight: 600, marginBottom: 6 }}>
                   {item.title}
                 </h4>
-                <p style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.5 }}>
+                <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.5 }}>
                   {item.desc}
                 </p>
               </div>
@@ -210,7 +210,7 @@ export default function ERPDigital() {
             <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>
               Ready to Transform Your Business?
             </h2>
-            <p style={{ color: "#6B7A99", fontSize: 14, marginBottom: 28 }}>
+            <p style={{ color: "#8492af", fontSize: 16, marginBottom: 28 }}>
               From Baghdad to Basra and Erbil — serving Iraq's growing business
               ecosystem.
             </p>

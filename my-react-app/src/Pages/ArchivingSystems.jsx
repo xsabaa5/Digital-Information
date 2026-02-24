@@ -84,7 +84,7 @@ export default function ArchivingSystems() {
           </h1>
           <p
             style={{
-              color: "#6B7A99",
+              color: "#8492af",
               fontSize: 16,
               lineHeight: 1.8,
               maxWidth: 640,
@@ -107,7 +107,7 @@ export default function ArchivingSystems() {
           <div style={{ ...card }}>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 16 }}>
               {capabilities.map((item, i) => (
-                <li key={i} style={{ color: "#9AABBF", fontSize: 15, lineHeight: 1.6, paddingLeft: 24, position: "relative" }}>
+                <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 24, position: "relative" }}>
                   <span style={{ position: "absolute", left: 0, color: "#4F7BF7", fontWeight: 700 }}>&#10003;</span>
                   {item}
                 </li>
@@ -121,7 +121,7 @@ export default function ArchivingSystems() {
           <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8, letterSpacing: "-0.02em" }}>
             MediaINFO Digital Library Software
           </h2>
-          <p style={{ color: "#6B7A99", fontSize: 14, lineHeight: 1.7, marginBottom: 24 }}>
+          <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7, marginBottom: 24 }}>
             Powerful digital library and content management platform for storing,
             accessing, and sharing digitized assets. Used by libraries, publishers,
             universities, and archives globally.
@@ -135,12 +135,12 @@ export default function ArchivingSystems() {
             }}
           >
             <div style={{ ...card }}>
-              <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16, color: "#8BAAFE" }}>
+              <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16, color: "#8BAAFE" }}>
                 Features
               </h3>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
                 {mediaInfoFeatures.map((f, i) => (
-                  <li key={i} style={{ color: "#9AABBF", fontSize: 14, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
+                  <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
                     <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
                     {f}
                   </li>
@@ -149,12 +149,12 @@ export default function ArchivingSystems() {
             </div>
 
             <div style={{ ...card }}>
-              <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16, color: "#8BAAFE" }}>
+              <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16, color: "#8BAAFE" }}>
                 Who Uses MediaINFO
               </h3>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
                 {mediaInfoUsers.map((u, i) => (
-                  <li key={i} style={{ color: "#9AABBF", fontSize: 14, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
+                  <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
                     <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
                     {u}
                   </li>
@@ -196,7 +196,7 @@ export default function ArchivingSystems() {
                 >
                   {i + 1}
                 </div>
-                <p style={{ color: "#9AABBF", fontSize: 14, lineHeight: 1.6 }}>
+                <p style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6 }}>
                   {item}
                 </p>
               </div>
@@ -210,7 +210,7 @@ export default function ArchivingSystems() {
             <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>
               Ready to Digitize Your Records?
             </h2>
-            <p style={{ color: "#6B7A99", fontSize: 14, marginBottom: 28 }}>
+            <p style={{ color: "#8492af", fontSize: 16, marginBottom: 28 }}>
               Contact us for a consultation on archiving solutions tailored to
               your organization.
             </p>

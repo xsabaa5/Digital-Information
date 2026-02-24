@@ -373,7 +373,7 @@ export default function AllProducts() {
                 {/* Name */}
                 <h3
                   className="text-white font-bold"
-                  style={{ fontSize: 16, marginBottom: 8, lineHeight: 1.3 }}
+                  style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}
                 >
                   {p.name}
                 </h3>
@@ -381,8 +381,8 @@ export default function AllProducts() {
                 {/* Description as bullet points */}
                 <ul
                   style={{
-                    color: "#6B7A99",
-                    fontSize: 13,
+                    color: "#8492af",
+                    fontSize: 16,
                     lineHeight: 1.9,
                     flex: 1,
                     listStyle: "disc",

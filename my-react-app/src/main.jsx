@@ -9,6 +9,7 @@ import ArchivingSystems from "./Pages/ArchivingSystems";
 import ERPDigital from "./Pages/ERPDigital";
 import SecurityElectronics from "./Pages/SecurityElectronics";
 import Cybersecurity from "./Pages/Cybersecurity";
+import ContactUs from "./Pages/ContactUs";
 import ScrollToTop from "./components/ScrollToTop";
 
 createRoot(document.getElementById("root")).render(
@@ -23,6 +24,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/erp-digital-transformation" element={<ERPDigital />} />
         <Route path="/security-electronics" element={<SecurityElectronics />} />
         <Route path="/cybersecurity" element={<Cybersecurity />} />
+        <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

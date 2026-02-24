@@ -93,7 +93,7 @@ export default function SecurityElectronics() {
           </h1>
           <p
             style={{
-              color: "#6B7A99",
+              color: "#8492af",
               fontSize: 16,
               lineHeight: 1.8,
               maxWidth: 660,
@@ -130,7 +130,7 @@ export default function SecurityElectronics() {
                     {s.brands}
                   </span>
                 </div>
-                <p style={{ color: "#6B7A99", fontSize: 14, lineHeight: 1.7, marginBottom: 20 }}>
+                <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7, marginBottom: 20 }}>
                   {s.desc}
                 </p>
                 {s.featureLabel && (
@@ -140,7 +140,7 @@ export default function SecurityElectronics() {
                 )}
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
                   {s.features.map((f, j) => (
-                    <li key={j} style={{ color: "#9AABBF", fontSize: 14, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
+                    <li key={j} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
                       <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
                       {f}
                     </li>
@@ -176,7 +176,7 @@ export default function SecurityElectronics() {
                 >
                   &#10003;
                 </div>
-                <p style={{ color: "#9AABBF", fontSize: 14, lineHeight: 1.5 }}>{item}</p>
+                <p style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.5 }}>{item}</p>
               </div>
             ))}
           </div>
@@ -188,7 +188,7 @@ export default function SecurityElectronics() {
             <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>
               Secure & Modernize Your Workplace
             </h2>
-            <p style={{ color: "#6B7A99", fontSize: 14, marginBottom: 28 }}>
+            <p style={{ color: "#8492af", fontSize: 16, marginBottom: 28 }}>
               Contact us for a consultation or on-site product demonstration.
             </p>
             <a

@@ -56,11 +56,11 @@ function Hero() {
 
         <p
           style={{
-            color: "#6B7A99",
-            fontSize: 16,
+            color: "#9ca7be",
+            fontSize: 21,
             lineHeight: 1.7,
             marginBottom: 40,
-            maxWidth: 525,
+            maxWidth: 660,
             margin: "0 auto 40px",
           }}
         >
@@ -143,8 +143,8 @@ function Stats() {
       >
         {data.map((s, i) => (
           <React.Fragment key={s.label}>
-            <div className="text-center">
-              <p style={{ color: "#5A6A8A", fontSize: 13, marginBottom: 8 }}>
+            <div className="text-center" style={{ padding: "0 16px" }}>
+              <p style={{ color: "#8492af", fontSize: 20, marginBottom: 8 }}>
                 {s.label}
               </p>
               <p
@@ -199,8 +199,8 @@ function Services() {
           </h2>
           <p
             style={{
-              color: "#6B7A99",
-              fontSize: 15,
+              color: "#8492af",
+              fontSize: 20,
               maxWidth: 560,
               margin: "0 auto",
               lineHeight: 1.7,
@@ -233,11 +233,11 @@ function Services() {
             </div>
             <h3
               className="text-white font-bold"
-              style={{ fontSize: 17, marginBottom: 8 }}
+              style={{ fontSize: 20, marginBottom: 8 }}
             >
               Document Scanning Solutions
             </h3>
-            <p style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.7 }}>
+            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}>
               From compact office scanners to industrial-grade imaging systems —
               we distribute world-class brands like Ricoh, Epson, Avision, and
               Image Access powering digital workflows across Iraq.
@@ -268,11 +268,11 @@ function Services() {
             </div>
             <h3
               className="text-white font-bold"
-              style={{ fontSize: 17, marginBottom: 8 }}
+              style={{ fontSize: 20, marginBottom: 8 }}
             >
               Security & Office Electronics
             </h3>
-            <p style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.7 }}>
+            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}>
               X-ray scanners, metal detectors, access control, surveillance
               systems, and communication devices from brands like RAPISCAN,
               HIKVISION, and Motorola for safer, smarter workplaces.
@@ -318,11 +318,11 @@ function Services() {
             </div>
             <h3
               className="text-white font-bold"
-              style={{ fontSize: 17, marginBottom: 8 }}
+              style={{ fontSize: 20, marginBottom: 8 }}
             >
               ERP & Digital Transformation
             </h3>
-            <p style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.7 }}>
+            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}>
               Advanced ERP systems and workflow automation — including our own
               Torch ERP — for financial, HR, supply chain, and operational
               management.
@@ -341,11 +341,11 @@ function Services() {
             </div>
             <h3
               className="text-white font-bold"
-              style={{ fontSize: 17, marginBottom: 8 }}
+              style={{ fontSize: 20, marginBottom: 8 }}
             >
               Cybersecurity Solutions
             </h3>
-            <p style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.7 }}>
+            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}>
               AI-driven threat protection, 24/7 SOC monitoring, and
               enterprise-grade cybersecurity with a 99.7% protection rate
               against modern risks.
@@ -408,7 +408,7 @@ function Services() {
             </div>
             <h3
               className="text-white font-bold"
-              style={{ fontSize: 17, marginBottom: 6 }}
+              style={{ fontSize: 20, marginBottom: 6 }}
             >
               Archiving Solutions
             </h3>
@@ -464,8 +464,8 @@ function Products() {
           </h2>
           <p
             style={{
-              color: "#6B7A99",
-              fontSize: 15,
+              color: "#8492af",
+              fontSize: 16,
               maxWidth: 600,
               margin: "0 auto",
               lineHeight: 1.7,
@@ -550,7 +550,7 @@ function Products() {
               {/* Name */}
               <h3
                 className="text-white font-bold"
-                style={{ fontSize: 16, marginBottom: 8, lineHeight: 1.3 }}
+                style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}
               >
                 {p.name}
               </h3>
@@ -558,8 +558,8 @@ function Products() {
               {/* Description as bullet points */}
               <ul
                 style={{
-                  color: "#6B7A99",
-                  fontSize: 13,
+                  color: "#8492af",
+                  fontSize: 16,
                   lineHeight: 1.9,
                   flex: 1,
                   listStyle: "disc",
@@ -675,8 +675,8 @@ function About() {
             </h2>
             <p
               style={{
-                color: "#6B7A99",
-                fontSize: 15,
+                color: "#8492af",
+                fontSize: 16,
                 lineHeight: 1.7,
                 marginBottom: 24,
                 maxWidth: 460,
@@ -689,8 +689,8 @@ function About() {
             </p>
             <p
               style={{
-                color: "#6B7A99",
-                fontSize: 14,
+                color: "#8492af",
+                fontSize: 16,
                 lineHeight: 1.7,
                 marginBottom: 40,
                 maxWidth: 460,
@@ -751,12 +751,12 @@ function About() {
                 <div>
                   <h3
                     className="text-white font-bold"
-                    style={{ fontSize: 15, marginBottom: 6 }}
+                    style={{ fontSize: 20, marginBottom: 6 }}
                   >
                     {f.title}
                   </h3>
                   <p
-                    style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.7 }}
+                    style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}
                   >
                     {f.desc}
                   </p>

@@ -353,7 +353,7 @@ export default function ProductDetail() {
                     key={i}
                     style={{
                       color: "#9AABBF",
-                      fontSize: 14,
+                      fontSize: 16,
                       lineHeight: 1.6,
                       paddingLeft: 20,
                       position: "relative",

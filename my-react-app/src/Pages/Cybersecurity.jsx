@@ -48,8 +48,14 @@ export default function Cybersecurity() {
   const whyChoose = [
     { stat: "2020", label: "Trusted cybersecurity provider in Iraq since" },
     { stat: "99.98%", label: "Threat detection rate" },
-    { stat: "24/7", label: "Local technical support and fast on-site response" },
-    { stat: "AI", label: "Driven security architecture for proactive protection" },
+    {
+      stat: "24/7",
+      label: "Local technical support and fast on-site response",
+    },
+    {
+      stat: "AI",
+      label: "Driven security architecture for proactive protection",
+    },
   ];
 
   return (
@@ -96,7 +102,7 @@ export default function Cybersecurity() {
           </h1>
           <p
             style={{
-              color: "#6B7A99",
+              color: "#8492af",
               fontSize: 16,
               lineHeight: 1.8,
               maxWidth: 660,
@@ -113,10 +119,19 @@ export default function Cybersecurity() {
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 24px 80px" }}>
         {/* Capabilities */}
         <section style={{ marginBottom: 64 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24, letterSpacing: "-0.02em" }}>
+          <h2
+            style={{
+              fontSize: 24,
+              fontWeight: 700,
+              marginBottom: 24,
+              letterSpacing: "-0.02em",
+            }}
+          >
             Our Capabilities
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+          <div
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}
+          >
             {capabilities.map((cap, i) => (
               <div key={i} style={{ ...card }}>
                 <div
@@ -137,17 +152,50 @@ export default function Cybersecurity() {
                 >
                   {i + 1}
                 </div>
-                <h3 style={{ fontSize: 17, fontWeight: 600, marginBottom: 10 }}>
+                <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>
                   {cap.title}
                 </h3>
-                <p style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.7, marginBottom: cap.features.length ? 16 : 0 }}>
+                <p
+                  style={{
+                    color: "#8492af",
+                    fontSize: 16,
+                    lineHeight: 1.7,
+                    marginBottom: cap.features.length ? 16 : 0,
+                  }}
+                >
                   {cap.desc}
                 </p>
                 {cap.features.length > 0 && (
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                  <ul
+                    style={{
+                      listStyle: "none",
+                      padding: 0,
+                      margin: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 10,
+                    }}
+                  >
                     {cap.features.map((f, j) => (
-                      <li key={j} style={{ color: "#9AABBF", fontSize: 13, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
-                        <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
+                      <li
+                        key={j}
+                        style={{
+                          color: "#9AABBF",
+                          fontSize: 16,
+                          lineHeight: 1.6,
+                          paddingLeft: 20,
+                          position: "relative",
+                        }}
+                      >
+                        <span
+                          style={{
+                            position: "absolute",
+                            left: 0,
+                            color: "#4F7BF7",
+                          }}
+                        >
+                          &#8226;
+                        </span>
                         {f}
                       </li>
                     ))}
@@ -160,12 +208,28 @@ export default function Cybersecurity() {
 
         {/* Stats */}
         <section style={{ marginBottom: 64 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24, letterSpacing: "-0.02em" }}>
+          <h2
+            style={{
+              fontSize: 24,
+              fontWeight: 700,
+              marginBottom: 24,
+              letterSpacing: "-0.02em",
+            }}
+          >
             Why Choose Digital Information
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 16,
+            }}
+          >
             {whyChoose.map((item, i) => (
-              <div key={i} style={{ ...card, textAlign: "center", padding: 24 }}>
+              <div
+                key={i}
+                style={{ ...card, textAlign: "center", padding: 24 }}
+              >
                 <p
                   style={{
                     fontSize: 28,
@@ -177,7 +241,7 @@ export default function Cybersecurity() {
                 >
                   {item.stat}
                 </p>
-                <p style={{ color: "#6B7A99", fontSize: 13, lineHeight: 1.5 }}>
+                <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.5 }}>
                   {item.label}
                 </p>
               </div>
@@ -187,11 +251,25 @@ export default function Cybersecurity() {
 
         {/* CTA */}
         <section style={{ textAlign: "center", padding: "48px 0" }}>
-          <div style={{ ...card, padding: "48px 32px", border: "1px solid rgba(79,123,247,.2)" }}>
+          <div
+            style={{
+              ...card,
+              padding: "48px 32px",
+              border: "1px solid rgba(79,123,247,.2)",
+            }}
+          >
             <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>
               Protect Your Business Today
             </h2>
-            <p style={{ color: "#6B7A99", fontSize: 14, marginBottom: 28, maxWidth: 480, margin: "0 auto 28px" }}>
+            <p
+              style={{
+                color: "#8492af",
+                fontSize: 16,
+                marginBottom: 28,
+                maxWidth: 480,
+                margin: "0 auto 28px",
+              }}
+            >
               Cyber threats don't wait. Contact Digital Information to secure
               your infrastructure with advanced cybersecurity solutions.
             </p>
