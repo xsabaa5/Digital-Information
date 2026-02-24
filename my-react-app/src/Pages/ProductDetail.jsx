@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
@@ -26,7 +26,10 @@ export default function ProductDetail() {
   const [activeImg, setActiveImg] = useState(0);
   const [thumbStart, setThumbStart] = useState(0);
   const [activeTab, setActiveTab] = useState("features");
-  const THUMB_COUNT = 9;
+  const [zoomActive, setZoomActive] = useState(false);
+  const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
+  const imgContainerRef = useRef(null);
+  const THUMB_COUNT = 5;
 
   useEffect(() => {
     fetch("/products.json")
@@ -63,7 +66,9 @@ export default function ProductDetail() {
   const tabs = [
     { key: "features", label: "Features" },
     { key: "specs", label: "Specifications" },
-    ...(product.brochures?.length ? [{ key: "brochures", label: "Brochures" }] : []),
+    ...(product.brochures?.length
+      ? [{ key: "brochures", label: "Brochures" }]
+      : []),
   ];
 
   return (
@@ -80,17 +85,34 @@ export default function ProductDetail() {
 
       {/* Breadcrumb */}
       <div style={{ maxWidth: 1120, margin: "0 auto", padding: "92px 24px 0" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#3A4A6A" }}>
-          <Link to="/" style={{ color: "#5A6A8A", textDecoration: "none" }}>Home</Link>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            fontSize: 13,
+            color: "#3A4A6A",
+          }}
+        >
+          <Link to="/" style={{ color: "#5A6A8A", textDecoration: "none" }}>
+            Home
+          </Link>
           <span>/</span>
-          <Link to="/products" style={{ color: "#5A6A8A", textDecoration: "none" }}>Products</Link>
+          <Link
+            to="/products"
+            style={{ color: "#5A6A8A", textDecoration: "none" }}
+          >
+            Products
+          </Link>
           <span>/</span>
           <span style={{ color: "#8BAAFE" }}>{product.name}</span>
         </div>
       </div>
 
       {/* Main Content */}
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "32px 24px 64px" }}>
+      <div
+        style={{ maxWidth: 1120, margin: "0 auto", padding: "32px 24px 64px" }}
+      >
         <div
           style={{
             display: "grid",
@@ -111,6 +133,7 @@ export default function ProductDetail() {
               }}
             >
               <div
+                ref={imgContainerRef}
                 style={{
                   width: "100%",
                   aspectRatio: "4/3",
@@ -119,6 +142,17 @@ export default function ProductDetail() {
                   alignItems: "center",
                   justifyContent: "center",
                   borderRadius: 16,
+                  position: "relative",
+                  cursor: "crosshair",
+                }}
+                onMouseEnter={() => setZoomActive(true)}
+                onMouseLeave={() => setZoomActive(false)}
+                onMouseMove={(e) => {
+                  if (!imgContainerRef.current) return;
+                  const rect = imgContainerRef.current.getBoundingClientRect();
+                  const x = ((e.clientX - rect.left) / rect.width) * 100;
+                  const y = ((e.clientY - rect.top) / rect.height) * 100;
+                  setZoomPos({ x, y });
                 }}
               >
                 <img
@@ -128,8 +162,23 @@ export default function ProductDetail() {
                     maxWidth: "85%",
                     maxHeight: "85%",
                     objectFit: "contain",
+                    opacity: zoomActive ? 0 : 1,
+                    transition: "opacity 0.2s ease",
                   }}
                 />
+                {zoomActive && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      borderRadius: 16,
+                      backgroundImage: `url(${product.images?.[activeImg] || product.image})`,
+                      backgroundSize: "170%",
+                      backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  />
+                )}
               </div>
             </div>
 
@@ -164,14 +213,30 @@ export default function ProductDetail() {
                       padding: 0,
                     }}
                   >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M15 18l-6-6 6-6" />
                     </svg>
                   </button>
                 )}
 
                 {/* Visible thumbnails */}
-                <div style={{ display: "flex", gap: 8, flex: 1, justifyContent: "center" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    flex: 1,
+                    justifyContent: "center",
+                  }}
+                >
                   {product.images
                     .slice(thumbStart, thumbStart + THUMB_COUNT)
                     .map((img, i) => {
@@ -217,7 +282,10 @@ export default function ProductDetail() {
                   <button
                     onClick={() =>
                       setThumbStart((prev) =>
-                        Math.min(product.images.length - THUMB_COUNT, prev + THUMB_COUNT)
+                        Math.min(
+                          product.images.length - THUMB_COUNT,
+                          prev + THUMB_COUNT,
+                        ),
                       )
                     }
                     disabled={thumbStart + THUMB_COUNT >= product.images.length}
@@ -245,7 +313,16 @@ export default function ProductDetail() {
                       padding: 0,
                     }}
                   >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M9 18l6-6-6-6" />
                     </svg>
                   </button>
@@ -437,8 +514,7 @@ export default function ProductDetail() {
                 style={{
                   ...tabBase,
                   borderRadius: "10px 10px 0 0",
-                  background:
-                    activeTab === key ? "#0B1222" : "transparent",
+                  background: activeTab === key ? "#0B1222" : "transparent",
                   color: activeTab === key ? "#8BAAFE" : "#5A6A8A",
                   borderBottom:
                     activeTab === key
@@ -548,7 +624,13 @@ export default function ProductDetail() {
                         border: "1px solid rgba(79,123,247,.12)",
                       }}
                     >
-                      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 14,
+                        }}
+                      >
                         <svg
                           width="24"
                           height="24"
@@ -739,7 +821,15 @@ function QuickSpec({ label, value }) {
         gap: 2,
       }}
     >
-      <span style={{ color: "#3A4A6A", fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+      <span
+        style={{
+          color: "#3A4A6A",
+          fontSize: 10,
+          fontWeight: 600,
+          textTransform: "uppercase",
+          letterSpacing: "0.06em",
+        }}
+      >
         {label}
       </span>
       <span style={{ color: "#9AABBF", fontSize: 13, fontWeight: 500 }}>
