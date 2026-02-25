@@ -238,7 +238,7 @@ export default function Navbar() {
         <Link
           to="/contact-us"
           style={{
-            background: "#4F7BF7",
+            background: "#0075FFFF",
             color: "#fff",
             fontSize: 17,
             fontWeight: 600,
