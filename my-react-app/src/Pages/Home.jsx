@@ -452,7 +452,14 @@ function Products() {
   }, []);
 
   return (
-    <section id="products" style={{ padding: "96px 0", background: "#060B18" }}>
+    <section
+      id="products"
+      style={{
+        padding: "96px 0",
+        background: "#000",
+        borderTop: "1px solid #001733",
+      }}
+    >
       <Container>
         {/* Header */}
         <div className="text-center" style={{ marginBottom: 48 }}>
@@ -478,39 +485,39 @@ function Products() {
 
         {/* Product Grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: 20 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 "
+          style={{ gap: 24 }}
         >
           {products.map((p) => (
             <Link
               key={p.id}
               to={`/products/${p.id}`}
               style={{
-                ...card,
+                background: "#1A1A1A",
+                borderRadius: 32,
+                padding: 10,
                 display: "flex",
                 flexDirection: "column",
-                overflow: "hidden",
-                transition: "border-color 0.2s, box-shadow 0.2s",
                 textDecoration: "none",
                 color: "inherit",
+                transition: "transform 0.25s, box-shadow 0.25s",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "#2A3F6F";
-                e.currentTarget.style.boxShadow =
-                  "0 4px 24px rgba(79,123,247,.1)";
+                e.currentTarget.style.transform = "translateY(-6px)";
+                e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,.4)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#1A2744";
+                e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              {/* Image */}
+              {/* Image area */}
               <div
                 style={{
+                  position: "relative",
                   width: "100%",
-                  height: 200,
-                  borderRadius: 10,
-                  marginBottom: 20,
+                  aspectRatio: "1 / 1",
+                  borderRadius: 22,
                   overflow: "hidden",
                   background: "#fff",
                   display: "flex",
@@ -524,73 +531,113 @@ function Products() {
                   loading="lazy"
                   decoding="async"
                   style={{
-                    maxWidth: "90%",
-                    maxHeight: "90%",
+                    maxWidth: "80%",
+                    maxHeight: "80%",
                     objectFit: "contain",
                   }}
                 />
+                {/* Cart button */}
+                <span
+                  style={{
+                    position: "absolute",
+                    top: 6,
+                    right: 6,
+                    width: 42,
+                    height: 42,
+                    borderRadius: 16,
+                    background: "#1A1A1A",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#fff"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                  </svg>
+                </span>
               </div>
 
-              {/* Brand badge */}
-              <span
-                style={{
-                  display: "inline-block",
-                  padding: "4px 10px",
-                  borderRadius: 6,
-                  fontSize: 11,
-                  fontWeight: 600,
-                  color: "#8BAAFE",
-                  background: "rgba(79,123,247,.1)",
-                  border: "1px solid rgba(79,123,247,.15)",
-                  marginBottom: 12,
-                  alignSelf: "flex-start",
-                }}
-              >
-                {p.brand}
-              </span>
-
-              {/* Name */}
-              <h3
-                className="text-white font-bold"
-                style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}
-              >
-                {p.name}
-              </h3>
-
-              {/* Description as bullet points */}
-              <ul
-                style={{
-                  color: "#8492af",
-                  fontSize: 16,
-                  lineHeight: 1.9,
-                  flex: 1,
-                  listStyle: "disc",
-                  paddingLeft: 20,
-                  margin: 0,
-                }}
-              >
-                {p.short_description
-                  .split("\n")
-                  .map((s) => s.trim())
-                  .filter(Boolean)
-                  .map((point, i) => (
-                    <li key={i} style={{ color: "#fff" }}>
-                      <span style={{ color: "#6B7A99" }}>{point}</span>
-                    </li>
-                  ))}
-              </ul>
-
-              {/* Category tag */}
+              {/* Info area */}
               <div
                 style={{
-                  marginTop: 16,
-                  paddingTop: 16,
-                  borderTop: "1px solid #1A2744",
+                  padding: "16px 6px 6px",
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                <span style={{ color: "#3A4A6A", fontSize: 11 }}>
-                  {p.category}
+                {/* Brand badge */}
+                <span
+                  style={{
+                    display: "inline-block",
+                    padding: "4px 10px",
+                    borderRadius: 6,
+                    fontSize: 11,
+                    fontWeight: 600,
+                    color: "#fff",
+                    background: "rgba(79,123,247,.1)",
+                    border: "1px solid rgba(79,123,247,.15)",
+                    marginBottom: 12,
+                    alignSelf: "flex-start",
+                  }}
+                >
+                  {p.brand}
                 </span>
+
+                {/* Name */}
+                <h3
+                  className="text-white font-bold"
+                  style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}
+                >
+                  {p.name}
+                </h3>
+
+                {/* Description as bullet points */}
+                <ul
+                  style={{
+                    color: "#8492af",
+                    fontSize: 16,
+                    lineHeight: 1.9,
+                    flex: 1,
+                    listStyle: "disc",
+                    paddingLeft: 20,
+                    margin: 0,
+                  }}
+                >
+                  {p.short_description
+                    .split("\n")
+                    .map((s) => s.trim())
+                    .filter(Boolean)
+                    .map((point, i) => (
+                      <li key={i} style={{ color: "#fff" }}>
+                        <span style={{ color: "#B0B4BBFF" }}>{point}</span>
+                      </li>
+                    ))}
+                </ul>
+
+                {/* Category tag */}
+                <div
+                  style={{
+                    marginTop: 16,
+                    paddingTop: 16,
+                    borderTop: "1px solid #2A2A2A",
+                  }}
+                >
+                  <span style={{ color: "#5A5A5A", fontSize: 11 }}>
+                    {p.category}
+                  </span>
+                </div>
               </div>
             </Link>
           ))}
