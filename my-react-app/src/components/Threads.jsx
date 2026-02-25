@@ -23,9 +23,9 @@ uniform vec2 uMouse;
 
 #define PI 3.1415926538
 
-const int u_line_count = 40;
-const float u_line_width = 7.0;
-const float u_line_blur = 10.0;
+const int u_line_count = 20;
+const float u_line_width = 9.0;
+const float u_line_blur = 12.0;
 
 float Perlin2D(vec2 P) {
     vec2 Pi = floor(P);
@@ -132,7 +132,9 @@ const Threads = ({
     if (!containerRef.current) return;
     const container = containerRef.current;
 
-    const renderer = new Renderer({ alpha: true });
+    // Cap DPR to 1.5 to reduce pixel count on HiDPI screens
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const renderer = new Renderer({ alpha: true, dpr });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
@@ -188,7 +190,28 @@ const Threads = ({
       container.addEventListener("mouseleave", handleMouseLeave);
     }
 
+    // Visibility-based pause/resume: stop the animation loop when off-screen
+    let isVisible = true;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        // Restart the loop when becoming visible again
+        if (isVisible && !animationFrameId.current) {
+          animationFrameId.current = requestAnimationFrame(update);
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(container);
+
     function update(t) {
+      // Stop the loop when not visible — saves CPU/GPU entirely
+      if (!isVisible) {
+        animationFrameId.current = null;
+        return;
+      }
+
       if (enableMouseInteraction) {
         const smoothing = 0.05;
         currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
@@ -209,6 +232,8 @@ const Threads = ({
     return () => {
       if (animationFrameId.current)
         cancelAnimationFrame(animationFrameId.current);
+      animationFrameId.current = null;
+      observer.disconnect();
       window.removeEventListener("resize", resize);
 
       if (enableMouseInteraction) {

@@ -81,6 +81,12 @@ export default function ProductDetail() {
         WebkitFontSmoothing: "antialiased",
       }}
     >
+      <style>{`
+        .product-description img {
+          margin-top: 24px;
+          margin-bottom: 24px;
+        }
+      `}</style>
       <Navbar />
 
       {/* Breadcrumb */}
@@ -533,6 +539,7 @@ export default function ProductDetail() {
               <div>
                 {product.description ? (
                   <div
+                    className="product-description"
                     style={{
                       color: "#9AABBF",
                       fontSize: 14,

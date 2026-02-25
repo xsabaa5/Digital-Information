@@ -128,7 +128,7 @@ function Hero() {
 }
 
 /* ─── Stats ─── */
-function Stats() {
+const Stats = React.memo(function Stats() {
   const data = [
     { label: "Projects Completed", value: "50+" },
     { label: "Client Satisfaction", value: "98%" },
@@ -162,7 +162,7 @@ function Stats() {
       </Container>
     </section>
   );
-}
+});
 
 /* ─── Shared card style ─── */
 const card = {
@@ -186,7 +186,7 @@ const iconBox = (size = 48) => ({
 });
 
 /* ─── Our Services ─── */
-function Services() {
+const Services = React.memo(function Services() {
   return (
     <section id="services" style={{ padding: "96px 0", background: "#060B18" }}>
       <Container>
@@ -438,7 +438,7 @@ function Services() {
       </Container>
     </section>
   );
-}
+});
 
 /* ─── Products (Home Preview — 6 items) ─── */
 function Products() {
@@ -521,6 +521,8 @@ function Products() {
                 <img
                   src={p.image}
                   alt={p.name}
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     maxWidth: "90%",
                     maxHeight: "90%",
@@ -635,7 +637,7 @@ function Products() {
 }
 
 /* ─── About Us ─── */
-function About() {
+const About = React.memo(function About() {
   const values = [
     {
       icon: "star",
@@ -768,10 +770,10 @@ function About() {
       </Container>
     </section>
   );
-}
+});
 
 /* ─── Footer ─── */
-function Footer() {
+const Footer = React.memo(function Footer() {
   return (
     <footer
       id="contact"
@@ -991,7 +993,7 @@ function Footer() {
       </Container>
     </footer>
   );
-}
+});
 
 /* ─── Icon lookup (keeps JSX clean) ─── */
 function Icon({ name, size = 22 }) {
