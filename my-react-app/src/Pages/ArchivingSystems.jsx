@@ -1,12 +1,6 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 
-const card = {
-  background: "#0B1222",
-  border: "1px solid #1A2744",
-  borderRadius: 16,
-  padding: 28,
-};
+const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
 
 export default function ArchivingSystems() {
   const capabilities = [
@@ -41,55 +35,25 @@ export default function ArchivingSystems() {
   ];
 
   return (
-    <div
-      style={{
-        background: "#060B18",
-        minHeight: "100vh",
-        color: "#fff",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        WebkitFontSmoothing: "antialiased",
-      }}
-    >
+    <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
       <Navbar />
 
       {/* Hero */}
-      <section style={{ padding: "100px 0 60px", textAlign: "center" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 24px" }}>
+      <section className="pt-25 pb-15 text-center">
+        <div className="max-w-200 mx-auto px-6">
           <span
-            style={{
-              display: "inline-block",
-              padding: "6px 16px",
-              borderRadius: 999,
-              fontSize: 12,
-              fontWeight: 600,
-              color: "#8BAAFE",
-              background: "rgba(79,123,247,.1)",
-              border: "1px solid rgba(79,123,247,.15)",
-              marginBottom: 24,
-            }}
+            className="inline-block py-1.5 px-4 rounded-full text-xs font-semibold text-[#8BAAFE] bg-[rgba(79,123,247,.1)] border border-[rgba(79,123,247,.15)] mb-6"
           >
             Solutions
           </span>
           <h1
-            style={{
-              fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 700,
-              lineHeight: 1.2,
-              marginBottom: 20,
-              letterSpacing: "-0.03em",
-            }}
+            className="text-[clamp(32px,4vw,48px)] font-bold leading-[1.2] mb-5 tracking-[-0.03em]"
           >
             Secure, Smart, and Scalable{" "}
-            <span style={{ color: "#4F7BF7" }}>Archiving Solutions</span>
+            <span className="text-[#4F7BF7]">Archiving Solutions</span>
           </h1>
           <p
-            style={{
-              color: "#8492af",
-              fontSize: 16,
-              lineHeight: 1.8,
-              maxWidth: 640,
-              margin: "0 auto",
-            }}
+            className="text-[#8492af] text-base leading-[1.8] max-w-165 mx-auto"
           >
             Enterprise-grade archiving software for Iraqi organizations to
             digitize, organize, and protect records. Serving government
@@ -98,17 +62,17 @@ export default function ArchivingSystems() {
         </div>
       </section>
 
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 24px 80px" }}>
+      <div className="max-w-280 mx-auto px-6 pb-20">
         {/* Key Capabilities */}
-        <section style={{ marginBottom: 64 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24, letterSpacing: "-0.02em" }}>
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 tracking-[-0.02em]">
             Key Capabilities
           </h2>
-          <div style={{ ...card }}>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className={cardClass}>
+            <ul className="list-none p-0 m-0 flex flex-col gap-4">
               {capabilities.map((item, i) => (
-                <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 24, position: "relative" }}>
-                  <span style={{ position: "absolute", left: 0, color: "#4F7BF7", fontWeight: 700 }}>&#10003;</span>
+                <li key={i} className="text-[#9AABBF] text-base leading-[1.6] pl-6 relative">
+                  <span className="absolute left-0 text-[#4F7BF7] font-bold">&#10003;</span>
                   {item}
                 </li>
               ))}
@@ -117,45 +81,39 @@ export default function ArchivingSystems() {
         </section>
 
         {/* MediaINFO Section */}
-        <section style={{ marginBottom: 64 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8, letterSpacing: "-0.02em" }}>
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-2 tracking-[-0.02em]">
             MediaINFO Digital Library Software
           </h2>
-          <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7, marginBottom: 24 }}>
+          <p className="text-[#8492af] text-base leading-[1.7] mb-6">
             Powerful digital library and content management platform for storing,
             accessing, and sharing digitized assets. Used by libraries, publishers,
             universities, and archives globally.
           </p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 20,
-            }}
-          >
-            <div style={{ ...card }}>
-              <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16, color: "#8BAAFE" }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className={cardClass}>
+              <h3 className="text-xl font-semibold mb-4 text-[#8BAAFE]">
                 Features
               </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+              <ul className="list-none p-0 m-0 flex flex-col gap-3">
                 {mediaInfoFeatures.map((f, i) => (
-                  <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
-                    <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
+                  <li key={i} className="text-[#9AABBF] text-base leading-[1.6] pl-5 relative">
+                    <span className="absolute left-0 text-[#4F7BF7]">&#8226;</span>
                     {f}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div style={{ ...card }}>
-              <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16, color: "#8BAAFE" }}>
+            <div className={cardClass}>
+              <h3 className="text-xl font-semibold mb-4 text-[#8BAAFE]">
                 Who Uses MediaINFO
               </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+              <ul className="list-none p-0 m-0 flex flex-col gap-3">
                 {mediaInfoUsers.map((u, i) => (
-                  <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
-                    <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
+                  <li key={i} className="text-[#9AABBF] text-base leading-[1.6] pl-5 relative">
+                    <span className="absolute left-0 text-[#4F7BF7]">&#8226;</span>
                     {u}
                   </li>
                 ))}
@@ -165,38 +123,21 @@ export default function ArchivingSystems() {
         </section>
 
         {/* Why Choose */}
-        <section style={{ marginBottom: 64 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24, letterSpacing: "-0.02em" }}>
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 tracking-[-0.02em]">
             Why Choose Digital Information
           </h2>
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-              gap: 16,
-            }}
+            className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4"
           >
             {whyChoose.map((item, i) => (
-              <div key={i} style={{ ...card, textAlign: "center", padding: 24 }}>
+              <div key={i} className={`${cardClass} text-center p-6!`}>
                 <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 12,
-                    background: "rgba(79,123,247,.1)",
-                    border: "1px solid rgba(79,123,247,.15)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 14px",
-                    color: "#4F7BF7",
-                    fontSize: 20,
-                    fontWeight: 700,
-                  }}
+                  className="w-12 h-12 rounded-xl bg-[rgba(79,123,247,.1)] border border-[rgba(79,123,247,.15)] flex items-center justify-center mx-auto mb-3.5 text-[#4F7BF7] text-xl font-bold"
                 >
                   {i + 1}
                 </div>
-                <p style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6 }}>
+                <p className="text-[#9AABBF] text-base leading-[1.6]">
                   {item}
                 </p>
               </div>
@@ -205,28 +146,18 @@ export default function ArchivingSystems() {
         </section>
 
         {/* CTA */}
-        <section style={{ textAlign: "center", padding: "48px 0" }}>
-          <div style={{ ...card, padding: "48px 32px" }}>
-            <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>
+        <section className="text-center py-12">
+          <div className={`${cardClass} py-12! px-8!`}>
+            <h2 className="text-2xl font-bold mb-3">
               Ready to Digitize Your Records?
             </h2>
-            <p style={{ color: "#8492af", fontSize: 16, marginBottom: 28 }}>
+            <p className="text-[#8492af] text-base mb-7">
               Contact us for a consultation on archiving solutions tailored to
               your organization.
             </p>
             <a
               href="mailto:info@diginfoiq.com"
-              style={{
-                display: "inline-block",
-                padding: "14px 36px",
-                borderRadius: 999,
-                fontSize: 14,
-                fontWeight: 600,
-                background: "#4F7BF7",
-                color: "#fff",
-                textDecoration: "none",
-                boxShadow: "0 0 30px rgba(79,123,247,.35)",
-              }}
+              className="inline-block py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white no-underline shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em]"
             >
               Contact Us
             </a>

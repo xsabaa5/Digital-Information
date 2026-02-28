@@ -4,35 +4,14 @@ import Navbar from "../components/Navbar";
 
 const PAGE_SIZE = 12;
 
-const card = {
-  background: "#1A1A1A",
-  borderRadius: 32,
-  padding: 10,
-};
+/* ─── Tailwind class constants (replace former JS style objects) ─── */
+const selectClasses =
+  "flex-1 min-w-45 py-4 pl-4.5 pr-11 rounded-xl border border-[#1A2744] bg-[#0B1222] text-white text-sm font-semibold tracking-[0.04em] uppercase cursor-pointer outline-none appearance-none bg-no-repeat bg-[length:14px] bg-[position:right_16px_center]";
 
-/* ─── Dropdown select styled to match design ─── */
-const selectStyle = {
-  flex: 1,
-  minWidth: 180,
-  padding: "16px 44px 16px 18px",
-  borderRadius: 12,
-  border: "1px solid #1A2744",
-  background: "#0B1222",
-  color: "#fff",
-  fontSize: 14,
-  fontWeight: 600,
-  letterSpacing: "0.04em",
-  textTransform: "uppercase",
-  cursor: "pointer",
-  outline: "none",
-  appearance: "none",
-  WebkitAppearance: "none",
-  MozAppearance: "none",
-  backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "right 16px center",
-  backgroundSize: 14,
-};
+const selectArrowBg = `url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`;
+
+const cardClasses =
+  "bg-[#1A1A1A] rounded-[32px] p-2.5 flex flex-col no-underline text-inherit transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,.4)]";
 
 /* ─── Filter config ─── */
 const FILTER_FIELDS = [
@@ -102,39 +81,17 @@ export default function AllProducts() {
   };
 
   return (
-    <div
-      style={{
-        background: "#000",
-        minHeight: "100vh",
-        color: "#fff",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        WebkitFontSmoothing: "antialiased",
-      }}
-    >
+    <div className="bg-black min-h-screen text-white font-sans antialiased">
       <Navbar />
 
       {/* Page Content */}
-      <div
-        style={{ maxWidth: 1120, margin: "0 auto", padding: "120px 24px 48px" }}
-      >
+      <div className="max-w-280 mx-auto pt-30 px-6 pb-12">
         {/* Filters Bar */}
-        <div
-          style={{
-            padding: 24,
-            marginBottom: 32,
-          }}
-        >
+        <div className="p-6 mb-8">
           {/* Row 1: Search + Brand + Product Type + Document Size + Speed */}
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 12,
-              marginBottom: 12,
-            }}
-          >
+          <div className="flex flex-wrap gap-3 mb-3">
             {/* Search */}
-            <div style={{ position: "relative", flex: 1, minWidth: 180 }}>
+            <div className="relative flex-1 min-w-45">
               <svg
                 width="16"
                 height="16"
@@ -144,13 +101,7 @@ export default function AllProducts() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                style={{
-                  position: "absolute",
-                  left: 14,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  pointerEvents: "none",
-                }}
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
               >
                 <circle cx="11" cy="11" r="8" />
                 <path d="M21 21L16.65 16.65" />
@@ -163,15 +114,7 @@ export default function AllProducts() {
                   setSearch(e.target.value);
                   setVisibleCount(PAGE_SIZE);
                 }}
-                style={{
-                  ...selectStyle,
-                  paddingLeft: 42,
-                  textTransform: "none",
-                  fontWeight: 400,
-                  letterSpacing: "normal",
-                  backgroundImage: "none",
-                  width: "100%",
-                }}
+                className="flex-1 min-w-45 py-4 pl-10.5 pr-11 rounded-xl border border-[#1A2744] bg-[#0B1222] text-white text-sm font-normal tracking-normal cursor-pointer outline-none appearance-none w-full"
               />
             </div>
 
@@ -181,10 +124,8 @@ export default function AllProducts() {
                 key={key}
                 value={filters[key] || ""}
                 onChange={(e) => updateFilter(key, e.target.value)}
-                style={{
-                  ...selectStyle,
-                  color: "#fff",
-                }}
+                className={selectClasses}
+                style={{ backgroundImage: selectArrowBg }}
               >
                 <option value="">{label}</option>
                 {(filterOptions[key] || []).map((v) => (
@@ -197,22 +138,14 @@ export default function AllProducts() {
           </div>
 
           {/* Row 2: Capacity + Standard Interface + Colored + SimplexDuplex + Duty Cycle */}
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 12,
-            }}
-          >
+          <div className="flex flex-wrap gap-3">
             {FILTER_FIELDS.slice(4).map(({ key, label }) => (
               <select
                 key={key}
                 value={filters[key] || ""}
                 onChange={(e) => updateFilter(key, e.target.value)}
-                style={{
-                  ...selectStyle,
-                  color: "#fff",
-                }}
+                className={selectClasses}
+                style={{ backgroundImage: selectArrowBg }}
               >
                 <option value="">{label}</option>
                 {(filterOptions[key] || []).map((v) => (
@@ -226,16 +159,13 @@ export default function AllProducts() {
         </div>
 
         {/* Results count + Clear */}
-        <div
-          className="flex items-center justify-between"
-          style={{ marginBottom: 20 }}
-        >
-          <p style={{ color: "#3A4A6A", fontSize: 13 }}>
+        <div className="flex items-center justify-between mb-5">
+          <p className="text-[#3A4A6A] text-[13px]">
             Showing {visible.length} of {filtered.length} products
             {search && (
               <span>
                 {" "}
-                for &ldquo;<span style={{ color: "#8BAAFE" }}>{search}</span>
+                for &ldquo;<span className="text-[#8BAAFE]">{search}</span>
                 &rdquo;
               </span>
             )}
@@ -243,17 +173,7 @@ export default function AllProducts() {
           {(activeFilterCount > 0 || search) && (
             <button
               onClick={clearFilters}
-              style={{
-                padding: "6px 16px",
-                borderRadius: 999,
-                fontSize: 12,
-                fontWeight: 500,
-                cursor: "pointer",
-                border: "1px solid #1A2744",
-                background: "transparent",
-                color: "#5A6A8A",
-                transition: "all 0.2s",
-              }}
+              className="py-2 px-5 rounded-full text-sm font-semibold cursor-pointer border border-[rgba(79,123,247,.35)] bg-transparent text-white tracking-[0.01em] transition-all duration-200 hover:bg-[rgba(79,123,247,.1)] hover:border-[#4F7BF7]"
             >
               Clear all filters
               {activeFilterCount > 0 && ` (${activeFilterCount})`}
@@ -263,10 +183,7 @@ export default function AllProducts() {
 
         {/* Product Grid */}
         {visible.length === 0 ? (
-          <div
-            className="text-center"
-            style={{ padding: "80px 0", color: "#3A4A6A" }}
-          >
+          <div className="text-center py-20 text-[#3A4A6A]">
             <svg
               width="48"
               height="48"
@@ -276,95 +193,38 @@ export default function AllProducts() {
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              style={{ margin: "0 auto 16px" }}
+              className="mx-auto mb-4"
             >
               <circle cx="11" cy="11" r="8" />
               <path d="M21 21L16.65 16.65" />
             </svg>
-            <p style={{ fontSize: 15, marginBottom: 12 }}>No products found</p>
+            <p className="text-[15px] mb-3">No products found</p>
             <button
               onClick={clearFilters}
-              style={{
-                padding: "10px 24px",
-                borderRadius: 999,
-                fontSize: 13,
-                fontWeight: 500,
-                cursor: "pointer",
-                border: "1px solid #1A2744",
-                background: "transparent",
-                color: "#8BAAFE",
-              }}
+              className="py-2.5 px-6 rounded-full text-[17px] font-semibold cursor-pointer border border-[rgba(79,123,247,.35)] bg-transparent text-white tracking-[0.01em] hover:bg-[rgba(79,123,247,.1)] hover:border-[#4F7BF7] transition-all duration-200"
             >
               Clear all filters
             </button>
           </div>
         ) : (
-          <div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-            style={{ gap: 24 }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {visible.map((p) => (
               <Link
                 key={p.id}
                 to={`/products/${p.id}`}
-                style={{
-                  ...card,
-                  display: "flex",
-                  flexDirection: "column",
-                  textDecoration: "none",
-                  color: "inherit",
-                  transition: "transform 0.25s, box-shadow 0.25s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-6px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 12px 32px rgba(0,0,0,.4)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
+                className={cardClasses}
               >
                 {/* Image area */}
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    aspectRatio: "1 / 1",
-                    borderRadius: 22,
-                    overflow: "hidden",
-                    background: "#fff",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
+                <div className="relative w-full aspect-square rounded-[22px] overflow-hidden bg-white flex items-center justify-center">
                   <img
                     src={p.image}
                     alt={p.name}
                     loading="lazy"
                     decoding="async"
-                    style={{
-                      maxWidth: "80%",
-                      maxHeight: "80%",
-                      objectFit: "contain",
-                    }}
+                    className="max-w-[80%] max-h-[80%] object-contain"
                   />
                   {/* Cart button */}
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: 6,
-                      right: 6,
-                      width: 42,
-                      height: 42,
-                      borderRadius: 16,
-                      background: "#1A1A1A",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
+                  <span className="absolute top-1.5 right-1.5 w-10.5 h-10.5 rounded-2xl bg-[#1A1A1A] flex items-center justify-center">
                     <svg
                       width="20"
                       height="20"
@@ -383,72 +243,33 @@ export default function AllProducts() {
                 </div>
 
                 {/* Info area */}
-                <div
-                  style={{
-                    padding: "16px 6px 6px",
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
+                <div className="pt-4 px-1.5 pb-1.5 flex-1 flex flex-col">
                   {/* Brand badge */}
-                  <span
-                    style={{
-                      display: "inline-block",
-                      padding: "4px 10px",
-                      borderRadius: 6,
-                      fontSize: 11,
-                      fontWeight: 600,
-                      color: "#fff",
-                      background: "rgba(79,123,247,.1)",
-                      border: "1px solid rgba(79,123,247,.15)",
-                      marginBottom: 12,
-                      alignSelf: "flex-start",
-                    }}
-                  >
+                  <span className="inline-block py-1 px-2.5 rounded-md text-[11px] font-semibold text-white bg-[rgba(79,123,247,.1)] border border-[rgba(79,123,247,.15)] mb-3 self-start">
                     {p.brand}
                   </span>
 
                   {/* Name */}
-                  <h3
-                    className="text-white font-bold"
-                    style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}
-                  >
+                  <h3 className="text-white font-bold text-xl mb-2 leading-[1.3]">
                     {p.name}
                   </h3>
 
                   {/* Description as bullet points */}
-                  <ul
-                    style={{
-                      color: "#8492af",
-                      fontSize: 16,
-                      lineHeight: 1.9,
-                      flex: 1,
-                      listStyle: "disc",
-                      paddingLeft: 20,
-                      margin: 0,
-                    }}
-                  >
+                  <ul className="text-[#8492af] text-base leading-[1.9] flex-1 list-disc pl-5 m-0">
                     {p.short_description
                       .split("\n")
                       .map((s) => s.trim())
                       .filter(Boolean)
                       .map((point, i) => (
-                        <li key={i} style={{ color: "#fff" }}>
-                          <span style={{ color: "#B0B4BBFF" }}>{point}</span>
+                        <li key={i} className="text-white">
+                          <span className="text-[#B0B4BBFF]">{point}</span>
                         </li>
                       ))}
                   </ul>
 
                   {/* Category tag */}
-                  <div
-                    style={{
-                      marginTop: 16,
-                      paddingTop: 16,
-                      borderTop: "1px solid #2A2A2A",
-                    }}
-                  >
-                    <span style={{ color: "#5A5A5A", fontSize: 11 }}>
+                  <div className="mt-4 pt-4 border-t border-[#2A2A2A]">
+                    <span className="text-[#5A5A5A] text-[11px]">
                       {p.category}
                     </span>
                   </div>
@@ -460,28 +281,10 @@ export default function AllProducts() {
 
         {/* Load More */}
         {hasMore && (
-          <div className="text-center" style={{ marginTop: 48 }}>
+          <div className="text-center mt-12">
             <button
               onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-              style={{
-                padding: "14px 36px",
-                borderRadius: 999,
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: "pointer",
-                border: "1px solid #1A2744",
-                background: "transparent",
-                color: "#8BAAFE",
-                transition: "all 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(79,123,247,.1)";
-                e.currentTarget.style.borderColor = "#4F7BF7";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "#1A2744";
-              }}
+              className="py-2.5 px-6 rounded-full text-[17px] font-semibold cursor-pointer border border-[rgba(79,123,247,.35)] bg-transparent text-white tracking-[0.01em] transition-all duration-200 hover:bg-[rgba(79,123,247,.1)] hover:border-[#4F7BF7]"
             >
               Load More Products
             </button>

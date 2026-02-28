@@ -6,10 +6,7 @@ import Threads from "../components/Threads";
 /* ─── Reusable wrapper ─── */
 function Container({ children, className = "" }) {
   return (
-    <div
-      className={`w-full px-6 ${className}`}
-      style={{ maxWidth: "1120px", marginLeft: "auto", marginRight: "auto" }}
-    >
+    <div className={`w-full px-6 max-w-280 mx-auto ${className}`}>
       {children}
     </div>
   );
@@ -18,17 +15,9 @@ function Container({ children, className = "" }) {
 /* ─── Hero ─── */
 function Hero() {
   return (
-    <section
-      className="relative flex flex-col items-center justify-center text-center overflow-hidden"
-      style={{
-        minHeight: "100vh",
-        paddingTop: "100px",
-        paddingBottom: "120px",
-        background: "#060B18",
-      }}
-    >
+    <section className="relative flex flex-col items-center justify-center text-center overflow-hidden min-h-screen pt-25 pb-30 bg-[#060B18]">
       {/* Threads Background */}
-      <div className="absolute inset-0" style={{ overflow: "hidden" }}>
+      <div className="absolute inset-0 overflow-hidden">
         <Threads
           color={[0.32, 0.15, 1]}
           amplitude={1}
@@ -37,59 +26,28 @@ function Hero() {
         />
       </div>
 
-      <div
-        className="relative z-10"
-        style={{ maxWidth: 1000, margin: "0 auto", padding: "0 24px" }}
-      >
-        <h1
-          className="font-bold text-white"
-          style={{
-            fontSize: "clamp(42px, 6vw, 72px)",
-            lineHeight: 1.1,
-            marginBottom: 24,
-          }}
-        >
+      <div className="relative z-10 max-w-250 mx-auto px-6">
+        <h1 className="font-bold text-white text-[clamp(42px,6vw,72px)] leading-[1.1] mb-6">
           Empowering Productivity
           <br />
-          Through <span style={{ color: "#4F7BF7" }}>Precision Scanning</span>
+          Through <span className="text-[#4F7BF7]">Precision Scanning</span>
         </h1>
 
-        <p
-          style={{
-            color: "#9ca7be",
-            fontSize: 21,
-            lineHeight: 1.7,
-            marginBottom: 40,
-            maxWidth: 660,
-            margin: "0 auto 40px",
-          }}
-        >
+        <p className="text-[#b0bdd4] text-base sm:text-[18px] md:text-[22px] leading-[1.7] max-w-165 mx-auto mb-10">
           From compact office scanners to industrial-grade imaging systems — we
           distribute world-class brands powering digital workflows across Iraq.
         </p>
 
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <Link
             to="/products"
-            className="text-white font-semibold rounded-full cursor-pointer"
-            style={{
-              padding: "14px 28px",
-              background: "#4F7BF7",
-              boxShadow: "0 0 30px rgba(79,123,247,.4)",
-              textDecoration: "none",
-            }}
+            className="w-full sm:w-auto px-6 py-2.5 bg-[#0075FF] text-white text-[17px] font-semibold rounded-full cursor-pointer tracking-[0.01em] no-underline shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] text-center"
           >
             Explore Products
           </Link>
           <a
             href="#about"
-            className="text-white font-semibold rounded-full cursor-pointer"
-            style={{
-              padding: "14px 28px",
-              background: "transparent",
-              border: "1px solid #2A3352",
-              textDecoration: "none",
-            }}
+            className="w-full sm:w-auto px-6 py-2.5 bg-transparent text-white text-[17px] font-semibold rounded-full border border-[rgba(79,123,247,.35)] cursor-pointer tracking-[0.01em] no-underline text-center"
           >
             Learn More
           </a>
@@ -97,20 +55,13 @@ function Hero() {
       </div>
 
       {/* Terrain */}
-      <div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{
-          height: 140,
-          background: "linear-gradient(to top, #060B18, transparent)",
-        }}
-      />
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none h-35 bg-linear-to-t from-[#060B18] to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
         <svg
           viewBox="0 0 1440 100"
           fill="none"
-          className="w-full block"
+          className="w-full block h-15"
           preserveAspectRatio="none"
-          style={{ height: 60 }}
         >
           <path
             d="M0 100V70C200 35 400 18 720 44C1040 70 1240 25 1440 52V100H0Z"
@@ -136,108 +87,59 @@ const Stats = React.memo(function Stats() {
     { label: "Years in Market", value: "5+" },
   ];
   return (
-    <section style={{ padding: "48px 0", background: "#060B18" }}>
-      <Container
-        className="flex items-center justify-center"
-        style={{ gap: 48 }}
-      >
-        {data.map((s, i) => (
-          <React.Fragment key={s.label}>
-            <div className="text-center" style={{ padding: "0 16px" }}>
-              <p style={{ color: "#8492af", fontSize: 20, marginBottom: 8 }}>
-                {s.label}
-              </p>
-              <p
-                className="text-white font-bold"
-                style={{ fontSize: "clamp(28px, 3.5vw, 42px)" }}
-              >
+    <section className="py-12 bg-[#060B18]">
+      <Container>
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#1A2744] border border-[#1A2744] rounded-2xl overflow-hidden">
+          {data.map((s) => (
+            <div key={s.label} className="text-center px-6 py-8">
+              <p className="text-[#9cabc4] text-sm md:text-base mb-2">{s.label}</p>
+              <p className="text-white font-bold text-[clamp(26px,3.5vw,42px)]">
                 {s.value}
               </p>
             </div>
-            {i < data.length - 1 && (
-              <div style={{ width: 1, height: 50, background: "#1A2744" }} />
-            )}
-          </React.Fragment>
-        ))}
+          ))}
+        </div>
       </Container>
     </section>
   );
 });
 
-/* ─── Shared card style ─── */
-const card = {
-  background: "#0B1222",
-  border: "1px solid #1A2744",
-  borderRadius: 16,
-  padding: 28,
-};
-
-const iconBox = (size = 48) => ({
-  width: size,
-  height: size,
-  borderRadius: 12,
-  background: "#131D36",
-  border: "1px solid #1E2D50",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: "#7B9BFF",
-  flexShrink: 0,
-});
+/* ─── Shared card classes ─── */
+const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
+const iconBoxClass =
+  "rounded-xl bg-[#131D36] border border-[#1E2D50] flex items-center justify-center text-[#7B9BFF] shrink-0";
 
 /* ─── Our Services ─── */
 const Services = React.memo(function Services() {
   return (
-    <section id="services" style={{ padding: "96px 0", background: "#060B18" }}>
+    <section id="services" className="py-24 bg-[#060B18]">
       <Container>
-        <div className="text-center" style={{ marginBottom: 64 }}>
-          <h2
-            className="text-white font-bold"
-            style={{ fontSize: "clamp(28px, 3.5vw, 40px)", marginBottom: 16 }}
-          >
+        <div className="text-center mb-16">
+          <h2 className="text-white font-bold text-[clamp(28px,3.5vw,40px)] mb-4">
             Our Services
           </h2>
-          <p
-            style={{
-              color: "#8492af",
-              fontSize: 20,
-              maxWidth: 560,
-              margin: "0 auto",
-              lineHeight: 1.7,
-            }}
-          >
+          <p className="text-[#9cabc4] text-[21px] max-w-140 mx-auto leading-[1.7]">
             Comprehensive technology solutions combining innovation, security,
             and integration to build a smarter, connected business.
           </p>
         </div>
 
         {/* Row 1 — 2 cols */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2"
-          style={{ gap: 20, marginBottom: 20 }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
           {/* Document Scanning */}
-          <div style={card}>
-            <div
-              className="flex items-center"
-              style={{ marginBottom: 24, minHeight: 48 }}
-            >
-              <div style={{ ...iconBox(48), borderRadius: 999 }}>
+          <div className={cardClass}>
+            <div className="flex items-center mb-6 min-h-12">
+              <div className={`${iconBoxClass} w-12 h-12 rounded-full!`}>
                 <Icon name="search" />
               </div>
-              <div
-                style={{ ...iconBox(48), borderRadius: 999, marginLeft: -8 }}
-              >
+              <div className={`${iconBoxClass} w-12 h-12 rounded-full! -ml-2`}>
                 <Icon name="filter" />
               </div>
             </div>
-            <h3
-              className="text-white font-bold"
-              style={{ fontSize: 20, marginBottom: 8 }}
-            >
+            <h3 className="text-white font-bold text-xl mb-2">
               Document Scanning Solutions
             </h3>
-            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}>
+            <p className="text-[#9cabc4] text-[17px] leading-[1.7]">
               From compact office scanners to industrial-grade imaging systems —
               we distribute world-class brands like Ricoh, Epson, Avision, and
               Image Access powering digital workflows across Iraq.
@@ -245,12 +147,9 @@ const Services = React.memo(function Services() {
           </div>
 
           {/* Security & Office Electronics */}
-          <div style={card}>
-            <div
-              className="flex items-center"
-              style={{ marginBottom: 24, minHeight: 48, gap: 12 }}
-            >
-              <div style={{ ...iconBox(48), borderRadius: 999 }}>
+          <div className={cardClass}>
+            <div className="flex items-center mb-6 min-h-12 gap-3">
+              <div className={`${iconBoxClass} w-12 h-12 rounded-full!`}>
                 <svg
                   width="22"
                   height="22"
@@ -266,13 +165,10 @@ const Services = React.memo(function Services() {
                 </svg>
               </div>
             </div>
-            <h3
-              className="text-white font-bold"
-              style={{ fontSize: 20, marginBottom: 8 }}
-            >
+            <h3 className="text-white font-bold text-xl mb-2">
               Security & Office Electronics
             </h3>
-            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}>
+            <p className="text-[#9cabc4] text-[17px] leading-[1.7]">
               X-ray scanners, metal detectors, access control, surveillance
               systems, and communication devices from brands like RAPISCAN,
               HIKVISION, and Motorola for safer, smarter workplaces.
@@ -281,48 +177,30 @@ const Services = React.memo(function Services() {
         </div>
 
         {/* Row 2 — 3 cols */}
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 20 }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {/* ERP */}
-          <div style={card}>
-            <div
-              className="flex items-end"
-              style={{ gap: 10, marginBottom: 24, minHeight: 72 }}
-            >
+          <div className={cardClass}>
+            <div className="flex items-end gap-2.5 mb-6 min-h-18">
               {[
-                { h: 52, f: "60%" },
-                { h: 62, f: "42%" },
-                { h: 68, f: "78%" },
+                { h: "h-[52px]", f: "60%" },
+                { h: "h-[62px]", f: "42%" },
+                { h: "h-[68px]", f: "78%" },
               ].map((b, i) => (
                 <div
                   key={i}
-                  className="relative overflow-hidden"
-                  style={{
-                    width: 44,
-                    height: b.h,
-                    borderRadius: 8,
-                    background: "#131D36",
-                    border: "1px solid #1E2D50",
-                  }}
+                  className={`relative overflow-hidden w-11 ${b.h} rounded-lg bg-[#131D36] border border-[#1E2D50]`}
                 >
                   <div
-                    className="absolute bottom-0 left-0 right-0"
-                    style={{
-                      height: b.f,
-                      borderRadius: 8,
-                      background:
-                        "linear-gradient(to top, #4F7BF7, rgba(79,123,247,.3))",
-                    }}
+                    className="absolute bottom-0 left-0 right-0 rounded-lg bg-linear-to-t from-[#4F7BF7] to-[rgba(79,123,247,.3)]"
+                    style={{ height: b.f }}
                   />
                 </div>
               ))}
             </div>
-            <h3
-              className="text-white font-bold"
-              style={{ fontSize: 20, marginBottom: 8 }}
-            >
+            <h3 className="text-white font-bold text-xl mb-2">
               ERP & Digital Transformation
             </h3>
-            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}>
+            <p className="text-[#9cabc4] text-[17px] leading-[1.7]">
               Advanced ERP systems and workflow automation — including our own
               Torch ERP — for financial, HR, supply chain, and operational
               management.
@@ -330,22 +208,16 @@ const Services = React.memo(function Services() {
           </div>
 
           {/* Cybersecurity */}
-          <div style={card}>
-            <div
-              className="flex items-center justify-center"
-              style={{ marginBottom: 24, minHeight: 72 }}
-            >
-              <div style={iconBox(64)}>
+          <div className={cardClass}>
+            <div className="flex items-center justify-center mb-6 min-h-18">
+              <div className={`${iconBoxClass} w-16 h-16`}>
                 <Icon name="lock" />
               </div>
             </div>
-            <h3
-              className="text-white font-bold"
-              style={{ fontSize: 20, marginBottom: 8 }}
-            >
+            <h3 className="text-white font-bold text-xl mb-2">
               Cybersecurity Solutions
             </h3>
-            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}>
+            <p className="text-[#9cabc4] text-[17px] leading-[1.7]">
               AI-driven threat protection, 24/7 SOC monitoring, and
               enterprise-grade cybersecurity with a 99.7% protection rate
               against modern risks.
@@ -353,84 +225,51 @@ const Services = React.memo(function Services() {
           </div>
 
           {/* Archiving */}
-          <div style={card}>
-            <div style={{ marginBottom: 20 }}>
+          <div className={cardClass}>
+            <div className="mb-5">
               {[
                 {
                   label: "Documents",
-                  color: "#fff",
+                  colorClass: "text-white",
                   time: "Secure",
                   text: "Digitized & indexed for instant retrieval",
                 },
                 {
                   label: "Archives",
-                  color: "#4F7BF7",
+                  colorClass: "text-[#4F7BF7]",
                   text: "Long-term preservation with full compliance",
                 },
                 {
                   label: "Records",
-                  color: "#F59E0B",
+                  colorClass: "text-[#F59E0B]",
                   text: "Automated classification & metadata tagging",
                 },
               ].map((item) => (
                 <div
                   key={item.label}
-                  style={{
-                    background: "#080E1E",
-                    borderRadius: 10,
-                    padding: "10px 14px",
-                    border: "1px solid #151F3A",
-                    marginBottom: 8,
-                  }}
+                  className="bg-[#080E1E] rounded-[10px] px-3.5 py-2.5 border border-[#151F3A] mb-2"
                 >
-                  <div
-                    className="flex items-center justify-between"
-                    style={{ marginBottom: 2 }}
-                  >
+                  <div className="flex items-center justify-between mb-0.5">
                     <span
-                      style={{
-                        color: item.color,
-                        fontSize: 11,
-                        fontWeight: 600,
-                      }}
+                      className={`${item.colorClass} text-xs font-semibold`}
                     >
                       {item.label}
                     </span>
                     {item.time && (
-                      <span style={{ color: "#3A4A6A", fontSize: 10 }}>
+                      <span className="text-[#5A6A8A] text-[11px]">
                         {item.time}
                       </span>
                     )}
                   </div>
-                  <p style={{ color: "#4A5A7A", fontSize: 10 }}>{item.text}</p>
+                  <p className="text-[#6A7A9A] text-[11px]">{item.text}</p>
                 </div>
               ))}
             </div>
-            <h3
-              className="text-white font-bold"
-              style={{ fontSize: 20, marginBottom: 6 }}
-            >
+            <h3 className="text-white font-bold text-xl mb-1.5">
               Archiving Solutions
             </h3>
-            <span
-              className="inline-flex items-center"
-              style={{
-                gap: 6,
-                color: "#34D399",
-                fontSize: 12,
-                fontWeight: 500,
-              }}
-            >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: 999,
-                  background: "#34D399",
-                  boxShadow: "0 0 6px rgba(52,211,153,.5)",
-                }}
-                className="animate-pulse"
-              />
+            <span className="inline-flex items-center gap-1.5 text-[#34D399] text-[13px] font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#34D399] shadow-[0_0_6px_rgba(52,211,153,.5)] animate-pulse" />
               Store, Manage & Retrieve
             </span>
           </div>
@@ -452,105 +291,38 @@ function Products() {
   }, []);
 
   return (
-    <section
-      id="products"
-      style={{
-        padding: "96px 0",
-        background: "#000",
-        borderTop: "1px solid #001733",
-      }}
-    >
+    <section id="products" className="py-24 bg-black border-t border-[#001733]">
       <Container>
         {/* Header */}
-        <div className="text-center" style={{ marginBottom: 48 }}>
-          <h2
-            className="text-white font-bold"
-            style={{ fontSize: "clamp(28px, 3.5vw, 40px)", marginBottom: 16 }}
-          >
+        <div className="text-center mb-12">
+          <h2 className="text-white font-bold text-[clamp(28px,3.5vw,40px)] mb-4">
             Our Products
           </h2>
-          <p
-            style={{
-              color: "#8492af",
-              fontSize: 16,
-              maxWidth: 600,
-              margin: "0 auto",
-              lineHeight: 1.7,
-            }}
-          >
+          <p className="text-[#9cabc4] text-[17px] max-w-150 mx-auto leading-[1.7]">
             Explore Our Full Range Of Document Scanners From The World's Leading
             Brands.
           </p>
         </div>
 
         {/* Product Grid */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 "
-          style={{ gap: 24 }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((p) => (
             <Link
               key={p.id}
               to={`/products/${p.id}`}
-              style={{
-                background: "#1A1A1A",
-                borderRadius: 32,
-                padding: 10,
-                display: "flex",
-                flexDirection: "column",
-                textDecoration: "none",
-                color: "inherit",
-                transition: "transform 0.25s, box-shadow 0.25s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-6px)";
-                e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,.4)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
+              className="bg-[#1A1A1A] rounded-4xl p-2.5 flex flex-col no-underline text-inherit transition-[transform,box-shadow] duration-250 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,.4)]"
             >
               {/* Image area */}
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  aspectRatio: "1 / 1",
-                  borderRadius: 22,
-                  overflow: "hidden",
-                  background: "#fff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+              <div className="relative w-full aspect-square rounded-[22px] overflow-hidden bg-white flex items-center justify-center">
                 <img
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
                   decoding="async"
-                  style={{
-                    maxWidth: "80%",
-                    maxHeight: "80%",
-                    objectFit: "contain",
-                  }}
+                  className="max-w-[80%] max-h-[80%] object-contain"
                 />
                 {/* Cart button */}
-                <span
-                  style={{
-                    position: "absolute",
-                    top: 6,
-                    right: 6,
-                    width: 42,
-                    height: 42,
-                    borderRadius: 16,
-                    background: "#1A1A1A",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
+                <span className="absolute top-1.5 right-1.5 w-10.5 h-10.5 rounded-2xl bg-[#1A1A1A] flex items-center justify-center">
                   <svg
                     width="20"
                     height="20"
@@ -569,74 +341,33 @@ function Products() {
               </div>
 
               {/* Info area */}
-              <div
-                style={{
-                  padding: "16px 6px 6px",
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
+              <div className="pt-4 px-1.5 pb-1.5 flex-1 flex flex-col">
                 {/* Brand badge */}
-                <span
-                  style={{
-                    display: "inline-block",
-                    padding: "4px 10px",
-                    borderRadius: 6,
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: "#fff",
-                    background: "rgba(79,123,247,.1)",
-                    border: "1px solid rgba(79,123,247,.15)",
-                    marginBottom: 12,
-                    alignSelf: "flex-start",
-                  }}
-                >
+                <span className="inline-block px-2.5 py-1 rounded-md text-[11px] font-semibold text-white bg-[rgba(79,123,247,.1)] border border-[rgba(79,123,247,.15)] mb-3 self-start">
                   {p.brand}
                 </span>
 
                 {/* Name */}
-                <h3
-                  className="text-white font-bold"
-                  style={{ fontSize: 20, marginBottom: 8, lineHeight: 1.3 }}
-                >
+                <h3 className="text-white font-bold text-xl mb-2 leading-[1.3]">
                   {p.name}
                 </h3>
 
                 {/* Description as bullet points */}
-                <ul
-                  style={{
-                    color: "#8492af",
-                    fontSize: 16,
-                    lineHeight: 1.9,
-                    flex: 1,
-                    listStyle: "disc",
-                    paddingLeft: 20,
-                    margin: 0,
-                  }}
-                >
+                <ul className="text-[#9cabc4] text-[17px] leading-[1.9] flex-1 list-disc pl-5 m-0">
                   {p.short_description
                     .split("\n")
                     .map((s) => s.trim())
                     .filter(Boolean)
                     .map((point, i) => (
-                      <li key={i} style={{ color: "#fff" }}>
-                        <span style={{ color: "#B0B4BBFF" }}>{point}</span>
+                      <li key={i} className="text-white">
+                        <span className="text-[#B0B4BB]">{point}</span>
                       </li>
                     ))}
                 </ul>
 
                 {/* Category tag */}
-                <div
-                  style={{
-                    marginTop: 16,
-                    paddingTop: 16,
-                    borderTop: "1px solid #2A2A2A",
-                  }}
-                >
-                  <span style={{ color: "#5A5A5A", fontSize: 11 }}>
-                    {p.category}
-                  </span>
+                <div className="mt-4 pt-4 border-t border-[#2A2A2A]">
+                  <span className="text-[#7A7A7A] text-xs">{p.category}</span>
                 </div>
               </div>
             </Link>
@@ -644,23 +375,10 @@ function Products() {
         </div>
 
         {/* All Products Button */}
-        <div className="text-center" style={{ marginTop: 48 }}>
+        <div className="text-center mt-12">
           <Link
             to="/products"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "14px 36px",
-              borderRadius: 999,
-              fontSize: 14,
-              fontWeight: 600,
-              textDecoration: "none",
-              background: "#4F7BF7",
-              color: "#fff",
-              boxShadow: "0 0 30px rgba(79,123,247,.35)",
-              transition: "all 0.2s",
-            }}
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-[17px] font-semibold no-underline bg-[#0075FF] text-white shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em] transition-all duration-200"
           >
             All Products
             <svg
@@ -704,109 +422,61 @@ const About = React.memo(function About() {
   ];
 
   return (
-    <section id="about" style={{ padding: "96px 0", background: "#060B18" }}>
+    <section id="about" className="py-24 bg-[#060B18]">
       <Container>
-        <div
-          className="grid grid-cols-1 lg:grid-cols-2"
-          style={{ gap: 56, alignItems: "center" }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
-            <h2
-              className="text-white font-bold"
-              style={{
-                fontSize: "clamp(28px, 3.5vw, 40px)",
-                marginBottom: 16,
-                lineHeight: 1.15,
-              }}
-            >
-              About{" "}
-              <span style={{ color: "#4F7BF7" }}>Digital Information</span>
+            <h2 className="text-white font-bold text-[clamp(28px,3.5vw,40px)] mb-4 leading-[1.15]">
+              About <span className="text-[#4F7BF7]">Digital Information</span>
             </h2>
-            <p
-              style={{
-                color: "#8492af",
-                fontSize: 16,
-                lineHeight: 1.7,
-                marginBottom: 24,
-                maxWidth: 460,
-              }}
-            >
+            <p className="text-[#8492af] text-base leading-[1.7] mb-6 max-w-115">
               Founded in 2020, Digital Information has grown from a specialized
               technology provider into one of Iraq's most diversified technology
               companies — delivering digital transformation, ERP, archiving,
               cybersecurity, and electronics solutions.
             </p>
-            <p
-              style={{
-                color: "#8492af",
-                fontSize: 16,
-                lineHeight: 1.7,
-                marginBottom: 40,
-                maxWidth: 460,
-              }}
-            >
+            <p className="text-[#8492af] text-base leading-[1.7] mb-10 max-w-115">
               Our mission is to empower businesses with smart, secure, and
               scalable technology solutions that help them digitize operations,
               protect assets, and accelerate growth across Iraq and the region.
             </p>
 
-            <div className="flex" style={{ gap: 56, marginBottom: 40 }}>
+            <div className="flex gap-14 mb-10">
               {[
                 { label: "Projects Completed", value: "50+" },
                 { label: "Client Satisfaction", value: "98%" },
               ].map((s) => (
                 <div key={s.label}>
-                  <p
-                    style={{ color: "#6B7A99", fontSize: 12, marginBottom: 8 }}
-                  >
-                    {s.label}
-                  </p>
-                  <p
-                    className="text-white font-bold"
-                    style={{ fontSize: "clamp(28px, 3vw, 42px)" }}
-                  >
+                  <p className="text-[#8A9BBF] text-sm mb-2">{s.label}</p>
+                  <p className="text-white font-bold text-[clamp(28px,3vw,42px)]">
                     {s.value}
                   </p>
                 </div>
               ))}
             </div>
 
-            <a
-              href="#contact"
-              className="text-white font-semibold rounded-full cursor-pointer"
-              style={{
-                display: "inline-block",
-                padding: "13px 28px",
-                background: "transparent",
-                border: "1px solid #1A2744",
-                fontSize: 15,
-                textDecoration: "none",
-              }}
+            <Link
+              to="/contact-us"
+              className="inline-block px-6 py-2.5 bg-[#0075FF] text-white text-[17px] font-semibold rounded-full cursor-pointer shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em] no-underline"
             >
               Get In Touch
-            </a>
+            </Link>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className="flex flex-col gap-4">
             {values.map((f) => (
               <div
                 key={f.title}
-                className="flex items-start"
-                style={{ ...card, padding: 20, gap: 16 }}
+                className="flex items-start gap-4 bg-[#0B1222] border border-[#1A2744] rounded-2xl p-5"
               >
-                <div style={iconBox(44)}>
+                <div className={`${iconBoxClass} w-11 h-11`}>
                   <Icon name={f.icon} />
                 </div>
                 <div>
-                  <h3
-                    className="text-white font-bold"
-                    style={{ fontSize: 20, marginBottom: 6 }}
-                  >
+                  <h3 className="text-white font-bold text-xl mb-1.5">
                     {f.title}
                   </h3>
-                  <p
-                    style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7 }}
-                  >
+                  <p className="text-[#9cabc4] text-[17px] leading-[1.7]">
                     {f.desc}
                   </p>
                 </div>
@@ -822,35 +492,22 @@ const About = React.memo(function About() {
 /* ─── Footer ─── */
 const Footer = React.memo(function Footer() {
   return (
-    <footer
-      id="contact"
-      style={{ background: "#050A15", borderTop: "1px solid #1A2744" }}
-    >
+    <footer id="contact" className="bg-[#050A15] border-t border-[#1A2744]">
       <Container>
-        <div
-          className="grid grid-cols-1 md:grid-cols-4"
-          style={{ gap: 40, padding: "64px 0 48px" }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pt-16 pb-12">
           {/* Company */}
-          <div style={{ gridColumn: "span 1" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                marginBottom: 16,
-              }}
+          <div className="col-span-1">
+            <Link
+              to="/"
+              className="flex items-center gap-2.5 mb-4 no-underline"
             >
               <img
                 src="/diginfo logo.webp"
                 alt="Digital Information"
-                style={{
-                  height: 18,
-                  objectFit: "contain",
-                }}
+                className="h-4.5 object-contain"
               />
-            </div>
-            <p style={{ color: "#5A6A8A", fontSize: 13, lineHeight: 1.7 }}>
+            </Link>
+            <p className="text-[#8A9BBF] text-[15px] leading-[1.7]">
               Iraq's leading technology provider — combining innovation,
               security, and integration since 2020.
             </p>
@@ -858,53 +515,40 @@ const Footer = React.memo(function Footer() {
 
           {/* Services */}
           <div>
-            <h4
-              className="text-white font-bold"
-              style={{ fontSize: 14, marginBottom: 16 }}
-            >
-              Services
-            </h4>
+            <h4 className="text-white font-bold text-base mb-4.5">Solutions</h4>
             {[
-              "Document Scanners",
-              "Security Electronics",
-              "ERP Solutions",
-              "Cybersecurity",
-              "Archiving Solutions",
+              { label: "Document Scanners", href: "/products" },
+              { label: "Security Electronics", href: "/security-electronics" },
+              { label: "ERP Solutions", href: "/erp-digital-transformation" },
+              { label: "Cybersecurity", href: "/cybersecurity" },
+              { label: "Archiving Solutions", href: "/archiving-systems" },
             ].map((s) => (
-              <p
-                key={s}
-                style={{ color: "#5A6A8A", fontSize: 13, marginBottom: 10 }}
+              <Link
+                key={s.label}
+                to={s.href}
+                className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
               >
-                {s}
-              </p>
+                {s.label}
+              </Link>
             ))}
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4
-              className="text-white font-bold"
-              style={{ fontSize: 14, marginBottom: 16 }}
-            >
+            <h4 className="text-white font-bold text-base mb-4.5">
               Quick Links
             </h4>
             {[
               { label: "Home", href: "#" },
               { label: "About Us", href: "#about" },
-              { label: "Services", href: "#services" },
+              { label: "Solutions", href: "#services" },
               { label: "All Products", href: "/products" },
             ].map((l) =>
               l.href.startsWith("/") ? (
                 <Link
                   key={l.label}
                   to={l.href}
-                  style={{
-                    display: "block",
-                    color: "#5A6A8A",
-                    fontSize: 13,
-                    marginBottom: 10,
-                    textDecoration: "none",
-                  }}
+                  className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
                 >
                   {l.label}
                 </Link>
@@ -912,13 +556,7 @@ const Footer = React.memo(function Footer() {
                 <a
                   key={l.label}
                   href={l.href}
-                  style={{
-                    display: "block",
-                    color: "#5A6A8A",
-                    fontSize: 13,
-                    marginBottom: 10,
-                    textDecoration: "none",
-                  }}
+                  className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
                 >
                   {l.label}
                 </a>
@@ -928,23 +566,13 @@ const Footer = React.memo(function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4
-              className="text-white font-bold"
-              style={{ fontSize: 14, marginBottom: 16 }}
-            >
+            <h4 className="text-white font-bold text-base mb-4.5">
               Contact Us
             </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <div className="flex flex-col gap-3.5">
               <a
                 href="mailto:info@diginfoiq.com"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  color: "#5A6A8A",
-                  fontSize: 13,
-                  textDecoration: "none",
-                }}
+                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline"
               >
                 <svg
                   width="16"
@@ -963,14 +591,7 @@ const Footer = React.memo(function Footer() {
               </a>
               <a
                 href="tel:+9647811070080"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  color: "#5A6A8A",
-                  fontSize: 13,
-                  textDecoration: "none",
-                }}
+                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline"
               >
                 <svg
                   width="16"
@@ -990,14 +611,7 @@ const Footer = React.memo(function Footer() {
                 href="https://diginfoiq.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  color: "#5A6A8A",
-                  fontSize: 13,
-                  textDecoration: "none",
-                }}
+                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline"
               >
                 <svg
                   width="16"
@@ -1020,21 +634,21 @@ const Footer = React.memo(function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div
-          style={{
-            borderTop: "1px solid #1A2744",
-            padding: "24px 0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <p style={{ color: "#3A4A6A", fontSize: 12 }}>
+        <div className="border-t border-[#1A2744] py-6 flex flex-col sm:flex-row items-center gap-3 sm:justify-between">
+          <p className="text-[#8A9BBF] text-[15px]">
             &copy; {new Date().getFullYear()} Digital Information. All rights
             reserved.
           </p>
-          <p style={{ color: "#3A4A6A", fontSize: 12 }}>
-            Digital Transformation Company in Iraq
+          <p className="text-[#5A6A8A] text-base">
+            Powered by{" "}
+            <a
+              href="https://torchcorp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white font-['Chromia',sans-serif] no-underline transition-colors duration-200 hover:text-[#0075FF]"
+            >
+              TORCHCORP
+            </a>
           </p>
         </div>
       </Container>
@@ -1168,15 +782,7 @@ function Icon({ name, size = 22 }) {
 /* ─── Page ─── */
 export default function Home() {
   return (
-    <div
-      style={{
-        background: "#060B18",
-        minHeight: "100vh",
-        color: "#fff",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        WebkitFontSmoothing: "antialiased",
-      }}
-    >
+    <div className="bg-[#060B18] min-h-screen text-white font-[system-ui,-apple-system,sans-serif] antialiased">
       <Navbar />
       <Hero />
       <Stats />

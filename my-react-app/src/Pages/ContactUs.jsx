@@ -2,39 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-const card = {
-  background: "#0B1222",
-  border: "1px solid #1A2744",
-  borderRadius: 16,
-  padding: 28,
-};
-
-const iconBox = {
-  width: 48,
-  height: 48,
-  borderRadius: 12,
-  background: "rgba(79,123,247,.1)",
-  border: "1px solid rgba(79,123,247,.15)",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: "#4F7BF7",
-  flexShrink: 0,
-};
-
-const inputStyle = {
-  width: "100%",
-  padding: "14px 16px",
-  borderRadius: 12,
-  border: "1px solid #1A2744",
-  background: "#080E1E",
-  color: "#fff",
-  fontSize: 14,
-  outline: "none",
-  transition: "border-color 0.2s",
-  fontFamily: "inherit",
-};
-
 export default function ContactUs() {
   const [form, setForm] = useState({
     name: "",
@@ -43,7 +10,6 @@ export default function ContactUs() {
     subject: "",
     message: "",
   });
-  const [focused, setFocused] = useState(null);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -133,93 +99,38 @@ export default function ContactUs() {
   ];
 
   return (
-    <div
-      style={{
-        background: "#060B18",
-        minHeight: "100vh",
-        color: "#fff",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        WebkitFontSmoothing: "antialiased",
-      }}
-    >
+    <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
       <Navbar />
 
       {/* Hero */}
-      <section style={{ padding: "100px 0 60px", textAlign: "center" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 24px" }}>
-          <span
-            style={{
-              display: "inline-block",
-              padding: "6px 16px",
-              borderRadius: 999,
-              fontSize: 12,
-              fontWeight: 600,
-              color: "#8BAAFE",
-              background: "rgba(79,123,247,.1)",
-              border: "1px solid rgba(79,123,247,.15)",
-              marginBottom: 24,
-            }}
-          >
+      <section className="pt-25 pb-15 text-center">
+        <div className="max-w-200 mx-auto px-6">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#8BAAFE] bg-[rgba(79,123,247,.1)] border border-[rgba(79,123,247,.15)] mb-6">
             Get In Touch
           </span>
-          <h1
-            style={{
-              fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 700,
-              lineHeight: 1.2,
-              marginBottom: 20,
-              letterSpacing: "-0.03em",
-            }}
-          >
-            Contact <span style={{ color: "#4F7BF7" }}>Us</span>
+          <h1 className="text-[clamp(32px,4vw,48px)] font-bold leading-[1.2] mb-5 tracking-[-0.03em]">
+            Contact <span className="text-[#4F7BF7]">Us</span>
           </h1>
-          <p
-            style={{
-              color: "#8492af",
-              fontSize: 16,
-              lineHeight: 1.8,
-              maxWidth: 660,
-              margin: "0 auto",
-            }}
-          >
+          <p className="text-[#8492af] text-base leading-[1.8] max-w-165 mx-auto">
             Have a question or need a custom solution? Reach out to our team and
             we'll get back to you as soon as possible.
           </p>
         </div>
       </section>
 
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 24px 80px" }}>
+      <div className="max-w-280 mx-auto px-6 pb-20">
         {/* Contact Info Cards */}
-        <section style={{ marginBottom: 64 }}>
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-            style={{ gap: 16 }}
-          >
+        <section className="mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {contactInfo.map((item, i) => (
               <div
                 key={i}
-                style={{
-                  ...card,
-                  padding: 24,
-                  transition: "border-color 0.2s, box-shadow 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#2A3F6F";
-                  e.currentTarget.style.boxShadow = "0 4px 24px rgba(79,123,247,.1)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "#1A2744";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
+                className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-6 transition-all duration-300 hover:border-[#2A3F6F] hover:shadow-[0_4px_24px_rgba(79,123,247,.1)]"
               >
-                <div style={{ ...iconBox, marginBottom: 16 }}>{item.icon}</div>
-                <h3
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                    marginBottom: 8,
-                  }}
-                >
+                <div className="w-12 h-12 rounded-xl bg-[rgba(79,123,247,.1)] border border-[rgba(79,123,247,.15)] flex items-center justify-center text-[#4F7BF7] shrink-0 mb-4">
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
                   {item.title}
                 </h3>
                 {item.lines.map((line, j) =>
@@ -227,27 +138,14 @@ export default function ContactUs() {
                     <a
                       key={j}
                       href={item.href}
-                      style={{
-                        display: "block",
-                        color: "#8492af",
-                        fontSize: 16,
-                        lineHeight: 1.7,
-                        textDecoration: "none",
-                        transition: "color 0.2s",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#4F7BF7")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "#6B7A99")}
+                      className="block text-[#8492af] text-base leading-[1.7] no-underline transition-all duration-300 hover:text-[#4F7BF7]"
                     >
                       {line}
                     </a>
                   ) : (
                     <p
                       key={j}
-                      style={{
-                        color: "#8492af",
-                        fontSize: 16,
-                        lineHeight: 1.7,
-                      }}
+                      className="text-[#8492af] text-base leading-[1.7]"
                     >
                       {line}
                     </p>
@@ -259,55 +157,25 @@ export default function ContactUs() {
         </section>
 
         {/* Form + Map */}
-        <section style={{ marginBottom: 64 }}>
-          <div
-            className="grid grid-cols-1 lg:grid-cols-2"
-            style={{ gap: 24 }}
-          >
+        <section className="mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Contact Form */}
-            <div style={{ ...card, padding: 36 }}>
-              <h2
-                style={{
-                  fontSize: 22,
-                  fontWeight: 700,
-                  marginBottom: 8,
-                  letterSpacing: "-0.02em",
-                }}
-              >
+            <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-9">
+              <h2 className="text-[22px] font-bold mb-2 tracking-[-0.02em]">
                 Send Us a Message
               </h2>
-              <p
-                style={{
-                  color: "#8492af",
-                  fontSize: 16,
-                  lineHeight: 1.7,
-                  marginBottom: 28,
-                }}
-              >
+              <p className="text-[#8492af] text-base leading-[1.7] mb-7">
                 Fill out the form below and our team will respond within 24
                 hours.
               </p>
 
               <form
                 onSubmit={handleSubmit}
-                style={{ display: "flex", flexDirection: "column", gap: 16 }}
+                className="flex flex-col gap-4"
               >
-                <div
-                  className="grid grid-cols-1 md:grid-cols-2"
-                  style={{ gap: 16 }}
-                >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: 12,
-                        fontWeight: 500,
-                        color: "#9AABBF",
-                        marginBottom: 8,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
+                    <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
                       Full Name
                     </label>
                     <input
@@ -317,26 +185,11 @@ export default function ContactUs() {
                       onChange={handleChange}
                       placeholder="Your full name"
                       required
-                      style={{
-                        ...inputStyle,
-                        borderColor: focused === "name" ? "#4F7BF7" : "#1A2744",
-                      }}
-                      onFocus={() => setFocused("name")}
-                      onBlur={() => setFocused(null)}
+                      className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] focus:border-[#4F7BF7]"
                     />
                   </div>
                   <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: 12,
-                        fontWeight: 500,
-                        color: "#9AABBF",
-                        marginBottom: 8,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
+                    <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
                       Email Address
                     </label>
                     <input
@@ -346,32 +199,14 @@ export default function ContactUs() {
                       onChange={handleChange}
                       placeholder="you@example.com"
                       required
-                      style={{
-                        ...inputStyle,
-                        borderColor: focused === "email" ? "#4F7BF7" : "#1A2744",
-                      }}
-                      onFocus={() => setFocused("email")}
-                      onBlur={() => setFocused(null)}
+                      className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] focus:border-[#4F7BF7]"
                     />
                   </div>
                 </div>
 
-                <div
-                  className="grid grid-cols-1 md:grid-cols-2"
-                  style={{ gap: 16 }}
-                >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: 12,
-                        fontWeight: 500,
-                        color: "#9AABBF",
-                        marginBottom: 8,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
+                    <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
                       Phone Number
                     </label>
                     <input
@@ -380,26 +215,11 @@ export default function ContactUs() {
                       value={form.phone}
                       onChange={handleChange}
                       placeholder="+964 XXX XXX XXXX"
-                      style={{
-                        ...inputStyle,
-                        borderColor: focused === "phone" ? "#4F7BF7" : "#1A2744",
-                      }}
-                      onFocus={() => setFocused("phone")}
-                      onBlur={() => setFocused(null)}
+                      className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] focus:border-[#4F7BF7]"
                     />
                   </div>
                   <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: 12,
-                        fontWeight: 500,
-                        color: "#9AABBF",
-                        marginBottom: 8,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
+                    <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
                       Subject
                     </label>
                     <input
@@ -409,28 +229,13 @@ export default function ContactUs() {
                       onChange={handleChange}
                       placeholder="How can we help?"
                       required
-                      style={{
-                        ...inputStyle,
-                        borderColor: focused === "subject" ? "#4F7BF7" : "#1A2744",
-                      }}
-                      onFocus={() => setFocused("subject")}
-                      onBlur={() => setFocused(null)}
+                      className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] focus:border-[#4F7BF7]"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label
-                    style={{
-                      display: "block",
-                      fontSize: 12,
-                      fontWeight: 500,
-                      color: "#9AABBF",
-                      marginBottom: 8,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.05em",
-                    }}
-                  >
+                  <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
                     Message
                   </label>
                   <textarea
@@ -440,38 +245,13 @@ export default function ContactUs() {
                     placeholder="Tell us about your project or inquiry..."
                     required
                     rows={5}
-                    style={{
-                      ...inputStyle,
-                      resize: "vertical",
-                      minHeight: 120,
-                      borderColor: focused === "message" ? "#4F7BF7" : "#1A2744",
-                    }}
-                    onFocus={() => setFocused("message")}
-                    onBlur={() => setFocused(null)}
+                    className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] resize-y min-h-30 focus:border-[#4F7BF7]"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  style={{
-                    padding: "14px 36px",
-                    borderRadius: 999,
-                    fontSize: 14,
-                    fontWeight: 600,
-                    background: "#4F7BF7",
-                    color: "#fff",
-                    border: "none",
-                    cursor: "pointer",
-                    boxShadow: "0 0 30px rgba(79,123,247,.35)",
-                    transition: "all 0.2s",
-                    alignSelf: "flex-start",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 40px rgba(79,123,247,.5)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 30px rgba(79,123,247,.35)";
-                  }}
+                  className="py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white border-none cursor-pointer shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em] transition-all duration-200 self-start hover:shadow-[0_0_30px_rgba(79,123,247,.5),0_4px_16px_rgba(79,123,247,.3)]"
                 >
                   Send Message
                 </button>
@@ -479,25 +259,14 @@ export default function ContactUs() {
             </div>
 
             {/* Map + Social */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+            <div className="flex flex-col gap-6">
               {/* Map */}
-              <div
-                style={{
-                  ...card,
-                  padding: 0,
-                  overflow: "hidden",
-                  flex: 1,
-                  minHeight: 300,
-                }}
-              >
+              <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-0 overflow-hidden flex-1 min-h-75">
                 <iframe
                   title="Digital Information Office Location"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.5!2d44.3661!3d33.3152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDE4JzU0LjciTiA0NMKwMjEnNTguMCJF!5e0!3m2!1sen!2siq!4v1700000000000!5m2!1sen!2siq"
+                  className="w-full h-full min-h-75 border-none"
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    minHeight: 300,
-                    border: "none",
                     filter: "invert(90%) hue-rotate(180deg) brightness(0.95) contrast(0.9)",
                   }}
                   allowFullScreen
@@ -507,17 +276,11 @@ export default function ContactUs() {
               </div>
 
               {/* Social Links */}
-              <div style={{ ...card, padding: 24 }}>
-                <h3
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                    marginBottom: 16,
-                  }}
-                >
+              <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-6">
+                <h3 className="text-xl font-semibold mb-4">
                   Follow Us
                 </h3>
-                <div style={{ display: "flex", gap: 12 }}>
+                <div className="flex gap-3">
                   {socialLinks.map((social) => (
                     <a
                       key={social.name}
@@ -525,29 +288,7 @@ export default function ContactUs() {
                       target="_blank"
                       rel="noopener noreferrer"
                       title={social.name}
-                      style={{
-                        width: 44,
-                        height: 44,
-                        borderRadius: 12,
-                        background: "#080E1E",
-                        border: "1px solid #1A2744",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#6B7A99",
-                        textDecoration: "none",
-                        transition: "all 0.2s",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = "#4F7BF7";
-                        e.currentTarget.style.color = "#4F7BF7";
-                        e.currentTarget.style.background = "rgba(79,123,247,.08)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = "#1A2744";
-                        e.currentTarget.style.color = "#6B7A99";
-                        e.currentTarget.style.background = "#080E1E";
-                      }}
+                      className="w-11 h-11 rounded-xl bg-[#080E1E] border border-[#1A2744] flex items-center justify-center text-[#6B7A99] no-underline transition-all duration-200 hover:border-[#4F7BF7] hover:text-[#4F7BF7] hover:bg-[rgba(79,123,247,.08)]"
                     >
                       {social.icon}
                     </a>
@@ -559,44 +300,19 @@ export default function ContactUs() {
         </section>
 
         {/* CTA */}
-        <section style={{ textAlign: "center", padding: "48px 0" }}>
-          <div
-            style={{
-              ...card,
-              padding: "48px 32px",
-              border: "1px solid rgba(79,123,247,.2)",
-            }}
-          >
-            <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>
+        <section className="text-center py-12">
+          <div className="bg-[#0B1222] border border-[rgba(79,123,247,.2)] rounded-2xl py-12 px-8">
+            <h2 className="text-2xl font-bold mb-3">
               Ready to Transform Your Business?
             </h2>
-            <p
-              style={{
-                color: "#8492af",
-                fontSize: 16,
-                marginBottom: 28,
-                maxWidth: 480,
-                margin: "0 auto 28px",
-                lineHeight: 1.7,
-              }}
-            >
+            <p className="text-[#8492af] text-base mb-7 max-w-120 mx-auto leading-[1.7]">
               From document scanning to cybersecurity — Digital Information
               provides end-to-end technology solutions for businesses across
               Iraq.
             </p>
             <Link
               to="/products"
-              style={{
-                display: "inline-block",
-                padding: "14px 36px",
-                borderRadius: 999,
-                fontSize: 14,
-                fontWeight: 600,
-                background: "#4F7BF7",
-                color: "#fff",
-                textDecoration: "none",
-                boxShadow: "0 0 30px rgba(79,123,247,.35)",
-              }}
+              className="inline-block py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white no-underline shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em]"
             >
               Explore Our Products
             </Link>

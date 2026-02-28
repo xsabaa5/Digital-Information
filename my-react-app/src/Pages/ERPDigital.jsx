@@ -1,12 +1,6 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 
-const card = {
-  background: "#0B1222",
-  border: "1px solid #1A2744",
-  borderRadius: 16,
-  padding: 28,
-};
+const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
 
 export default function ERPDigital() {
   const erpModules = [
@@ -40,56 +34,26 @@ export default function ERPDigital() {
   ];
 
   return (
-    <div
-      style={{
-        background: "#060B18",
-        minHeight: "100vh",
-        color: "#fff",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        WebkitFontSmoothing: "antialiased",
-      }}
-    >
+    <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
       <Navbar />
 
       {/* Hero */}
-      <section style={{ padding: "100px 0 60px", textAlign: "center" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 24px" }}>
+      <section className="pt-25 pb-15 text-center">
+        <div className="max-w-200 mx-auto px-6">
           <span
-            style={{
-              display: "inline-block",
-              padding: "6px 16px",
-              borderRadius: 999,
-              fontSize: 12,
-              fontWeight: 600,
-              color: "#8BAAFE",
-              background: "rgba(79,123,247,.1)",
-              border: "1px solid rgba(79,123,247,.15)",
-              marginBottom: 24,
-            }}
+            className="inline-block py-1.5 px-4 rounded-full text-xs font-semibold text-[#8BAAFE] bg-[rgba(79,123,247,0.1)] border border-[rgba(79,123,247,0.15)] mb-6"
           >
             Solutions
           </span>
           <h1
-            style={{
-              fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 700,
-              lineHeight: 1.2,
-              marginBottom: 20,
-              letterSpacing: "-0.03em",
-            }}
+            className="text-[clamp(32px,4vw,48px)] font-bold leading-[1.2] mb-5 tracking-[-0.03em]"
           >
             ERP &{" "}
-            <span style={{ color: "#4F7BF7" }}>Digital Transformation</span>{" "}
+            <span className="text-[#4F7BF7]">Digital Transformation</span>{" "}
             Software
           </h1>
           <p
-            style={{
-              color: "#8492af",
-              fontSize: 16,
-              lineHeight: 1.8,
-              maxWidth: 660,
-              margin: "0 auto",
-            }}
+            className="text-[#8492af] text-base leading-[1.8] max-w-165 mx-auto"
           >
             Streamline your operations and accelerate growth with advanced ERP
             and automation solutions — including our in-house Torch ERP platform.
@@ -97,17 +61,17 @@ export default function ERPDigital() {
         </div>
       </section>
 
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 24px 80px" }}>
+      <div className="max-w-280 mx-auto px-6 pb-20">
         {/* ERP Modules */}
-        <section style={{ marginBottom: 64 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24, letterSpacing: "-0.02em" }}>
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 tracking-[-0.02em]">
             Comprehensive ERP Modules
           </h2>
-          <div style={{ ...card }}>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className={cardClass}>
+            <ul className="list-none p-0 m-0 flex flex-col gap-4">
               {erpModules.map((item, i) => (
-                <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 24, position: "relative" }}>
-                  <span style={{ position: "absolute", left: 0, color: "#4F7BF7", fontWeight: 700 }}>&#10003;</span>
+                <li key={i} className="text-[#9AABBF] text-base leading-[1.6] pl-6 relative">
+                  <span className="absolute left-0 text-[#4F7BF7] font-bold">&#10003;</span>
                   {item}
                 </li>
               ))}
@@ -116,50 +80,41 @@ export default function ERPDigital() {
         </section>
 
         {/* Two columns: Transformation + Torch */}
-        <section style={{ marginBottom: 64, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-          <div style={{ ...card }}>
-            <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16 }}>
+        <section className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className={cardClass}>
+            <h3 className="text-xl font-semibold mb-4">
               Digital Transformation Services
             </h3>
-            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7, marginBottom: 20 }}>
+            <p className="text-[#8492af] text-base leading-[1.7] mb-5">
               More than software — we enable organizational transformation.
             </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+            <ul className="list-none p-0 m-0 flex flex-col gap-3">
               {transformationServices.map((s, i) => (
-                <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
-                  <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
+                <li key={i} className="text-[#9AABBF] text-base leading-[1.6] pl-5 relative">
+                  <span className="absolute left-0 text-[#4F7BF7]">&#8226;</span>
                   {s}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div style={{ ...card, border: "1px solid rgba(79,123,247,.25)" }}>
+          <div className={`${cardClass} border border-[rgba(79,123,247,0.25)]`}>
             <span
-              style={{
-                display: "inline-block",
-                padding: "4px 12px",
-                borderRadius: 6,
-                fontSize: 11,
-                fontWeight: 600,
-                color: "#8BAAFE",
-                background: "rgba(79,123,247,.1)",
-                marginBottom: 14,
-              }}
+              className="inline-block py-1 px-3 rounded-md text-[11px] font-semibold text-[#8BAAFE] bg-[rgba(79,123,247,0.1)] mb-3.5"
             >
               Flagship Product
             </span>
-            <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16 }}>
+            <h3 className="text-xl font-semibold mb-4">
               Torch ERP Platform
             </h3>
-            <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.7, marginBottom: 20 }}>
+            <p className="text-[#8492af] text-base leading-[1.7] mb-5">
               Our in-house enterprise platform designed for businesses in Iraq
               and the Middle East.
             </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+            <ul className="list-none p-0 m-0 flex flex-col gap-3">
               {torchFeatures.map((f, i) => (
-                <li key={i} style={{ color: "#9AABBF", fontSize: 16, lineHeight: 1.6, paddingLeft: 20, position: "relative" }}>
-                  <span style={{ position: "absolute", left: 0, color: "#4F7BF7" }}>&#8226;</span>
+                <li key={i} className="text-[#9AABBF] text-base leading-[1.6] pl-5 relative">
+                  <span className="absolute left-0 text-[#4F7BF7]">&#8226;</span>
                   {f}
                 </li>
               ))}
@@ -168,35 +123,22 @@ export default function ERPDigital() {
         </section>
 
         {/* Why Choose */}
-        <section style={{ marginBottom: 64 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24, letterSpacing: "-0.02em" }}>
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 tracking-[-0.02em]">
             Why Choose Digital Information
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {whyChoose.map((item, i) => (
-              <div key={i} style={{ ...card, textAlign: "center", padding: 24 }}>
+              <div key={i} className={`${cardClass} text-center p-6`}>
                 <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 12,
-                    background: "rgba(79,123,247,.1)",
-                    border: "1px solid rgba(79,123,247,.15)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 14px",
-                    color: "#4F7BF7",
-                    fontSize: 20,
-                    fontWeight: 700,
-                  }}
+                  className="w-12 h-12 rounded-xl bg-[rgba(79,123,247,0.1)] border border-[rgba(79,123,247,0.15)] flex items-center justify-center mx-auto mb-3.5 text-[#4F7BF7] text-xl font-bold"
                 >
                   {i + 1}
                 </div>
-                <h4 style={{ fontSize: 20, fontWeight: 600, marginBottom: 6 }}>
+                <h4 className="text-xl font-semibold mb-1.5">
                   {item.title}
                 </h4>
-                <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.5 }}>
+                <p className="text-[#8492af] text-base leading-normal">
                   {item.desc}
                 </p>
               </div>
@@ -205,28 +147,18 @@ export default function ERPDigital() {
         </section>
 
         {/* CTA */}
-        <section style={{ textAlign: "center", padding: "48px 0" }}>
-          <div style={{ ...card, padding: "48px 32px" }}>
-            <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>
+        <section className="text-center py-12">
+          <div className={`${cardClass} py-12 px-8`}>
+            <h2 className="text-2xl font-bold mb-3">
               Ready to Transform Your Business?
             </h2>
-            <p style={{ color: "#8492af", fontSize: 16, marginBottom: 28 }}>
+            <p className="text-[#8492af] text-base mb-7">
               From Baghdad to Basra and Erbil — serving Iraq's growing business
               ecosystem.
             </p>
             <a
               href="mailto:info@diginfoiq.com"
-              style={{
-                display: "inline-block",
-                padding: "14px 36px",
-                borderRadius: 999,
-                fontSize: 14,
-                fontWeight: 600,
-                background: "#4F7BF7",
-                color: "#fff",
-                textDecoration: "none",
-                boxShadow: "0 0 30px rgba(79,123,247,.35)",
-              }}
+              className="inline-block py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white no-underline shadow-[0_0_20px_rgba(79,123,247,0.35),0_4px_12px_rgba(79,123,247,0.2)] tracking-[0.01em]"
             >
               Contact Us
             </a>

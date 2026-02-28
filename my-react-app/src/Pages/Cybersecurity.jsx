@@ -1,12 +1,6 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 
-const card = {
-  background: "#0B1222",
-  border: "1px solid #1A2744",
-  borderRadius: 16,
-  padding: 28,
-};
+const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
 
 export default function Cybersecurity() {
   const capabilities = [
@@ -59,55 +53,25 @@ export default function Cybersecurity() {
   ];
 
   return (
-    <div
-      style={{
-        background: "#060B18",
-        minHeight: "100vh",
-        color: "#fff",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        WebkitFontSmoothing: "antialiased",
-      }}
-    >
+    <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
       <Navbar />
 
       {/* Hero */}
-      <section style={{ padding: "100px 0 60px", textAlign: "center" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 24px" }}>
+      <section className="pt-25 pb-15 text-center">
+        <div className="max-w-200 mx-auto px-6">
           <span
-            style={{
-              display: "inline-block",
-              padding: "6px 16px",
-              borderRadius: 999,
-              fontSize: 12,
-              fontWeight: 600,
-              color: "#8BAAFE",
-              background: "rgba(79,123,247,.1)",
-              border: "1px solid rgba(79,123,247,.15)",
-              marginBottom: 24,
-            }}
+            className="inline-block py-1.5 px-4 rounded-full text-xs font-semibold text-[#8BAAFE] bg-[rgba(79,123,247,0.1)] border border-[rgba(79,123,247,0.15)] mb-6"
           >
             Solutions
           </span>
           <h1
-            style={{
-              fontSize: "clamp(32px, 4vw, 48px)",
-              fontWeight: 700,
-              lineHeight: 1.2,
-              marginBottom: 20,
-              letterSpacing: "-0.03em",
-            }}
+            className="text-[clamp(32px,4vw,48px)] font-bold leading-[1.2] mb-5 tracking-[-0.03em]"
           >
             Enterprise-Grade{" "}
-            <span style={{ color: "#4F7BF7" }}>Cybersecurity</span>
+            <span className="text-[#4F7BF7]">Cybersecurity</span>
           </h1>
           <p
-            style={{
-              color: "#8492af",
-              fontSize: 16,
-              lineHeight: 1.8,
-              maxWidth: 660,
-              margin: "0 auto",
-            }}
+            className="text-[#8492af] text-base leading-[1.8] max-w-165 mx-auto"
           >
             Protect your digital infrastructure with AI-powered, multi-layered
             defense systems. Safeguarding Iraqi businesses, government entities,
@@ -116,84 +80,38 @@ export default function Cybersecurity() {
         </div>
       </section>
 
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 24px 80px" }}>
+      <div className="max-w-280 mx-auto px-6 pb-20">
         {/* Capabilities */}
-        <section style={{ marginBottom: 64 }}>
+        <section className="mb-16">
           <h2
-            style={{
-              fontSize: 24,
-              fontWeight: 700,
-              marginBottom: 24,
-              letterSpacing: "-0.02em",
-            }}
+            className="text-2xl font-bold mb-6 tracking-[-0.02em]"
           >
             Our Capabilities
           </h2>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {capabilities.map((cap, i) => (
-              <div key={i} style={{ ...card }}>
+              <div key={i} className={cardClass}>
                 <div
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 10,
-                    background: "rgba(79,123,247,.1)",
-                    border: "1px solid rgba(79,123,247,.15)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#4F7BF7",
-                    fontWeight: 700,
-                    fontSize: 16,
-                    marginBottom: 16,
-                  }}
+                  className="w-10 h-10 rounded-[10px] bg-[rgba(79,123,247,0.1)] border border-[rgba(79,123,247,0.15)] flex items-center justify-center text-[#4F7BF7] font-bold text-base mb-4"
                 >
                   {i + 1}
                 </div>
-                <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>
+                <h3 className="text-xl font-semibold mb-2.5">
                   {cap.title}
                 </h3>
                 <p
-                  style={{
-                    color: "#8492af",
-                    fontSize: 16,
-                    lineHeight: 1.7,
-                    marginBottom: cap.features.length ? 16 : 0,
-                  }}
+                  className={`text-[#8492af] text-base leading-[1.7] ${cap.features.length ? "mb-4" : "mb-0"}`}
                 >
                   {cap.desc}
                 </p>
                 {cap.features.length > 0 && (
-                  <ul
-                    style={{
-                      listStyle: "none",
-                      padding: 0,
-                      margin: 0,
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 10,
-                    }}
-                  >
+                  <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
                     {cap.features.map((f, j) => (
                       <li
                         key={j}
-                        style={{
-                          color: "#9AABBF",
-                          fontSize: 16,
-                          lineHeight: 1.6,
-                          paddingLeft: 20,
-                          position: "relative",
-                        }}
+                        className="text-[#9AABBF] text-base leading-[1.6] pl-5 relative"
                       >
-                        <span
-                          style={{
-                            position: "absolute",
-                            left: 0,
-                            color: "#4F7BF7",
-                          }}
-                        >
+                        <span className="absolute left-0 text-[#4F7BF7]">
                           &#8226;
                         </span>
                         {f}
@@ -207,41 +125,24 @@ export default function Cybersecurity() {
         </section>
 
         {/* Stats */}
-        <section style={{ marginBottom: 64 }}>
+        <section className="mb-16">
           <h2
-            style={{
-              fontSize: 24,
-              fontWeight: 700,
-              marginBottom: 24,
-              letterSpacing: "-0.02em",
-            }}
+            className="text-2xl font-bold mb-6 tracking-[-0.02em]"
           >
             Why Choose Digital Information
           </h2>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 16,
-            }}
-          >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {whyChoose.map((item, i) => (
               <div
                 key={i}
-                style={{ ...card, textAlign: "center", padding: 24 }}
+                className={`${cardClass} text-center !p-6`}
               >
                 <p
-                  style={{
-                    fontSize: 28,
-                    fontWeight: 700,
-                    color: "#4F7BF7",
-                    marginBottom: 8,
-                    letterSpacing: "-0.02em",
-                  }}
+                  className="text-[28px] font-bold text-[#4F7BF7] mb-2 tracking-[-0.02em]"
                 >
                   {item.stat}
                 </p>
-                <p style={{ color: "#8492af", fontSize: 16, lineHeight: 1.5 }}>
+                <p className="text-[#8492af] text-base leading-normal">
                   {item.label}
                 </p>
               </div>
@@ -250,42 +151,22 @@ export default function Cybersecurity() {
         </section>
 
         {/* CTA */}
-        <section style={{ textAlign: "center", padding: "48px 0" }}>
+        <section className="text-center py-12">
           <div
-            style={{
-              ...card,
-              padding: "48px 32px",
-              border: "1px solid rgba(79,123,247,.2)",
-            }}
+            className={`${cardClass} py-12 px-8 !border-[rgba(79,123,247,0.2)]`}
           >
-            <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>
+            <h2 className="text-2xl font-bold mb-3">
               Protect Your Business Today
             </h2>
             <p
-              style={{
-                color: "#8492af",
-                fontSize: 16,
-                marginBottom: 28,
-                maxWidth: 480,
-                margin: "0 auto 28px",
-              }}
+              className="text-[#8492af] text-base mx-auto mb-7 max-w-120"
             >
               Cyber threats don't wait. Contact Digital Information to secure
               your infrastructure with advanced cybersecurity solutions.
             </p>
             <a
               href="mailto:info@diginfoiq.com"
-              style={{
-                display: "inline-block",
-                padding: "14px 36px",
-                borderRadius: 999,
-                fontSize: 14,
-                fontWeight: 600,
-                background: "#4F7BF7",
-                color: "#fff",
-                textDecoration: "none",
-                boxShadow: "0 0 30px rgba(79,123,247,.35)",
-              }}
+              className="inline-block py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white no-underline shadow-[0_0_20px_rgba(79,123,247,0.35),0_4px_12px_rgba(79,123,247,0.2)] tracking-[0.01em]"
             >
               Contact Us
             </a>
