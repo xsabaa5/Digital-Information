@@ -92,7 +92,9 @@ const Stats = React.memo(function Stats() {
         <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#1A2744] border border-[#1A2744] rounded-2xl overflow-hidden">
           {data.map((s) => (
             <div key={s.label} className="text-center px-6 py-8">
-              <p className="text-[#9cabc4] text-sm md:text-base mb-2">{s.label}</p>
+              <p className="text-[#9cabc4] text-sm md:text-base mb-2">
+                {s.label}
+              </p>
               <p className="text-white font-bold text-[clamp(26px,3.5vw,42px)]">
                 {s.value}
               </p>
@@ -645,7 +647,7 @@ const Footer = React.memo(function Footer() {
               href="https://torchcorp.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white font-['Chromia',sans-serif] no-underline transition-colors duration-200 hover:text-[#0075FF]"
+              className="text-white font-['Chromia',sans-serif] no-underline transition-colors duration-200 hover:text-[#AE71FFFF]"
             >
               TORCHCORP
             </a>
