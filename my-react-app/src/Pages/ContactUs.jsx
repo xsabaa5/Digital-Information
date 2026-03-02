@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function ContactUs() {
   const [form, setForm] = useState({
@@ -17,9 +18,11 @@ export default function ContactUs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const mailtoSubject = encodeURIComponent(form.subject || "Contact Form Inquiry");
+    const mailtoSubject = encodeURIComponent(
+      form.subject || "Contact Form Inquiry",
+    );
     const mailtoBody = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\n${form.message}`
+      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\n${form.message}`,
     );
     window.location.href = `mailto:info@diginfoiq.com?subject=${mailtoSubject}&body=${mailtoBody}`;
   };
@@ -27,44 +30,60 @@ export default function ContactUs() {
   const contactInfo = [
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
           <circle cx="12" cy="10" r="3" />
         </svg>
       ),
-      title: "Visit Our Office",
-      lines: ["Baghdad, Iraq", "Al-Mansour District"],
+      title: "Address",
+      lines: ["Baghdad, Karrada, Al-Sinaa Street"],
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
         </svg>
       ),
-      title: "Call Us",
+      title: "Phone",
       lines: ["+964 781 107 0080"],
-      href: "tel:+9647811070080",
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
           <polyline points="22,6 12,13 2,6" />
         </svg>
       ),
-      title: "Email Us",
-      lines: ["info@diginfoiq.com"],
+      title: "Email",
+      lines: ["info@diginfoiq.com", "tony@diginfoiq.com"],
       href: "mailto:info@diginfoiq.com",
-    },
-    {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <polyline points="12 6 12 12 16 14" />
-        </svg>
-      ),
-      title: "Working Hours",
-      lines: ["Sun – Thu: 9:00 AM – 5:00 PM", "Fri – Sat: Closed"],
     },
   ];
 
@@ -121,7 +140,7 @@ export default function ContactUs() {
       <div className="max-w-280 mx-auto px-6 pb-20">
         {/* Contact Info Cards */}
         <section className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {contactInfo.map((item, i) => (
               <div
                 key={i}
@@ -130,9 +149,7 @@ export default function ContactUs() {
                 <div className="w-12 h-12 rounded-xl bg-[rgba(79,123,247,.1)] border border-[rgba(79,123,247,.15)] flex items-center justify-center text-[#4F7BF7] shrink-0 mb-4">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">
-                  {item.title}
-                </h3>
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                 {item.lines.map((line, j) =>
                   item.href ? (
                     <a
@@ -149,7 +166,7 @@ export default function ContactUs() {
                     >
                       {line}
                     </p>
-                  )
+                  ),
                 )}
               </div>
             ))}
@@ -169,10 +186,7 @@ export default function ContactUs() {
                 hours.
               </p>
 
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col gap-4"
-              >
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
@@ -264,10 +278,11 @@ export default function ContactUs() {
               <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-0 overflow-hidden flex-1 min-h-75">
                 <iframe
                   title="Digital Information Office Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.5!2d44.3661!3d33.3152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDE4JzU0LjciTiA0NMKwMjEnNTguMCJF!5e0!3m2!1sen!2siq!4v1700000000000!5m2!1sen!2siq"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.5!2d44.4395625!3d33.3136875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15578110d15d9783:0xe564b68da80e0c80!2sAl+Seraj+Co.+for+Information+Technology+Services+and+Integrated+Solutions!5e0!3m2!1sen!2siq!4v1700000000000!5m2!1sen!2siq"
                   className="w-full h-full min-h-75 border-none"
                   style={{
-                    filter: "invert(90%) hue-rotate(180deg) brightness(0.95) contrast(0.9)",
+                    filter:
+                      "invert(90%) hue-rotate(180deg) brightness(0.95) contrast(0.9)",
                   }}
                   allowFullScreen
                   loading="lazy"
@@ -277,9 +292,7 @@ export default function ContactUs() {
 
               {/* Social Links */}
               <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-4">
-                  Follow Us
-                </h3>
+                <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
                 <div className="flex gap-3">
                   {socialLinks.map((social) => (
                     <a
@@ -305,7 +318,7 @@ export default function ContactUs() {
             <h2 className="text-2xl font-bold mb-3">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-[#8492af] text-base mb-7 max-w-120 mx-auto leading-[1.7]">
+            <p className="text-[#8492af] text-base mb-7 max-w-130 mx-auto leading-[1.7]">
               From document scanning to cybersecurity — Digital Information
               provides end-to-end technology solutions for businesses across
               Iraq.
@@ -319,6 +332,7 @@ export default function ContactUs() {
           </div>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }

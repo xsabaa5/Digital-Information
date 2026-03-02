@@ -90,7 +90,7 @@ const productPages = [
   {
     label: "Scanners",
     desc: "High-speed document & image scanning",
-    href: "/archiving-systems",
+    href: "/products",
     icon: (
       <svg
         width="18"
@@ -115,8 +115,7 @@ const productPages = [
 const navLinks = [
   { label: "Home", hash: "home", href: "/" },
   { label: "About", hash: "about", href: "/#about" },
-  { label: "Products", hasDropdown: true },
-  { label: "Contact Us", href: "/contact-us" },
+  { label: "Solutions", hasDropdown: true },
 ];
 
 export default function Navbar() {
@@ -170,7 +169,9 @@ export default function Navbar() {
   const hoverTimeout = React.useRef(null);
 
   const handleNavClick = (item) => {
-    if (item.hash && isHome) {
+    if (item.hash === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (item.hash && isHome) {
       const el = document.getElementById(item.hash);
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }
@@ -187,7 +188,11 @@ export default function Navbar() {
         }`}
       >
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5 no-underline">
+        <Link
+          to="/"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex items-center gap-2.5 no-underline"
+        >
           <img
             src="/diginfo logo.webp"
             alt="Digital Information Logo"
@@ -238,7 +243,7 @@ export default function Navbar() {
                       : "invisible opacity-0 -translate-y-2"
                   }`}
                 >
-                  <div className="w-80 rounded-xl border border-white/10 bg-[#060B18] p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+                  <div className="w-90 rounded-xl border border-white/10 bg-[#060B18] p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                     {productPages.map((prod) => (
                       <Link
                         key={prod.label}
@@ -322,15 +327,15 @@ export default function Navbar() {
         {/* ─── Hamburger (mobile only) ─── */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="relative z-[1001] block h-10 w-10 cursor-pointer border-none bg-transparent p-2 lg:hidden"
+          className="relative z-1001 block h-10 w-10 cursor-pointer border-none bg-transparent p-2 lg:hidden"
           aria-label="Toggle menu"
         >
           <span
-            className="absolute left-1/2 block h-px w-[17px] bg-white transition-all duration-300"
+            className="absolute left-1/2 block h-px w-4.25 bg-white transition-all duration-300"
             style={{ top: line1Top, transform: line1Transform }}
           />
           <span
-            className="absolute left-1/2 block h-px w-[17px] bg-white transition-all duration-300"
+            className="absolute left-1/2 block h-px w-4.25 bg-white transition-all duration-300"
             style={{ top: line2Top, transform: line2Transform }}
           />
         </button>
@@ -338,7 +343,7 @@ export default function Navbar() {
 
       {/* ─── MOBILE FULLSCREEN OVERLAY ─── */}
       <div
-        className={`fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#060B18]/98 backdrop-blur-2xl transition-all duration-400 ${
+        className={`fixed inset-0 z-999 flex flex-col items-center justify-center bg-[#060B18]/98 backdrop-blur-2xl transition-all duration-400 ${
           mobileOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
@@ -378,7 +383,7 @@ export default function Navbar() {
                 <div
                   className={`flex flex-col items-center overflow-hidden transition-all duration-400 ${
                     mobileProductsOpen
-                      ? "max-h-[384px] opacity-100"
+                      ? "max-h-96 opacity-100"
                       : "max-h-0 opacity-0"
                   }`}
                 >

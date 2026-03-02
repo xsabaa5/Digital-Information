@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
 
@@ -164,6 +165,7 @@ export default function ArchivingSystems() {
           </div>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }

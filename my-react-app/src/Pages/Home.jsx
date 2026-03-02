@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Threads from "../components/Threads";
 
 /* ─── Reusable wrapper ─── */
@@ -33,7 +34,7 @@ function Hero() {
           Through <span className="text-[#4F7BF7]">Precision Scanning</span>
         </h1>
 
-        <p className="text-[#b0bdd4] text-base sm:text-[18px] md:text-[22px] leading-[1.7] max-w-165 mx-auto mb-10">
+        <p className="text-[#b0bdd4] text-base sm:text-[18px] md:text-[22px] leading-[1.7] max-w-172 mx-auto mb-10">
           From compact office scanners to industrial-grade imaging systems — we
           distribute world-class brands powering digital workflows across Iraq.
         </p>
@@ -89,7 +90,8 @@ const Stats = React.memo(function Stats() {
   return (
     <section className="py-12 bg-[#060B18]">
       <Container>
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#1A2744] border border-[#1A2744] rounded-2xl overflow-hidden">
+        <div className="relative grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#1A2744] border border-[#1A2744] rounded-2xl overflow-hidden">
+          <div className="absolute inset-y-0 left-1/2 w-px bg-[#1A2744] md:hidden" />
           {data.map((s) => (
             <div key={s.label} className="text-center px-6 py-8">
               <p className="text-[#9cabc4] text-sm md:text-base mb-2">
@@ -118,9 +120,9 @@ const Services = React.memo(function Services() {
       <Container>
         <div className="text-center mb-16">
           <h2 className="text-white font-bold text-[clamp(28px,3.5vw,40px)] mb-4">
-            Our Services
+            Our Solutions
           </h2>
-          <p className="text-[#9cabc4] text-[21px] max-w-140 mx-auto leading-[1.7]">
+          <p className="text-[#9cabc4] text-[21px] max-w-150 mx-auto leading-[1.7]">
             Comprehensive technology solutions combining innovation, security,
             and integration to build a smarter, connected business.
           </p>
@@ -300,7 +302,7 @@ function Products() {
           <h2 className="text-white font-bold text-[clamp(28px,3.5vw,40px)] mb-4">
             Our Products
           </h2>
-          <p className="text-[#9cabc4] text-[17px] max-w-150 mx-auto leading-[1.7]">
+          <p className="text-[#9cabc4] text-[17px] max-w-160 mx-auto leading-[1.7]">
             Explore Our Full Range Of Document Scanners From The World's Leading
             Brands.
           </p>
@@ -488,173 +490,6 @@ const About = React.memo(function About() {
         </div>
       </Container>
     </section>
-  );
-});
-
-/* ─── Footer ─── */
-const Footer = React.memo(function Footer() {
-  return (
-    <footer id="contact" className="bg-[#050A15] border-t border-[#1A2744]">
-      <Container>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pt-16 pb-12">
-          {/* Company */}
-          <div className="col-span-1">
-            <Link
-              to="/"
-              className="flex items-center gap-2.5 mb-4 no-underline"
-            >
-              <img
-                src="/diginfo logo.webp"
-                alt="Digital Information"
-                className="h-4.5 object-contain"
-              />
-            </Link>
-            <p className="text-[#8A9BBF] text-[15px] leading-[1.7]">
-              Iraq's leading technology provider — combining innovation,
-              security, and integration since 2020.
-            </p>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-white font-bold text-base mb-4.5">Solutions</h4>
-            {[
-              { label: "Document Scanners", href: "/products" },
-              { label: "Security Electronics", href: "/security-electronics" },
-              { label: "ERP Solutions", href: "/erp-digital-transformation" },
-              { label: "Cybersecurity", href: "/cybersecurity" },
-              { label: "Archiving Solutions", href: "/archiving-systems" },
-            ].map((s) => (
-              <Link
-                key={s.label}
-                to={s.href}
-                className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
-              >
-                {s.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-bold text-base mb-4.5">
-              Quick Links
-            </h4>
-            {[
-              { label: "Home", href: "#" },
-              { label: "About Us", href: "#about" },
-              { label: "Solutions", href: "#services" },
-              { label: "All Products", href: "/products" },
-            ].map((l) =>
-              l.href.startsWith("/") ? (
-                <Link
-                  key={l.label}
-                  to={l.href}
-                  className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
-                >
-                  {l.label}
-                </Link>
-              ) : (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
-                >
-                  {l.label}
-                </a>
-              ),
-            )}
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-white font-bold text-base mb-4.5">
-              Contact Us
-            </h4>
-            <div className="flex flex-col gap-3.5">
-              <a
-                href="mailto:info@diginfoiq.com"
-                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#4F7BF7"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-                info@diginfoiq.com
-              </a>
-              <a
-                href="tel:+9647811070080"
-                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#4F7BF7"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
-                </svg>
-                +964 781 107 0080
-              </a>
-              <a
-                href="https://diginfoiq.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#4F7BF7"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-                </svg>
-                diginfoiq.com
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="border-t border-[#1A2744] py-6 flex flex-col sm:flex-row items-center gap-3 sm:justify-between">
-          <p className="text-[#8A9BBF] text-[15px]">
-            &copy; {new Date().getFullYear()} Digital Information. All rights
-            reserved.
-          </p>
-          <p className="text-[#5A6A8A] text-base">
-            Powered by{" "}
-            <a
-              href="https://torchcorp.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white font-['Chromia',sans-serif] no-underline transition-colors duration-200 hover:text-[#AE71FFFF]"
-            >
-              TORCHCORP
-            </a>
-          </p>
-        </div>
-      </Container>
-    </footer>
   );
 });
 

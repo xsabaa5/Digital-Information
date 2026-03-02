@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const card = {
   background: "#0B1222",
@@ -557,54 +558,67 @@ export default function ProductDetail() {
 
             {activeTab === "specs" && (
               <div>
-                {product.specs?.length > 0 ? (
-                  <table
-                    style={{
-                      width: "100%",
-                      borderCollapse: "collapse",
-                    }}
-                  >
-                    <tbody>
-                      {product.specs.map((spec, i) => (
-                        <tr
-                          key={i}
-                          style={{
-                            borderBottom:
-                              i < product.specs.length - 1
-                                ? "1px solid #1A2744"
-                                : "none",
-                          }}
-                        >
-                          <td
+                {(() => {
+                  const topFields = [
+                    { name: "Scanner Type", value: product.product_type },
+                    { name: "Scanning Color Mode", value: product.colored },
+                    { name: "Document Size", value: product.document_size },
+                    { name: "Scanning Speed", value: product.speed },
+                    { name: "Capacity", value: product.capacity },
+                    { name: "Simplex / Duplex", value: product.simplexduplex },
+                    {
+                      name: "Standard Interface",
+                      value: product.standard_interface,
+                    },
+                    { name: "Duty Cycle", value: product.duty_cycle },
+                  ].filter((f) => f.value && f.value !== "Blanks");
+                  const allSpecs = [...topFields, ...(product.specs || [])];
+                  return allSpecs.length > 0 ? (
+                    <table
+                      style={{ width: "100%", borderCollapse: "collapse" }}
+                    >
+                      <tbody>
+                        {allSpecs.map((spec, i) => (
+                          <tr
+                            key={i}
                             style={{
-                              padding: "14px 16px",
-                              color: "#5A6A8A",
-                              fontSize: 13,
-                              fontWeight: 600,
-                              width: "35%",
-                              verticalAlign: "top",
+                              borderBottom:
+                                i < allSpecs.length - 1
+                                  ? "1px solid #1A2744"
+                                  : "none",
                             }}
                           >
-                            {spec.name}
-                          </td>
-                          <td
-                            style={{
-                              padding: "14px 16px",
-                              color: "#9AABBF",
-                              fontSize: 13,
-                            }}
-                          >
-                            {spec.value}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                ) : (
-                  <p style={{ color: "#3A4A6A", fontSize: 14 }}>
-                    No specifications available.
-                  </p>
-                )}
+                            <td
+                              style={{
+                                padding: "14px 16px",
+                                color: "#5A6A8A",
+                                fontSize: 13,
+                                fontWeight: 600,
+                                width: "35%",
+                                verticalAlign: "top",
+                              }}
+                            >
+                              {spec.name}
+                            </td>
+                            <td
+                              style={{
+                                padding: "14px 16px",
+                                color: "#9AABBF",
+                                fontSize: 13,
+                              }}
+                            >
+                              {spec.value}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  ) : (
+                    <p style={{ color: "#3A4A6A", fontSize: 14 }}>
+                      No specifications available.
+                    </p>
+                  );
+                })()}
               </div>
             )}
 
@@ -810,6 +824,7 @@ export default function ProductDetail() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

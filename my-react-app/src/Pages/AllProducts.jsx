@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const PAGE_SIZE = 12;
 
@@ -291,6 +292,7 @@ export default function AllProducts() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
