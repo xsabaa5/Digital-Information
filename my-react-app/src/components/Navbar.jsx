@@ -1,130 +1,62 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const productPages = [
-  {
-    label: "Archiving Systems Software",
-    desc: "Document management & digital archiving",
-    href: "/archiving-systems",
-    icon: (
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M3 3h18v4H3z" />
-        <path d="M3 7v13a1 1 0 001 1h16a1 1 0 001-1V7" />
-        <path d="M9 12h6" />
-        <path d="M9 16h6" />
-      </svg>
-    ),
-  },
-  {
-    label: "ERP & Digital Transformation Software",
-    desc: "Enterprise resource planning & digital solutions",
-    href: "/erp-digital-transformation",
-    icon: (
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="2" y="3" width="8" height="6" rx="1" />
-        <rect x="14" y="3" width="8" height="6" rx="1" />
-        <rect x="8" y="15" width="8" height="6" rx="1" />
-        <path d="M6 9v3h12V9" />
-        <path d="M12 12v3" />
-      </svg>
-    ),
-  },
-  {
-    label: "Security & Office Electronics",
-    desc: "Surveillance, access control & office tech",
-    href: "/security-electronics",
-    icon: (
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.9L15 14" />
-        <rect x="3" y="7" width="12" height="10" rx="2" />
-      </svg>
-    ),
-  },
-  {
-    label: "Cybersecurity",
-    desc: "Threat intelligence & digital protection",
-    href: "/cybersecurity",
-    icon: (
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    ),
-  },
-  {
-    label: "Scanners",
-    desc: "High-speed document & image scanning",
-    href: "/products",
-    icon: (
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="2" y="6" width="20" height="12" rx="2" />
-        <path d="M7 6V4a1 1 0 011-1h8a1 1 0 011 1v2" />
-        <path d="M2 12h20" />
-        <path d="M7 16h.01" />
-        <path d="M11 16h2" />
-      </svg>
-    ),
-  },
+const productHrefs = [
+  "/archiving-systems",
+  "/erp-digital-transformation",
+  "/security-electronics",
+  "/cybersecurity",
+  "/products",
 ];
 
-const navLinks = [
-  { label: "Home", hash: "home", href: "/" },
-  { label: "About", hash: "about", href: "/#about" },
-  { label: "Solutions", hasDropdown: true },
+const productIcons = [
+  <svg key="archiving" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 3h18v4H3z" /><path d="M3 7v13a1 1 0 001 1h16a1 1 0 001-1V7" /><path d="M9 12h6" /><path d="M9 16h6" />
+  </svg>,
+  <svg key="erp" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="3" width="8" height="6" rx="1" /><rect x="14" y="3" width="8" height="6" rx="1" /><rect x="8" y="15" width="8" height="6" rx="1" /><path d="M6 9v3h12V9" /><path d="M12 12v3" />
+  </svg>,
+  <svg key="security" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.9L15 14" /><rect x="3" y="7" width="12" height="10" rx="2" />
+  </svg>,
+  <svg key="cyber" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" />
+  </svg>,
+  <svg key="scanners" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="6" width="20" height="12" rx="2" /><path d="M7 6V4a1 1 0 011-1h8a1 1 0 011 1v2" /><path d="M2 12h20" /><path d="M7 16h.01" /><path d="M11 16h2" />
+  </svg>,
 ];
+
+const GlobeIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M2 12h20" />
+    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+  </svg>
+);
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+
+  const toggleLang = () =>
+    i18n.changeLanguage(i18n.language === "en" ? "ar" : "en");
+
+  const navProducts = t("nav.products", { returnObjects: true }).map(
+    (p, i) => ({ ...p, href: productHrefs[i], icon: productIcons[i] })
+  );
+
+  const navLinks = [
+    { label: t("nav.home"), hash: "home", href: "/" },
+    { label: t("nav.about"), hash: "about", href: "/#about" },
+    { label: t("nav.solutions"), hasDropdown: true },
+  ];
 
   // Track scroll for navbar bg change
   useEffect(() => {
@@ -160,7 +92,6 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Hamburger line positions (two-line X animation like alseraj.ae)
   const line1Top = mobileOpen ? 19 : 14;
   const line1Transform = `translateX(-50%) ${mobileOpen ? "rotate(45deg)" : "rotate(0)"}`;
   const line2Top = mobileOpen ? 19 : 20;
@@ -226,12 +157,7 @@ export default function Navbar() {
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 9l-7 7-7-7"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
 
@@ -244,7 +170,7 @@ export default function Navbar() {
                   }`}
                 >
                   <div className="w-90 rounded-xl border border-white/10 bg-[#060B18] p-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-                    {productPages.map((prod) => (
+                    {navProducts.map((prod) => (
                       <Link
                         key={prod.label}
                         to={prod.href}
@@ -273,19 +199,9 @@ export default function Navbar() {
                       onClick={() => setDropdownOpen(false)}
                       className="flex w-full items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-[12px] text-white/40 transition-all duration-200 hover:bg-white/5 hover:text-white/70 no-underline mt-1"
                     >
-                      View All Products
-                      <svg
-                        className="w-3 h-3"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M9 5l7 7-7 7"
-                        />
+                      {t("nav.viewAllProducts")}
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                       </svg>
                     </Link>
                   </div>
@@ -315,12 +231,20 @@ export default function Navbar() {
         </ul>
 
         {/* ─── Desktop Right Buttons ─── */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-2.5">
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1.5 rounded-full border border-white/12 bg-white/7 px-4 py-2 text-[13px] font-semibold text-white/85 transition-all duration-300 hover:border-white/22 hover:bg-white/12 hover:text-white cursor-pointer"
+          >
+            <GlobeIcon />
+            <span className="tracking-wide">{t("nav.langSwitch")}</span>
+          </button>
+
           <Link
             to="/contact-us"
             className="flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-5 py-2.5 text-[14px] font-semibold text-white/90 transition-all duration-300 hover:border-white/20 hover:bg-white/10 no-underline tracking-wide"
           >
-            Contact Us
+            {t("nav.contactUs")}
           </Link>
         </div>
 
@@ -355,13 +279,9 @@ export default function Navbar() {
                 <button
                   onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
                   className={`px-10 py-4 text-[clamp(20px,5vw,28px)] font-extralight text-white transition-all duration-400 hover:text-white/50 cursor-pointer bg-transparent border-none flex items-center gap-2 ${
-                    mobileOpen
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-5 opacity-0"
+                    mobileOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
                   }`}
-                  style={{
-                    transitionDelay: mobileOpen ? `${0.1 + idx * 0.05}s` : "0s",
-                  }}
+                  style={{ transitionDelay: mobileOpen ? `${0.1 + idx * 0.05}s` : "0s" }}
                 >
                   {item.label}
                   <svg
@@ -370,43 +290,28 @@ export default function Navbar() {
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 9l-7 7-7-7"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
 
                 {/* Mobile Products Accordion */}
                 <div
                   className={`flex flex-col items-center overflow-hidden transition-all duration-400 ${
-                    mobileProductsOpen
-                      ? "max-h-96 opacity-100"
-                      : "max-h-0 opacity-0"
+                    mobileProductsOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  {productPages.map((prod, pIdx) => (
+                  {navProducts.map((prod, pIdx) => (
                     <Link
                       key={prod.label}
                       to={prod.href}
                       onClick={() => setMobileOpen(false)}
                       className={`flex items-center gap-3 px-8 py-2.5 transition-all duration-300 hover:text-white/50 no-underline ${
-                        mobileProductsOpen
-                          ? "translate-y-0 opacity-100"
-                          : "translate-y-3 opacity-0"
+                        mobileProductsOpen ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
                       }`}
-                      style={{
-                        transitionDelay: mobileProductsOpen
-                          ? `${pIdx * 0.05}s`
-                          : "0s",
-                      }}
+                      style={{ transitionDelay: mobileProductsOpen ? `${pIdx * 0.05}s` : "0s" }}
                     >
                       <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5">
-                        <span className="text-sm text-white/50">
-                          {prod.icon}
-                        </span>
+                        <span className="text-sm text-white/50">{prod.icon}</span>
                       </div>
                       <span className="text-[clamp(14px,3.5vw,18px)] font-extralight text-white/70">
                         {prod.label}
@@ -420,20 +325,11 @@ export default function Navbar() {
                 {item.hash && isHome ? (
                   <a
                     href={`#${item.hash}`}
-                    onClick={() => {
-                      setMobileOpen(false);
-                      handleNavClick(item);
-                    }}
+                    onClick={() => { setMobileOpen(false); handleNavClick(item); }}
                     className={`px-10 py-4 text-[clamp(20px,5vw,28px)] font-extralight text-white transition-all duration-400 hover:text-white/50 cursor-pointer no-underline ${
-                      mobileOpen
-                        ? "translate-y-0 opacity-100"
-                        : "translate-y-5 opacity-0"
+                      mobileOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
                     }`}
-                    style={{
-                      transitionDelay: mobileOpen
-                        ? `${0.1 + idx * 0.05}s`
-                        : "0s",
-                    }}
+                    style={{ transitionDelay: mobileOpen ? `${0.1 + idx * 0.05}s` : "0s" }}
                   >
                     {item.label}
                   </a>
@@ -442,15 +338,9 @@ export default function Navbar() {
                     to={item.href}
                     onClick={() => setMobileOpen(false)}
                     className={`px-10 py-4 text-[clamp(20px,5vw,28px)] font-extralight text-white transition-all duration-400 hover:text-white/50 no-underline ${
-                      mobileOpen
-                        ? "translate-y-0 opacity-100"
-                        : "translate-y-5 opacity-0"
+                      mobileOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
                     }`}
-                    style={{
-                      transitionDelay: mobileOpen
-                        ? `${0.1 + idx * 0.05}s`
-                        : "0s",
-                    }}
+                    style={{ transitionDelay: mobileOpen ? `${0.1 + idx * 0.05}s` : "0s" }}
                   >
                     {item.label}
                   </Link>
@@ -468,17 +358,30 @@ export default function Navbar() {
           style={{ transitionDelay: mobileOpen ? "0.3s" : "0s" }}
         />
 
-        {/* Contact CTA pill */}
-        <Link
-          to="/contact-us"
-          onClick={() => setMobileOpen(false)}
-          className={`mt-4 rounded-full border border-white/10 bg-white/6 px-7 py-3.5 text-[15px] text-white/90 transition-all duration-400 hover:bg-white/10 no-underline ${
-            mobileOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
-          }`}
-          style={{ transitionDelay: mobileOpen ? "0.32s" : "0s" }}
-        >
-          Contact Us
-        </Link>
+        {/* Mobile bottom actions */}
+        <div className="flex flex-col items-center gap-3">
+          <button
+            onClick={toggleLang}
+            className={`flex items-center gap-2 rounded-full border border-white/12 bg-white/7 px-6 py-3 text-[14px] font-semibold text-white/85 transition-all duration-400 hover:bg-white/12 cursor-pointer ${
+              mobileOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+            }`}
+            style={{ transitionDelay: mobileOpen ? "0.30s" : "0s" }}
+          >
+            <GlobeIcon />
+            <span>{t("nav.langSwitch")}</span>
+          </button>
+
+          <Link
+            to="/contact-us"
+            onClick={() => setMobileOpen(false)}
+            className={`rounded-full border border-white/10 bg-white/6 px-7 py-3.5 text-[15px] text-white/90 transition-all duration-400 hover:bg-white/10 no-underline ${
+              mobileOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+            }`}
+            style={{ transitionDelay: mobileOpen ? "0.35s" : "0s" }}
+          >
+            {t("nav.contactUs")}
+          </Link>
+        </div>
       </div>
     </>
   );

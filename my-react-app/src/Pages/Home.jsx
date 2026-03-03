@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Threads from "../components/Threads";
@@ -15,6 +16,7 @@ function Container({ children, className = "" }) {
 
 /* ─── Hero ─── */
 function Hero() {
+  const { t } = useTranslation();
   return (
     <section className="relative flex flex-col items-center justify-center text-center overflow-hidden min-h-screen pt-25 pb-30 bg-[#060B18]">
       {/* Threads Background */}
@@ -29,14 +31,13 @@ function Hero() {
 
       <div className="relative z-10 max-w-250 mx-auto px-6">
         <h1 className="font-bold text-white text-[clamp(42px,6vw,72px)] leading-[1.1] mb-6">
-          Empowering Productivity
+          {t("home.hero.title1")}
           <br />
-          Through <span className="text-[#4F7BF7]">Precision Scanning</span>
+          {t("home.hero.title2")} <span className="text-[#4F7BF7]">{t("home.hero.titleHighlight")}</span>
         </h1>
 
         <p className="text-[#b0bdd4] text-base sm:text-[18px] md:text-[22px] leading-[1.7] max-w-172 mx-auto mb-10">
-          From compact office scanners to industrial-grade imaging systems — we
-          distribute world-class brands powering digital workflows across Iraq.
+          {t("home.hero.subtitle")}
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
@@ -44,13 +45,13 @@ function Hero() {
             to="/products"
             className="w-full sm:w-auto px-6 py-2.5 bg-[#0075FF] text-white text-[17px] font-semibold rounded-full cursor-pointer tracking-[0.01em] no-underline shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] text-center"
           >
-            Explore Products
+            {t("home.hero.exploreBtn")}
           </Link>
           <a
             href="#about"
-            className="w-full sm:w-auto px-6 py-2.5 bg-transparent text-white text-[17px] font-semibold rounded-full border border-[rgba(79,123,247,.35)] cursor-pointer tracking-[0.01em] no-underline text-center"
+            className="w-full sm:w-auto px-6 py-2.5 bg-transparent text-white text-[17px] font-semibold rounded-full border border-[rgba(79,123,247,.35)] cursor-pointer tracking-[0.01em] no-underline text-center backdrop-blur-xs "
           >
-            Learn More
+            {t("home.hero.learnMoreBtn")}
           </a>
         </div>
       </div>
@@ -81,11 +82,12 @@ function Hero() {
 
 /* ─── Stats ─── */
 const Stats = React.memo(function Stats() {
+  const { t } = useTranslation();
   const data = [
-    { label: "Projects Completed", value: "50+" },
-    { label: "Client Satisfaction", value: "98%" },
-    { label: "Technical Support", value: "24/7" },
-    { label: "Years in Market", value: "5+" },
+    { label: t("home.stats.projects"), value: "50+" },
+    { label: t("home.stats.satisfaction"), value: "98%" },
+    { label: t("home.stats.support"), value: "24/7" },
+    { label: t("home.stats.years"), value: "5+" },
   ];
   return (
     <section className="py-12 bg-[#060B18]">
@@ -115,16 +117,17 @@ const iconBoxClass =
 
 /* ─── Our Services ─── */
 const Services = React.memo(function Services() {
+  const { t } = useTranslation();
+  const archivingItems = t("home.services.archiving.items", { returnObjects: true });
   return (
     <section id="services" className="py-24 bg-[#060B18]">
       <Container>
         <div className="text-center mb-16">
           <h2 className="text-white font-bold text-[clamp(28px,3.5vw,40px)] mb-4">
-            Our Solutions
+            {t("home.services.heading")}
           </h2>
           <p className="text-[#9cabc4] text-[21px] max-w-150 mx-auto leading-[1.7]">
-            Comprehensive technology solutions combining innovation, security,
-            and integration to build a smarter, connected business.
+            {t("home.services.subheading")}
           </p>
         </div>
 
@@ -141,12 +144,10 @@ const Services = React.memo(function Services() {
               </div>
             </div>
             <h3 className="text-white font-bold text-xl mb-2">
-              Document Scanning Solutions
+              {t("home.services.scanning.title")}
             </h3>
             <p className="text-[#9cabc4] text-[17px] leading-[1.7]">
-              From compact office scanners to industrial-grade imaging systems —
-              we distribute world-class brands like Ricoh, Epson, Avision, and
-              Image Access powering digital workflows across Iraq.
+              {t("home.services.scanning.desc")}
             </p>
           </div>
 
@@ -170,12 +171,10 @@ const Services = React.memo(function Services() {
               </div>
             </div>
             <h3 className="text-white font-bold text-xl mb-2">
-              Security & Office Electronics
+              {t("home.services.security.title")}
             </h3>
             <p className="text-[#9cabc4] text-[17px] leading-[1.7]">
-              X-ray scanners, metal detectors, access control, surveillance
-              systems, and communication devices from brands like RAPISCAN,
-              HIKVISION, and Motorola for safer, smarter workplaces.
+              {t("home.services.security.desc")}
             </p>
           </div>
         </div>
@@ -202,12 +201,10 @@ const Services = React.memo(function Services() {
               ))}
             </div>
             <h3 className="text-white font-bold text-xl mb-2">
-              ERP & Digital Transformation
+              {t("home.services.erp.title")}
             </h3>
             <p className="text-[#9cabc4] text-[17px] leading-[1.7]">
-              Advanced ERP systems and workflow automation — including our own
-              Torch ERP — for financial, HR, supply chain, and operational
-              management.
+              {t("home.services.erp.desc")}
             </p>
           </div>
 
@@ -219,36 +216,17 @@ const Services = React.memo(function Services() {
               </div>
             </div>
             <h3 className="text-white font-bold text-xl mb-2">
-              Cybersecurity Solutions
+              {t("home.services.cyber.title")}
             </h3>
             <p className="text-[#9cabc4] text-[17px] leading-[1.7]">
-              AI-driven threat protection, 24/7 SOC monitoring, and
-              enterprise-grade cybersecurity with a 99.7% protection rate
-              against modern risks.
+              {t("home.services.cyber.desc")}
             </p>
           </div>
 
           {/* Archiving */}
           <div className={cardClass}>
             <div className="mb-5">
-              {[
-                {
-                  label: "Documents",
-                  colorClass: "text-white",
-                  time: "Secure",
-                  text: "Digitized & indexed for instant retrieval",
-                },
-                {
-                  label: "Archives",
-                  colorClass: "text-[#4F7BF7]",
-                  text: "Long-term preservation with full compliance",
-                },
-                {
-                  label: "Records",
-                  colorClass: "text-[#F59E0B]",
-                  text: "Automated classification & metadata tagging",
-                },
-              ].map((item) => (
+              {(Array.isArray(archivingItems) ? archivingItems : []).map((item) => (
                 <div
                   key={item.label}
                   className="bg-[#080E1E] rounded-[10px] px-3.5 py-2.5 border border-[#151F3A] mb-2"
@@ -270,11 +248,11 @@ const Services = React.memo(function Services() {
               ))}
             </div>
             <h3 className="text-white font-bold text-xl mb-1.5">
-              Archiving Solutions
+              {t("home.services.archiving.title")}
             </h3>
             <span className="inline-flex items-center gap-1.5 text-[#34D399] text-[13px] font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-[#34D399] shadow-[0_0_6px_rgba(52,211,153,.5)] animate-pulse" />
-              Store, Manage & Retrieve
+              {t("home.services.archiving.storeManageRetrieve")}
             </span>
           </div>
         </div>
@@ -285,6 +263,7 @@ const Services = React.memo(function Services() {
 
 /* ─── Products (Home Preview — 6 items) ─── */
 function Products() {
+  const { t } = useTranslation();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -300,11 +279,10 @@ function Products() {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-white font-bold text-[clamp(28px,3.5vw,40px)] mb-4">
-            Our Products
+            {t("home.products.heading")}
           </h2>
           <p className="text-[#9cabc4] text-[17px] max-w-160 mx-auto leading-[1.7]">
-            Explore Our Full Range Of Document Scanners From The World's Leading
-            Brands.
+            {t("home.products.subheading")}
           </p>
         </div>
 
@@ -384,7 +362,7 @@ function Products() {
             to="/products"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-[17px] font-semibold no-underline bg-[#0075FF] text-white shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em] transition-all duration-200"
           >
-            All Products
+            {t("home.products.allProducts")}
             <svg
               width="16"
               height="16"
@@ -406,24 +384,13 @@ function Products() {
 }
 
 /* ─── About Us ─── */
+const VALUE_ICONS = ["star", "bolt", "wifi"];
+
 const About = React.memo(function About() {
-  const values = [
-    {
-      icon: "star",
-      title: "Innovation",
-      desc: "Continuously enhancing products and services, embracing creativity and new technologies for modern business challenges.",
-    },
-    {
-      icon: "bolt",
-      title: "Excellence",
-      desc: "Maintaining the highest quality standards in products, services, and support with exceptional customer experience.",
-    },
-    {
-      icon: "wifi",
-      title: "Reliability",
-      desc: "Providing consistent around-the-clock technical support and accountability in every engagement.",
-    },
-  ];
+  const { t } = useTranslation();
+  const values = (t("home.about.values", { returnObjects: true }) || []).map(
+    (v, i) => ({ ...v, icon: VALUE_ICONS[i] }),
+  );
 
   return (
     <section id="about" className="py-24 bg-[#060B18]">
@@ -431,24 +398,19 @@ const About = React.memo(function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
             <h2 className="text-white font-bold text-[clamp(28px,3.5vw,40px)] mb-4 leading-[1.15]">
-              About <span className="text-[#4F7BF7]">Digital Information</span>
+              {t("home.about.heading")} <span className="text-[#4F7BF7]">{t("home.about.headingHighlight")}</span>
             </h2>
             <p className="text-[#8492af] text-base leading-[1.7] mb-6 max-w-115">
-              Founded in 2020, Digital Information has grown from a specialized
-              technology provider into one of Iraq's most diversified technology
-              companies — delivering digital transformation, ERP, archiving,
-              cybersecurity, and electronics solutions.
+              {t("home.about.para1")}
             </p>
             <p className="text-[#8492af] text-base leading-[1.7] mb-10 max-w-115">
-              Our mission is to empower businesses with smart, secure, and
-              scalable technology solutions that help them digitize operations,
-              protect assets, and accelerate growth across Iraq and the region.
+              {t("home.about.para2")}
             </p>
 
             <div className="flex gap-14 mb-10">
               {[
-                { label: "Projects Completed", value: "50+" },
-                { label: "Client Satisfaction", value: "98%" },
+                { label: t("home.about.projectsCompleted"), value: "50+" },
+                { label: t("home.about.clientSatisfaction"), value: "98%" },
               ].map((s) => (
                 <div key={s.label}>
                   <p className="text-[#8A9BBF] text-sm mb-2">{s.label}</p>
@@ -463,12 +425,12 @@ const About = React.memo(function About() {
               to="/contact-us"
               className="inline-block px-6 py-2.5 bg-[#0075FF] text-white text-[17px] font-semibold rounded-full cursor-pointer shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em] no-underline"
             >
-              Get In Touch
+              {t("home.about.getInTouch")}
             </Link>
           </div>
 
           <div className="flex flex-col gap-4">
-            {values.map((f) => (
+            {(Array.isArray(values) ? values : []).map((f) => (
               <div
                 key={f.title}
                 className="flex items-start gap-4 bg-[#0B1222] border border-[#1A2744] rounded-2xl p-5"
@@ -619,7 +581,7 @@ function Icon({ name, size = 22 }) {
 /* ─── Page ─── */
 export default function Home() {
   return (
-    <div className="bg-[#060B18] min-h-screen text-white font-[system-ui,-apple-system,sans-serif] antialiased">
+    <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
       <Navbar />
       <Hero />
       <Stats />

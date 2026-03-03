@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -28,6 +29,7 @@ const FILTER_FIELDS = [
 ];
 
 export default function AllProducts() {
+  const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [search, setSearch] = useState("");
@@ -109,7 +111,7 @@ export default function AllProducts() {
               </svg>
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder={t("allProducts.searchPlaceholder")}
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
@@ -120,7 +122,7 @@ export default function AllProducts() {
             </div>
 
             {/* First 4 dropdown filters */}
-            {FILTER_FIELDS.slice(0, 4).map(({ key, label }) => (
+            {FILTER_FIELDS.slice(0, 4).map(({ key }) => (
               <select
                 key={key}
                 value={filters[key] || ""}
@@ -128,7 +130,7 @@ export default function AllProducts() {
                 className={selectClasses}
                 style={{ backgroundImage: selectArrowBg }}
               >
-                <option value="">{label}</option>
+                <option value="">{t(`allProducts.filters.${key}`)}</option>
                 {(filterOptions[key] || []).map((v) => (
                   <option key={v} value={v}>
                     {v}
@@ -140,7 +142,7 @@ export default function AllProducts() {
 
           {/* Row 2: Capacity + Standard Interface + Colored + SimplexDuplex + Duty Cycle */}
           <div className="flex flex-wrap gap-3">
-            {FILTER_FIELDS.slice(4).map(({ key, label }) => (
+            {FILTER_FIELDS.slice(4).map(({ key }) => (
               <select
                 key={key}
                 value={filters[key] || ""}
@@ -148,7 +150,7 @@ export default function AllProducts() {
                 className={selectClasses}
                 style={{ backgroundImage: selectArrowBg }}
               >
-                <option value="">{label}</option>
+                <option value="">{t(`allProducts.filters.${key}`)}</option>
                 {(filterOptions[key] || []).map((v) => (
                   <option key={v} value={v}>
                     {v}
@@ -162,11 +164,11 @@ export default function AllProducts() {
         {/* Results count + Clear */}
         <div className="flex items-center justify-between mb-5">
           <p className="text-[#3A4A6A] text-[13px]">
-            Showing {visible.length} of {filtered.length} products
+            {t("allProducts.showing", { visible: visible.length, total: filtered.length })}
             {search && (
               <span>
                 {" "}
-                for &ldquo;<span className="text-[#8BAAFE]">{search}</span>
+                {t("allProducts.showingFor")} &ldquo;<span className="text-[#8BAAFE]">{search}</span>
                 &rdquo;
               </span>
             )}
@@ -176,7 +178,7 @@ export default function AllProducts() {
               onClick={clearFilters}
               className="py-2 px-5 rounded-full text-sm font-semibold cursor-pointer border border-[rgba(79,123,247,.35)] bg-transparent text-white tracking-[0.01em] transition-all duration-200 hover:bg-[rgba(79,123,247,.1)] hover:border-[#4F7BF7]"
             >
-              Clear all filters
+              {t("allProducts.clearAllFilters")}
               {activeFilterCount > 0 && ` (${activeFilterCount})`}
             </button>
           )}
@@ -199,12 +201,12 @@ export default function AllProducts() {
               <circle cx="11" cy="11" r="8" />
               <path d="M21 21L16.65 16.65" />
             </svg>
-            <p className="text-[15px] mb-3">No products found</p>
+            <p className="text-[15px] mb-3">{t("allProducts.noProducts")}</p>
             <button
               onClick={clearFilters}
               className="py-2.5 px-6 rounded-full text-[17px] font-semibold cursor-pointer border border-[rgba(79,123,247,.35)] bg-transparent text-white tracking-[0.01em] hover:bg-[rgba(79,123,247,.1)] hover:border-[#4F7BF7] transition-all duration-200"
             >
-              Clear all filters
+              {t("allProducts.clearAllFilters")}
             </button>
           </div>
         ) : (
@@ -287,7 +289,7 @@ export default function AllProducts() {
               onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
               className="py-2.5 px-6 rounded-full text-[17px] font-semibold cursor-pointer border border-[rgba(79,123,247,.35)] bg-transparent text-white tracking-[0.01em] transition-all duration-200 hover:bg-[rgba(79,123,247,.1)] hover:border-[#4F7BF7]"
             >
-              Load More Products
+              {t("allProducts.loadMore")}
             </button>
           </div>
         )}

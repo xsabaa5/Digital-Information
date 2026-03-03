@@ -1,0 +1,331 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "solutions": "Solutions",
+    "contactUs": "Contact Us",
+    "viewAllProducts": "View All Products",
+    "langSwitch": "AR",
+    "products": [
+      { "label": "Archiving Systems Software", "desc": "Document management & digital archiving" },
+      { "label": "ERP & Digital Transformation Software", "desc": "Enterprise resource planning & digital solutions" },
+      { "label": "Security & Office Electronics", "desc": "Surveillance, access control & office tech" },
+      { "label": "Cybersecurity", "desc": "Threat intelligence & digital protection" },
+      { "label": "Scanners", "desc": "High-speed document & image scanning" }
+    ]
+  },
+  "home": {
+    "hero": {
+      "title1": "Empowering Productivity",
+      "title2": "Through",
+      "titleHighlight": "Precision Scanning",
+      "subtitle": "From compact office scanners to industrial-grade imaging systems — we distribute world-class brands powering digital workflows across Iraq.",
+      "exploreBtn": "Explore Products",
+      "learnMoreBtn": "Learn More"
+    },
+    "stats": {
+      "projects": "Projects Completed",
+      "satisfaction": "Client Satisfaction",
+      "support": "Technical Support",
+      "years": "Years in Market"
+    },
+    "services": {
+      "heading": "Our Solutions",
+      "subheading": "Comprehensive technology solutions combining innovation, security, and integration to build a smarter, connected business.",
+      "scanning": {
+        "title": "Document Scanning Solutions",
+        "desc": "From compact office scanners to industrial-grade imaging systems — we distribute world-class brands like Ricoh, Epson, Avision, and Image Access powering digital workflows across Iraq."
+      },
+      "security": {
+        "title": "Security & Office Electronics",
+        "desc": "X-ray scanners, metal detectors, access control, surveillance systems, and communication devices from brands like RAPISCAN, HIKVISION, and Motorola for safer, smarter workplaces."
+      },
+      "erp": {
+        "title": "ERP & Digital Transformation",
+        "desc": "Advanced ERP systems and workflow automation — including our own Torch ERP — for financial, HR, supply chain, and operational management."
+      },
+      "cyber": {
+        "title": "Cybersecurity Solutions",
+        "desc": "AI-driven threat protection, 24/7 SOC monitoring, and enterprise-grade cybersecurity with a 99.7% protection rate against modern risks."
+      },
+      "archiving": {
+        "title": "Archiving Solutions",
+        "storeManageRetrieve": "Store, Manage & Retrieve",
+        "items": [
+          { "label": "Documents", "time": "Secure", "text": "Digitized & indexed for instant retrieval" },
+          { "label": "Archives", "text": "Long-term preservation with full compliance" },
+          { "label": "Records", "text": "Automated classification & metadata tagging" }
+        ]
+      }
+    },
+    "products": {
+      "heading": "Our Products",
+      "subheading": "Explore Our Full Range Of Document Scanners From The World's Leading Brands.",
+      "allProducts": "All Products"
+    },
+    "about": {
+      "heading": "About",
+      "headingHighlight": "Digital Information",
+      "para1": "Founded in 2020, Digital Information has grown from a specialized technology provider into one of Iraq's most diversified technology companies — delivering digital transformation, ERP, archiving, cybersecurity, and electronics solutions.",
+      "para2": "Our mission is to empower businesses with smart, secure, and scalable technology solutions that help them digitize operations, protect assets, and accelerate growth across Iraq and the region.",
+      "projectsCompleted": "Projects Completed",
+      "clientSatisfaction": "Client Satisfaction",
+      "getInTouch": "Get In Touch",
+      "values": [
+        { "title": "Innovation", "desc": "Continuously enhancing products and services, embracing creativity and new technologies for modern business challenges." },
+        { "title": "Excellence", "desc": "Maintaining the highest quality standards in products, services, and support with exceptional customer experience." },
+        { "title": "Reliability", "desc": "Providing consistent around-the-clock technical support and accountability in every engagement." }
+      ]
+    }
+  },
+  "footer": {
+    "tagline": "Iraq's leading technology provider — combining innovation, security, and integration since 2020.",
+    "solutions": "Solutions",
+    "solutionLinks": [
+      "Security Electronics",
+      "ERP Solutions",
+      "Cybersecurity",
+      "Archiving Solutions",
+      "Document Scanners"
+    ],
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "aboutUs": "About Us",
+    "allProducts": "All Products",
+    "contactUs": "Contact Us",
+    "address": "Baghdad, Karrada, Al-Sinaa Street",
+    "copyright": "© {{year}} Digital Information. All rights reserved.",
+    "poweredBy": "This site Powered by"
+  },
+  "contact": {
+    "badge": "Get In Touch",
+    "heading": "Contact",
+    "headingHighlight": "Us",
+    "subheading": "Have a question or need a custom solution? Reach out to our team and we'll get back to you as soon as possible.",
+    "address": "Address",
+    "addressValue": "Baghdad, Karrada, Al-Sinaa Street",
+    "phone": "Phone",
+    "email": "Email",
+    "formTitle": "Send Us a Message",
+    "formSubtitle": "Fill out the form below and our team will respond within 24 hours.",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Your full name",
+    "emailAddress": "Email Address",
+    "emailPlaceholder": "you@example.com",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "+964 XXX XXX XXXX",
+    "subject": "Subject",
+    "subjectPlaceholder": "How can we help?",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your project or inquiry...",
+    "sendMessage": "Send Message",
+    "followUs": "Follow Us",
+    "ctaTitle": "Ready to Transform Your Business?",
+    "ctaDesc": "From document scanning to cybersecurity — Digital Information provides end-to-end technology solutions for businesses across Iraq.",
+    "exploreProducts": "Explore Our Products"
+  },
+  "archiving": {
+    "badge": "Solutions",
+    "heading": "Secure, Smart, and Scalable",
+    "headingHighlight": "Archiving Solutions",
+    "subheading": "Enterprise-grade archiving software for Iraqi organizations to digitize, organize, and protect records. Serving government institutions, enterprises, banks, and educational organizations.",
+    "keyCaps": "Key Capabilities",
+    "capabilities": [
+      "Securely store and organize documents and records",
+      "Search and retrieve files instantly",
+      "Integrate seamlessly with existing systems",
+      "Ensure compliance with local and international standards",
+      "Reduce physical storage and streamline operations"
+    ],
+    "mediaInfoTitle": "MediaINFO Digital Library Software",
+    "mediaInfoDesc": "Powerful digital library and content management platform for storing, accessing, and sharing digitized assets. Used by libraries, publishers, universities, and archives globally.",
+    "featuresTitle": "Features",
+    "features": [
+      "Interactive viewing and browsing with zoom/comparison tools",
+      "Smart search and cataloging functionality",
+      "Flexible integration with document management systems",
+      "Secure access through DRM and user controls",
+      "Customizable and scalable architecture"
+    ],
+    "usersTitle": "Who Uses MediaINFO",
+    "users": [
+      "Libraries and archives",
+      "Publishers and educational institutions",
+      "Decor and design industries",
+      "Engineering and technical teams",
+      "Scanning bureaus"
+    ],
+    "whyTitle": "Why Choose Digital Information",
+    "why": [
+      "Tailored archiving software for local institutions",
+      "Expert installation, training, and technical support",
+      "Integration with ERP, workflow, and security systems",
+      "Proven reliability with 500+ successful projects"
+    ],
+    "ctaTitle": "Ready to Digitize Your Records?",
+    "ctaDesc": "Contact us for a consultation on archiving solutions tailored to your organization.",
+    "ctaBtn": "Contact Us"
+  },
+  "cybersecurity": {
+    "badge": "Solutions",
+    "heading": "Enterprise-Grade",
+    "headingHighlight": "Cybersecurity",
+    "subheading": "Protect your digital infrastructure with AI-powered, multi-layered defense systems. Safeguarding Iraqi businesses, government entities, and institutions from cyber threats.",
+    "capabilitiesTitle": "Our Capabilities",
+    "capabilities": [
+      {
+        "title": "24/7 SOC Monitoring & Threat Intelligence",
+        "desc": "Our Security Operations Center operates continuously, identifying and neutralizing threats instantly with proactive monitoring, threat hunting, and incident response.",
+        "features": [
+          "Real-time monitoring & behavioral analysis",
+          "Advanced threat intelligence (IoCs & anomaly detection)",
+          "<15s average response time"
+        ]
+      },
+      {
+        "title": "Zero-Day Exploit & Malware Protection",
+        "desc": "AI-driven analytics and quantum-resistant encryption block zero-day exploits, malware, and ransomware before they spread.",
+        "features": [
+          "99.7% protection rate",
+          "AI & machine-learning based threat prediction",
+          "Automated patch and containment systems"
+        ]
+      },
+      {
+        "title": "Multi-Layered Network & System Defense",
+        "desc": "Integration of firewalls, intrusion detection, DDoS protection, endpoint security, and data encryption.",
+        "features": [
+          "Perimeter Defense: Next-gen firewalls, IDS, DDoS protection",
+          "Threat Intelligence: Real-time analytics & behavioral tracking",
+          "Endpoint Protection: Device control, advanced antivirus, encryption",
+          "Data Protection: Backup, recovery, access control, audit trails"
+        ]
+      },
+      {
+        "title": "Cyber Defense Consulting & Training",
+        "desc": "Security audits, risk assessments, compliance guidance, and customized cybersecurity training for IT and management staff.",
+        "features": []
+      }
+    ],
+    "whyTitle": "Why Choose Digital Information",
+    "why": [
+      { "stat": "2020", "label": "Trusted cybersecurity provider in Iraq since" },
+      { "stat": "99.98%", "label": "Threat detection rate" },
+      { "stat": "24/7", "label": "Local technical support and fast on-site response" },
+      { "stat": "AI", "label": "Driven security architecture for proactive protection" }
+    ],
+    "ctaTitle": "Protect Your Business Today",
+    "ctaDesc": "Cyber threats don't wait. Contact Digital Information to secure your infrastructure with advanced cybersecurity solutions.",
+    "ctaBtn": "Contact Us"
+  },
+  "erp": {
+    "badge": "Solutions",
+    "heading": "ERP &",
+    "headingHighlight": "Digital Transformation",
+    "headingSuffix": "Software",
+    "subheading": "Streamline your operations and accelerate growth with advanced ERP and automation solutions — including our in-house Torch ERP platform.",
+    "erpModulesTitle": "Comprehensive ERP Modules",
+    "erpModules": [
+      "Financial, HR, supply chain, and operational management",
+      "Customizable to fit organizational workflow and goals",
+      "Scalable and adaptable for growing businesses",
+      "Integration-ready with third-party and legacy systems",
+      "Available in on-premises or cloud deployments"
+    ],
+    "transformTitle": "Digital Transformation Services",
+    "transformDesc": "More than software — we enable organizational transformation.",
+    "transformServices": [
+      "Business process re-engineering",
+      "System integration and workflow automation",
+      "Data migration and analytics enablement",
+      "Employee training and local support"
+    ],
+    "flagshipBadge": "Flagship Product",
+    "torchTitle": "Torch ERP Platform",
+    "torchDesc": "Our in-house enterprise platform designed for businesses in Iraq and the Middle East.",
+    "torchFeatures": [
+      "Unified dashboard for all operations",
+      "AI-driven reporting and analytics",
+      "Multi-language and multi-currency support",
+      "Cloud-based access with advanced data security",
+      "Continuous updates and dedicated technical support"
+    ],
+    "whyTitle": "Why Choose Digital Information",
+    "why": [
+      { "title": "Proven Success", "desc": "ERP implementations across Iraq and the region" },
+      { "title": "Local Presence", "desc": "On-ground support from Baghdad to Basra and Erbil" },
+      { "title": "Deep Expertise", "desc": "Digital transformation and enterprise software specialists" },
+      { "title": "Partnership Approach", "desc": "From consultation through post-deployment support" }
+    ],
+    "ctaTitle": "Ready to Transform Your Business?",
+    "ctaDesc": "From Baghdad to Basra and Erbil — serving Iraq's growing business ecosystem.",
+    "ctaBtn": "Contact Us"
+  },
+  "security": {
+    "badge": "Solutions",
+    "heading": "Security &",
+    "headingHighlight": "Office Electronics",
+    "subheading": "Complete hardware solutions for a safer, smarter workplace. Integrated security and office electronics protecting operations and enhancing workplace productivity.",
+    "sections": [
+      {
+        "title": "X-Ray Scanners & Metal Detectors",
+        "desc": "Advanced screening and detection for airports, ministries, logistics centers, and corporate facilities across Iraq.",
+        "brands": "RAPISCAN, GARRETT, ASTROPHYSICS",
+        "features": [
+          "Multi-view imaging with deep penetration capability",
+          "Weather-resistant designs for indoor and outdoor deployment",
+          "Instant alerts and intuitive user interfaces enabling quick response"
+        ]
+      },
+      {
+        "title": "Access Control & Surveillance Systems",
+        "desc": "Smart monitoring and access solutions for facility protection using biometric readers, facial recognition, turnstiles, CCTV, and thermal imaging.",
+        "brands": "HIKVISION, MEERAAG, SAFRAN, Motorola",
+        "featureLabel": "Target Applications",
+        "features": [
+          "Government and public institutions",
+          "Corporate offices and banks",
+          "Industrial and educational campuses"
+        ]
+      },
+      {
+        "title": "Communication & Office Automation",
+        "desc": "Professional communication systems and office management solutions enabling seamless coordination.",
+        "brands": "Icom, Hytera, Motorola",
+        "features": [
+          "Two-way radios and dispatch communication",
+          "Integrated automation and office management systems"
+        ]
+      }
+    ],
+    "whyTitle": "Why Choose Digital Information",
+    "why": [
+      "Trusted by Iraq's leading enterprises and institutions",
+      "Authorized distributor of premier global security and electronics brands",
+      "Local installation, training, and 24/7 technical support",
+      "Custom solutions for government, commercial, and industrial clients"
+    ],
+    "ctaTitle": "Secure & Modernize Your Workplace",
+    "ctaDesc": "Contact us for a consultation or on-site product demonstration.",
+    "ctaBtn": "Contact Us"
+  },
+  "allProducts": {
+    "searchPlaceholder": "Search products...",
+    "filters": {
+      "brand": "Brand",
+      "product_type": "Product Type",
+      "document_size": "Document Size",
+      "speed": "Speed",
+      "capacity": "Capacity",
+      "standard_interface": "Standard Interface",
+      "colored": "Colored",
+      "simplexduplex": "Simplex/Duplex",
+      "duty_cycle": "Duty Cycle"
+    },
+    "showing": "Showing {{visible}} of {{total}} products",
+    "showingFor": "for",
+    "clearAllFilters": "Clear all filters",
+    "noProducts": "No products found",
+    "loadMore": "Load More Products"
+  }
+}

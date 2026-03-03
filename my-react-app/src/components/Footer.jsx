@@ -1,7 +1,19 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
+
+  const solutionLinks = t("footer.solutionLinks", { returnObjects: true });
+  const hrefs = [
+    "/security-electronics",
+    "/erp-digital-transformation",
+    "/cybersecurity",
+    "/archiving-systems",
+    "/products",
+  ];
+
   return (
     <footer id="contact" className="bg-[#050A15] border-t border-[#1A2744]">
       <div className="w-full px-6 max-w-280 mx-auto">
@@ -20,8 +32,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-[#8A9BBF] text-[15px] leading-[1.7]">
-              Iraq's leading technology provider — combining innovation,
-              security, and integration since 2020.
+              {t("footer.tagline")}
             </p>
             <div className="flex gap-3 mt-5">
               <a
@@ -77,20 +88,14 @@ export default function Footer() {
 
           {/* Solutions */}
           <div>
-            <h4 className="text-white font-bold text-base mb-4.5">Solutions</h4>
-            {[
-              { label: "Security Electronics", href: "/security-electronics" },
-              { label: "ERP Solutions", href: "/erp-digital-transformation" },
-              { label: "Cybersecurity", href: "/cybersecurity" },
-              { label: "Archiving Solutions", href: "/archiving-systems" },
-              { label: "Document Scanners", href: "/products" },
-            ].map((s) => (
+            <h4 className="text-white font-bold text-base mb-4.5">{t("footer.solutions")}</h4>
+            {(Array.isArray(solutionLinks) ? solutionLinks : []).map((label, i) => (
               <Link
-                key={s.label}
-                to={s.href}
+                key={i}
+                to={hrefs[i]}
                 className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
               >
-                {s.label}
+                {label}
               </Link>
             ))}
           </div>
@@ -98,33 +103,33 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-white font-bold text-base mb-4.5">
-              Quick Links
+              {t("footer.quickLinks")}
             </h4>
             <Link
               to="/"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
             >
-              Home
+              {t("footer.home")}
             </Link>
             <a
               href="#about"
               className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
             >
-              About Us
+              {t("footer.aboutUs")}
             </a>
             <Link
               to="/products"
               className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
             >
-              All Products
+              {t("footer.allProducts")}
             </Link>
           </div>
 
           {/* Contact Info */}
           <div>
             <h4 className="text-white font-bold text-base mb-4.5">
-              Contact Us
+              {t("footer.contactUs")}
             </h4>
             <div className="flex flex-col gap-3.5">
               <div className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px]">
@@ -141,7 +146,7 @@ export default function Footer() {
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
                   <circle cx="12" cy="9" r="2.5" />
                 </svg>
-                Baghdad, Karrada, Al-Sinaa Street
+                {t("footer.address")}
               </div>
               <a
                 href="tel:+9647811070080"
@@ -190,11 +195,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-[#1A2744] py-6 flex flex-col sm:flex-row items-center gap-3 sm:justify-between">
           <p className="text-[#8A9BBF] text-[15px]">
-            &copy; {new Date().getFullYear()} Digital Information. All rights
-            reserved.
+            {t("footer.copyright", { year })}
           </p>
           <p className="text-[#5A6A8A] text-base">
-            This site Powered by{" "}
+            {t("footer.poweredBy")}{" "}
             <a
               href="https://torchcorp.com/"
               target="_blank"

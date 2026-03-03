@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function ContactUs() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -44,8 +46,8 @@ export default function ContactUs() {
           <circle cx="12" cy="10" r="3" />
         </svg>
       ),
-      title: "Address",
-      lines: ["Baghdad, Karrada, Al-Sinaa Street"],
+      title: t("contact.address"),
+      lines: [t("contact.addressValue")],
     },
     {
       icon: (
@@ -62,7 +64,7 @@ export default function ContactUs() {
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
         </svg>
       ),
-      title: "Phone",
+      title: t("contact.phone"),
       lines: ["+964 781 107 0080"],
     },
     {
@@ -81,7 +83,7 @@ export default function ContactUs() {
           <polyline points="22,6 12,13 2,6" />
         </svg>
       ),
-      title: "Email",
+      title: t("contact.email"),
       lines: ["info@diginfoiq.com", "tony@diginfoiq.com"],
       href: "mailto:info@diginfoiq.com",
     },
@@ -125,14 +127,13 @@ export default function ContactUs() {
       <section className="pt-25 pb-15 text-center">
         <div className="max-w-200 mx-auto px-6">
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-[#8BAAFE] bg-[rgba(79,123,247,.1)] border border-[rgba(79,123,247,.15)] mb-6">
-            Get In Touch
+            {t("contact.badge")}
           </span>
           <h1 className="text-[clamp(32px,4vw,48px)] font-bold leading-[1.2] mb-5 tracking-[-0.03em]">
-            Contact <span className="text-[#4F7BF7]">Us</span>
+            {t("contact.heading")} <span className="text-[#4F7BF7]">{t("contact.headingHighlight")}</span>
           </h1>
           <p className="text-[#8492af] text-base leading-[1.8] max-w-165 mx-auto">
-            Have a question or need a custom solution? Reach out to our team and
-            we'll get back to you as soon as possible.
+            {t("contact.subheading")}
           </p>
         </div>
       </section>
@@ -179,39 +180,38 @@ export default function ContactUs() {
             {/* Contact Form */}
             <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-9">
               <h2 className="text-[22px] font-bold mb-2 tracking-[-0.02em]">
-                Send Us a Message
+                {t("contact.formTitle")}
               </h2>
               <p className="text-[#8492af] text-base leading-[1.7] mb-7">
-                Fill out the form below and our team will respond within 24
-                hours.
+                {t("contact.formSubtitle")}
               </p>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
-                      Full Name
+                      {t("contact.fullName")}
                     </label>
                     <input
                       type="text"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="Your full name"
+                      placeholder={t("contact.fullNamePlaceholder")}
                       required
                       className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] focus:border-[#4F7BF7]"
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
-                      Email Address
+                      {t("contact.emailAddress")}
                     </label>
                     <input
                       type="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="you@example.com"
+                      placeholder={t("contact.emailPlaceholder")}
                       required
                       className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] focus:border-[#4F7BF7]"
                     />
@@ -221,27 +221,27 @@ export default function ContactUs() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
-                      Phone Number
+                      {t("contact.phoneNumber")}
                     </label>
                     <input
                       type="tel"
                       name="phone"
                       value={form.phone}
                       onChange={handleChange}
-                      placeholder="+964 XXX XXX XXXX"
+                      placeholder={t("contact.phonePlaceholder")}
                       className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] focus:border-[#4F7BF7]"
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
-                      Subject
+                      {t("contact.subject")}
                     </label>
                     <input
                       type="text"
                       name="subject"
                       value={form.subject}
                       onChange={handleChange}
-                      placeholder="How can we help?"
+                      placeholder={t("contact.subjectPlaceholder")}
                       required
                       className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] focus:border-[#4F7BF7]"
                     />
@@ -250,13 +250,13 @@ export default function ContactUs() {
 
                 <div>
                   <label className="block text-xs font-medium text-[#9AABBF] mb-2 uppercase tracking-[0.05em]">
-                    Message
+                    {t("contact.message")}
                   </label>
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Tell us about your project or inquiry..."
+                    placeholder={t("contact.messagePlaceholder")}
                     required
                     rows={5}
                     className="w-full py-3.5 px-4 rounded-xl border border-[#1A2744] bg-[#080E1E] text-white text-sm outline-none transition-all duration-200 font-[inherit] resize-y min-h-30 focus:border-[#4F7BF7]"
@@ -267,7 +267,7 @@ export default function ContactUs() {
                   type="submit"
                   className="py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white border-none cursor-pointer shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em] transition-all duration-200 self-start hover:shadow-[0_0_30px_rgba(79,123,247,.5),0_4px_16px_rgba(79,123,247,.3)]"
                 >
-                  Send Message
+                  {t("contact.sendMessage")}
                 </button>
               </form>
             </div>
@@ -292,7 +292,7 @@ export default function ContactUs() {
 
               {/* Social Links */}
               <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
+                <h3 className="text-xl font-semibold mb-4">{t("contact.followUs")}</h3>
                 <div className="flex gap-3">
                   {socialLinks.map((social) => (
                     <a
@@ -316,18 +316,16 @@ export default function ContactUs() {
         <section className="text-center py-12">
           <div className="bg-[#0B1222] border border-[rgba(79,123,247,.2)] rounded-2xl py-12 px-8">
             <h2 className="text-2xl font-bold mb-3">
-              Ready to Transform Your Business?
+              {t("contact.ctaTitle")}
             </h2>
             <p className="text-[#8492af] text-base mb-7 max-w-130 mx-auto leading-[1.7]">
-              From document scanning to cybersecurity — Digital Information
-              provides end-to-end technology solutions for businesses across
-              Iraq.
+              {t("contact.ctaDesc")}
             </p>
             <Link
               to="/products"
               className="inline-block py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white no-underline shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em]"
             >
-              Explore Our Products
+              {t("contact.exploreProducts")}
             </Link>
           </div>
         </section>
