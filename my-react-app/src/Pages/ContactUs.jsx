@@ -65,7 +65,7 @@ export default function ContactUs() {
         </svg>
       ),
       title: t("contact.phone"),
-      lines: ["+964 781 107 0080"],
+      lines: [<span dir="ltr">+964 781 107 0080</span>],
     },
     {
       icon: (

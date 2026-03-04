@@ -12,11 +12,13 @@ import SecurityElectronics from "./Pages/SecurityElectronics";
 import Cybersecurity from "./Pages/Cybersecurity";
 import ContactUs from "./Pages/ContactUs";
 import ScrollToTop from "./components/ScrollToTop";
+import PromoWidget from "./components/PromoWidget";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <ScrollToTop />
+      <PromoWidget />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<AllProducts />} />

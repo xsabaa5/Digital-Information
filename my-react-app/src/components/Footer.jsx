@@ -93,7 +93,7 @@ export default function Footer() {
               <Link
                 key={i}
                 to={hrefs[i]}
-                className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
+                className="block text-[#8A9BBF] text-[15px] mb-3 no-underline transition-colors duration-200 hover:text-white"
               >
                 {label}
               </Link>
@@ -108,19 +108,19 @@ export default function Footer() {
             <Link
               to="/"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
+              className="block text-[#8A9BBF] text-[15px] mb-3 no-underline transition-colors duration-200 hover:text-white"
             >
               {t("footer.home")}
             </Link>
             <a
               href="#about"
-              className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
+              className="block text-[#8A9BBF] text-[15px] mb-3 no-underline transition-colors duration-200 hover:text-white"
             >
               {t("footer.aboutUs")}
             </a>
             <Link
               to="/products"
-              className="block text-[#8A9BBF] text-[15px] mb-3 no-underline"
+              className="block text-[#8A9BBF] text-[15px] mb-3 no-underline transition-colors duration-200 hover:text-white"
             >
               {t("footer.allProducts")}
             </Link>
@@ -150,7 +150,7 @@ export default function Footer() {
               </div>
               <a
                 href="tel:+9647811070080"
-                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline"
+                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline transition-colors duration-200 hover:text-white"
               >
                 <svg
                   width="16"
@@ -164,13 +164,11 @@ export default function Footer() {
                 >
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                +964 781 107 0080
+                <span dir="ltr">+964 781 107 0080</span>
               </a>
               <a
-                href="https://diginfoiq.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline"
+                href="mailto:info@diginfoiq.com"
+                className="flex items-center gap-2.5 text-[#8A9BBF] text-[15px] no-underline transition-colors duration-200 hover:text-white"
               >
                 <svg
                   width="16"
@@ -182,11 +180,10 @@ export default function Footer() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M22 4l-10 8L2 4" />
                 </svg>
-                diginfoiq.com
+                info@diginfoiq.com
               </a>
             </div>
           </div>

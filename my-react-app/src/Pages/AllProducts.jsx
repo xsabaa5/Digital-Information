@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -30,10 +30,19 @@ const FILTER_FIELDS = [
 
 export default function AllProducts() {
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const [search, setSearch] = useState("");
-  const [filters, setFilters] = useState({});
+
+  const search = searchParams.get("q") || "";
+  const filters = useMemo(() => {
+    const f = {};
+    FILTER_FIELDS.forEach(({ key }) => {
+      const val = searchParams.get(key);
+      if (val) f[key] = val;
+    });
+    return f;
+  }, [searchParams]);
 
   useEffect(() => {
     fetch("/products.json")
@@ -73,13 +82,17 @@ export default function AllProducts() {
   const activeFilterCount = Object.values(filters).filter(Boolean).length;
 
   const updateFilter = (key, value) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value) next.set(key, value);
+      else next.delete(key);
+      return next;
+    });
     setVisibleCount(PAGE_SIZE);
   };
 
   const clearFilters = () => {
-    setFilters({});
-    setSearch("");
+    setSearchParams({});
     setVisibleCount(PAGE_SIZE);
   };
 
@@ -114,7 +127,12 @@ export default function AllProducts() {
                 placeholder={t("allProducts.searchPlaceholder")}
                 value={search}
                 onChange={(e) => {
-                  setSearch(e.target.value);
+                  setSearchParams((prev) => {
+                    const next = new URLSearchParams(prev);
+                    if (e.target.value) next.set("q", e.target.value);
+                    else next.delete("q");
+                    return next;
+                  });
                   setVisibleCount(PAGE_SIZE);
                 }}
                 className="flex-1 min-w-45 py-4 pl-10.5 pr-11 rounded-xl border border-[#1A2744] bg-[#0B1222] text-white text-sm font-normal tracking-normal cursor-pointer outline-none appearance-none w-full"
@@ -164,11 +182,15 @@ export default function AllProducts() {
         {/* Results count + Clear */}
         <div className="flex items-center justify-between mb-5">
           <p className="text-[#3A4A6A] text-[13px]">
-            {t("allProducts.showing", { visible: visible.length, total: filtered.length })}
+            {t("allProducts.showing", {
+              visible: visible.length,
+              total: filtered.length,
+            })}
             {search && (
               <span>
                 {" "}
-                {t("allProducts.showingFor")} &ldquo;<span className="text-[#8BAAFE]">{search}</span>
+                {t("allProducts.showingFor")} &ldquo;
+                <span className="text-[#8BAAFE]">{search}</span>
                 &rdquo;
               </span>
             )}
@@ -212,11 +234,7 @@ export default function AllProducts() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {visible.map((p) => (
-              <Link
-                key={p.id}
-                to={`/products/${p.id}`}
-                className={cardClasses}
-              >
+              <Link key={p.id} to={`/products/${p.id}`} className={cardClasses}>
                 {/* Image area */}
                 <div className="relative w-full aspect-square rounded-[22px] overflow-hidden bg-white flex items-center justify-center">
                   <img

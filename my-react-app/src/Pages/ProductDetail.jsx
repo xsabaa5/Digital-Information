@@ -1,28 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const card = {
-  background: "#0B1222",
-  border: "1px solid #1A2744",
-  borderRadius: 16,
-  padding: 28,
-};
-
-const tabBase = {
-  padding: "12px 24px",
-  borderRadius: 10,
-  fontSize: 13,
-  fontWeight: 600,
-  cursor: "pointer",
-  border: "none",
-  transition: "all 0.2s",
-  letterSpacing: "0.02em",
-};
+const card = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
 
 export default function ProductDetail() {
   const { id } = useParams();
+  const { t, i18n } = useTranslation();
   const [product, setProduct] = useState(null);
   const [activeImg, setActiveImg] = useState(0);
   const [thumbStart, setThumbStart] = useState(0);
@@ -44,18 +30,8 @@ export default function ProductDetail() {
 
   if (!product) {
     return (
-      <div
-        style={{
-          background: "#060B18",
-          minHeight: "100vh",
-          color: "#fff",
-          fontFamily: "system-ui, -apple-system, sans-serif",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <p style={{ color: "#5A6A8A", fontSize: 16 }}>Loading...</p>
+      <div className="bg-[#060B18] min-h-screen text-white font-sans flex items-center justify-center antialiased">
+        <p className="text-[#5A6A8A] text-base">Loading...</p>
       </div>
     );
   }
@@ -65,93 +41,83 @@ export default function ProductDetail() {
     : [];
 
   const tabs = [
-    { key: "features", label: "Features" },
-    { key: "specs", label: "Specifications" },
+    { key: "features", label: t("productDetail.features") },
+    { key: "specs", label: t("productDetail.specifications") },
     ...(product.brochures?.length
-      ? [{ key: "brochures", label: "Brochures" }]
+      ? [{ key: "brochures", label: t("productDetail.brochures") }]
       : []),
   ];
 
+  const activeDescription =
+    i18n.language === "ar" && product.description_ar
+      ? product.description_ar
+      : product.description;
+
   return (
-    <div
-      style={{
-        background: "#060B18",
-        minHeight: "100vh",
-        color: "#fff",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        WebkitFontSmoothing: "antialiased",
-      }}
-    >
+    <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
       <style>{`
         .product-description img {
           margin-top: 24px;
           margin-bottom: 24px;
         }
+        .product-description ul {
+          list-style: disc;
+          padding-left: 1.5rem;
+          margin: 12px 0 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .product-description li {
+          color: #C8D8EE;
+          line-height: 1.7;
+        }
+        .product-description h1,
+        .product-description h2,
+        .product-description h3 {
+          color: #ffffff;
+          margin-top: 24px;
+          margin-bottom: 10px;
+        }
+        .product-description p {
+          color: #9AABBF;
+          margin-bottom: 12px;
+        }
       `}</style>
       <Navbar />
 
       {/* Breadcrumb */}
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "92px 24px 0" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            fontSize: 13,
-            color: "#3A4A6A",
-          }}
-        >
-          <Link to="/" style={{ color: "#5A6A8A", textDecoration: "none" }}>
-            Home
+      <div className="max-w-280 mx-auto px-6 pt-23">
+        <div className="flex items-center gap-2 text-[13px] text-[#3A4A6A]">
+          <Link
+            to="/"
+            className="text-[#5A6A8A] no-underline hover:text-[#8BAAFE] transition-colors"
+          >
+            {t("productDetail.home")}
           </Link>
           <span>/</span>
           <Link
             to="/products"
-            style={{ color: "#5A6A8A", textDecoration: "none" }}
+            className="text-[#5A6A8A] no-underline hover:text-[#8BAAFE] transition-colors"
           >
-            Products
+            {t("productDetail.products")}
           </Link>
           <span>/</span>
-          <span style={{ color: "#8BAAFE" }}>{product.name}</span>
+          <span className="text-[#8BAAFE]">{product.name}</span>
         </div>
       </div>
 
       {/* Main Content */}
-      <div
-        style={{ maxWidth: 1120, margin: "0 auto", padding: "32px 24px 64px" }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 40,
-            marginBottom: 48,
-          }}
-        >
+      <div className="max-w-280 mx-auto px-6 pt-8 pb-16">
+        {/* Top grid: image + info */}
+        <div className="grid grid-cols-2 gap-10 mb-12">
           {/* Left: Image Gallery */}
           <div>
             {/* Main Image */}
-            <div
-              style={{
-                ...card,
-                padding: 0,
-                overflow: "hidden",
-                marginBottom: 12,
-              }}
-            >
+            <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl overflow-hidden mb-3">
               <div
                 ref={imgContainerRef}
-                style={{
-                  width: "100%",
-                  aspectRatio: "4/3",
-                  background: "#fff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 16,
-                  position: "relative",
-                  cursor: "crosshair",
-                }}
+                className="w-full aspect-4/3 bg-white flex items-center justify-center rounded-2xl relative cursor-crosshair"
                 onMouseEnter={() => setZoomActive(true)}
                 onMouseLeave={() => setZoomActive(false)}
                 onMouseMove={(e) => {
@@ -165,24 +131,16 @@ export default function ProductDetail() {
                 <img
                   src={product.images?.[activeImg] || product.image}
                   alt={product.name}
-                  style={{
-                    maxWidth: "85%",
-                    maxHeight: "85%",
-                    objectFit: "contain",
-                    opacity: zoomActive ? 0 : 1,
-                    transition: "opacity 0.2s ease",
-                  }}
+                  className="max-w-[85%] max-h-[85%] object-contain transition-opacity duration-200"
+                  style={{ opacity: zoomActive ? 0 : 1 }}
                 />
                 {zoomActive && (
                   <div
+                    className="absolute inset-0 rounded-2xl bg-no-repeat"
                     style={{
-                      position: "absolute",
-                      inset: 0,
-                      borderRadius: 16,
                       backgroundImage: `url(${product.images?.[activeImg] || product.image})`,
                       backgroundSize: "170%",
                       backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
-                      backgroundRepeat: "no-repeat",
                     }}
                   />
                 )}
@@ -191,13 +149,7 @@ export default function ProductDetail() {
 
             {/* Thumbnails */}
             {product.images?.length > 1 && (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                }}
-              >
+              <div className="flex items-center gap-2">
                 {/* Left arrow */}
                 {product.images.length > THUMB_COUNT && (
                   <button
@@ -205,20 +157,11 @@ export default function ProductDetail() {
                       setThumbStart((prev) => Math.max(0, prev - THUMB_COUNT))
                     }
                     disabled={thumbStart === 0}
-                    style={{
-                      width: 32,
-                      height: 32,
-                      flexShrink: 0,
-                      borderRadius: 8,
-                      border: "1px solid #1A2744",
-                      background: thumbStart === 0 ? "transparent" : "#0B1222",
-                      color: thumbStart === 0 ? "#2A3352" : "#8BAAFE",
-                      cursor: thumbStart === 0 ? "default" : "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: 0,
-                    }}
+                    className={`w-8 h-8 shrink-0 rounded-lg border border-[#1A2744] flex items-center justify-center p-0 transition-colors ${
+                      thumbStart === 0
+                        ? "bg-transparent text-[#2A3352] cursor-default"
+                        : "bg-[#0B1222] text-[#8BAAFE] cursor-pointer"
+                    }`}
                   >
                     <svg
                       width="14"
@@ -236,14 +179,7 @@ export default function ProductDetail() {
                 )}
 
                 {/* Visible thumbnails */}
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 8,
-                    flex: 1,
-                    justifyContent: "center",
-                  }}
-                >
+                <div className="flex gap-2 flex-1 justify-center">
                   {product.images
                     .slice(thumbStart, thumbStart + THUMB_COUNT)
                     .map((img, i) => {
@@ -252,32 +188,16 @@ export default function ProductDetail() {
                         <button
                           key={realIndex}
                           onClick={() => setActiveImg(realIndex)}
-                          style={{
-                            width: 72,
-                            height: 72,
-                            flexShrink: 0,
-                            borderRadius: 10,
-                            border:
-                              realIndex === activeImg
-                                ? "2px solid #4F7BF7"
-                                : "1px solid #1A2744",
-                            background: "#fff",
-                            cursor: "pointer",
-                            overflow: "hidden",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            padding: 4,
-                          }}
+                          className={`w-18 h-18 shrink-0 rounded-[10px] bg-white cursor-pointer overflow-hidden flex items-center justify-center p-1 transition-all ${
+                            realIndex === activeImg
+                              ? "border-2 border-[#4F7BF7]"
+                              : "border border-[#1A2744]"
+                          }`}
                         >
                           <img
                             src={img}
                             alt={`${product.name} ${realIndex + 1}`}
-                            style={{
-                              maxWidth: "100%",
-                              maxHeight: "100%",
-                              objectFit: "contain",
-                            }}
+                            className="max-w-full max-h-full object-contain"
                           />
                         </button>
                       );
@@ -296,29 +216,11 @@ export default function ProductDetail() {
                       )
                     }
                     disabled={thumbStart + THUMB_COUNT >= product.images.length}
-                    style={{
-                      width: 32,
-                      height: 32,
-                      flexShrink: 0,
-                      borderRadius: 8,
-                      border: "1px solid #1A2744",
-                      background:
-                        thumbStart + THUMB_COUNT >= product.images.length
-                          ? "transparent"
-                          : "#0B1222",
-                      color:
-                        thumbStart + THUMB_COUNT >= product.images.length
-                          ? "#2A3352"
-                          : "#8BAAFE",
-                      cursor:
-                        thumbStart + THUMB_COUNT >= product.images.length
-                          ? "default"
-                          : "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: 0,
-                    }}
+                    className={`w-8 h-8 shrink-0 rounded-lg border border-[#1A2744] flex items-center justify-center p-0 transition-colors ${
+                      thumbStart + THUMB_COUNT >= product.images.length
+                        ? "bg-transparent text-[#2A3352] cursor-default"
+                        : "bg-[#0B1222] text-[#8BAAFE] cursor-pointer"
+                    }`}
                   >
                     <svg
                       width="14"
@@ -341,59 +243,32 @@ export default function ProductDetail() {
           {/* Right: Product Info */}
           <div>
             {/* Brand badge */}
-            <span
-              style={{
-                display: "inline-block",
-                padding: "6px 14px",
-                borderRadius: 8,
-                fontSize: 12,
-                fontWeight: 600,
-                color: "#8BAAFE",
-                background: "rgba(79,123,247,.1)",
-                border: "1px solid rgba(79,123,247,.15)",
-                marginBottom: 16,
-              }}
-            >
+            <span className="inline-block px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#8BAAFE] bg-[rgba(79,123,247,0.1)] border border-[rgba(79,123,247,0.15)] mb-4">
               {product.brand}
             </span>
 
             {/* Name */}
-            <h1
-              style={{
-                fontSize: 28,
-                fontWeight: 700,
-                lineHeight: 1.3,
-                marginBottom: 8,
-                letterSpacing: "-0.02em",
-              }}
-            >
+            <h1 className="text-[28px] font-bold leading-[1.3] mb-2 tracking-[-0.02em]">
               {product.name}
             </h1>
 
             {/* Sub title */}
             {product.sub_title && (
-              <p style={{ color: "#5A6A8A", fontSize: 14, marginBottom: 16 }}>
+              <p className="text-[#8A9EC0] text-[15px] mb-4">
                 {product.sub_title}
               </p>
             )}
 
             {/* Part number */}
             {product.part_number && (
-              <p style={{ color: "#3A4A6A", fontSize: 13, marginBottom: 20 }}>
-                Part Number:{" "}
-                <span style={{ color: "#8BAAFE" }}>{product.part_number}</span>
+              <p className="text-[#7A8AAA] text-[14px] mb-5">
+                {t("productDetail.partNumber")}{" "}
+                <span className="text-[#8BAAFE]">{product.part_number}</span>
               </p>
             )}
 
             {/* Quick specs row */}
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 8,
-                marginBottom: 24,
-              }}
-            >
+            <div className="flex flex-wrap gap-2 mb-6">
               {product.product_type && (
                 <QuickSpec label="Type" value={product.product_type} />
               )}
@@ -412,45 +287,17 @@ export default function ProductDetail() {
             </div>
 
             {/* Divider */}
-            <div
-              style={{
-                borderTop: "1px solid #1A2744",
-                paddingTop: 24,
-                marginBottom: 8,
-              }}
-            />
+            <div className="border-t border-[#1A2744] pt-6 mb-2" />
 
             {/* Short description bullets */}
             {descBullets.length > 0 && (
-              <ul
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                  margin: 0,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 10,
-                }}
-              >
+              <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
                 {descBullets.map((line, i) => (
                   <li
                     key={i}
-                    style={{
-                      color: "#9AABBF",
-                      fontSize: 16,
-                      lineHeight: 1.6,
-                      paddingLeft: 20,
-                      position: "relative",
-                    }}
+                    className="text-[#D0DCF0] text-[18px] leading-[1.6] pl-5 relative"
                   >
-                    <span
-                      style={{
-                        position: "absolute",
-                        left: 0,
-                        color: "#4F7BF7",
-                        fontWeight: 700,
-                      }}
-                    >
+                    <span className="absolute left-0 text-[#4F7BF7] font-bold">
                       •
                     </span>
                     {line}
@@ -460,26 +307,9 @@ export default function ProductDetail() {
             )}
 
             {/* Category + Tags */}
-            <div
-              style={{
-                marginTop: 28,
-                paddingTop: 20,
-                borderTop: "1px solid #1A2744",
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 6,
-              }}
-            >
+            <div className="mt-7 pt-5 border-t border-[#1A2744] flex flex-wrap gap-1.5">
               {product.category && (
-                <span
-                  style={{
-                    color: "#3A4A6A",
-                    fontSize: 11,
-                    padding: "4px 10px",
-                    borderRadius: 6,
-                    background: "rgba(255,255,255,.04)",
-                  }}
-                >
+                <span className="text-[#6A7A9A] text-xs px-2.5 py-1 rounded-md bg-white/4">
                   {product.category}
                 </span>
               )}
@@ -487,13 +317,7 @@ export default function ProductDetail() {
                 product.tags.split(", ").map((tag) => (
                   <span
                     key={tag}
-                    style={{
-                      color: "#3A4A6A",
-                      fontSize: 11,
-                      padding: "4px 10px",
-                      borderRadius: 6,
-                      background: "rgba(255,255,255,.04)",
-                    }}
+                    className="text-[#6A7A9A] text-xs px-2.5 py-1 rounded-md bg-white/4"
                   >
                     {tag}
                   </span>
@@ -503,31 +327,18 @@ export default function ProductDetail() {
         </div>
 
         {/* Tabs Section */}
-        <div style={{ marginBottom: 48 }}>
+        <div className="mb-12">
           {/* Tab Headers */}
-          <div
-            style={{
-              display: "flex",
-              gap: 8,
-              marginBottom: 24,
-              borderBottom: "1px solid #1A2744",
-              paddingBottom: 0,
-            }}
-          >
+          <div className="flex gap-2 border-b border-[#1A2744] mb-6">
             {tabs.map(({ key, label }) => (
               <button
                 key={key}
                 onClick={() => setActiveTab(key)}
-                style={{
-                  ...tabBase,
-                  borderRadius: "10px 10px 0 0",
-                  background: activeTab === key ? "#0B1222" : "transparent",
-                  color: activeTab === key ? "#8BAAFE" : "#5A6A8A",
-                  borderBottom:
-                    activeTab === key
-                      ? "2px solid #4F7BF7"
-                      : "2px solid transparent",
-                }}
+                className={`px-7 py-3.5 rounded-t-[10px] text-[15px] font-semibold cursor-pointer border-0 transition-all duration-200 tracking-[0.02em] border-b-2 -mb-px ${
+                  activeTab === key
+                    ? "bg-[#0B1222] text-[#8BAAFE] border-[#4F7BF7]"
+                    : "bg-transparent text-[#5A6A8A] border-transparent hover:text-[#8BAAFE]"
+                }`}
               >
                 {label}
               </button>
@@ -535,22 +346,17 @@ export default function ProductDetail() {
           </div>
 
           {/* Tab Content */}
-          <div style={{ ...card }}>
+          <div className={card}>
             {activeTab === "features" && (
               <div>
-                {product.description ? (
+                {activeDescription ? (
                   <div
-                    className="product-description"
-                    style={{
-                      color: "#9AABBF",
-                      fontSize: 14,
-                      lineHeight: 1.8,
-                    }}
-                    dangerouslySetInnerHTML={{ __html: product.description }}
+                    className="product-description text-[#9AABBF] text-lg leading-[1.8]"
+                    dangerouslySetInnerHTML={{ __html: activeDescription }}
                   />
                 ) : (
-                  <p style={{ color: "#3A4A6A", fontSize: 14 }}>
-                    No detailed features available for this product.
+                  <p className="text-[#3A4A6A] text-sm">
+                    {t("productDetail.noFeatures")}
                   </p>
                 )}
               </div>
@@ -574,39 +380,25 @@ export default function ProductDetail() {
                   ].filter((f) => f.value && f.value !== "Blanks");
                   const allSpecs = [...topFields, ...(product.specs || [])];
                   return allSpecs.length > 0 ? (
-                    <table
-                      style={{ width: "100%", borderCollapse: "collapse" }}
-                    >
+                    <table className="w-full border-collapse">
                       <tbody>
                         {allSpecs.map((spec, i) => (
                           <tr
                             key={i}
-                            style={{
-                              borderBottom:
-                                i < allSpecs.length - 1
-                                  ? "1px solid #1A2744"
-                                  : "none",
-                            }}
+                            className={
+                              i < allSpecs.length - 1
+                                ? "border-b border-[#1A2744]"
+                                : ""
+                            }
                           >
-                            <td
-                              style={{
-                                padding: "14px 16px",
-                                color: "#5A6A8A",
-                                fontSize: 13,
-                                fontWeight: 600,
-                                width: "35%",
-                                verticalAlign: "top",
-                              }}
-                            >
-                              {spec.name}
+                            <td className="py-3.5 px-4 text-[#8A9EC0] text-[14px] font-semibold w-[35%] align-top">
+                              {i18n.language === "ar"
+                                ? t(`productDetail.specNames.${spec.name}`, {
+                                    defaultValue: spec.name,
+                                  })
+                                : spec.name}
                             </td>
-                            <td
-                              style={{
-                                padding: "14px 16px",
-                                color: "#9AABBF",
-                                fontSize: 13,
-                              }}
-                            >
+                            <td className="py-3.5 px-4 text-[#C8D8EE] text-[14px]">
                               {spec.value}
                             </td>
                           </tr>
@@ -614,8 +406,8 @@ export default function ProductDetail() {
                       </tbody>
                     </table>
                   ) : (
-                    <p style={{ color: "#3A4A6A", fontSize: 14 }}>
-                      No specifications available.
+                    <p className="text-[#3A4A6A] text-sm">
+                      {t("productDetail.noSpecs")}
                     </p>
                   );
                 })()}
@@ -623,35 +415,14 @@ export default function ProductDetail() {
             )}
 
             {activeTab === "brochures" && (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 12,
-                }}
-              >
+              <div className="flex flex-col gap-3">
                 {product.brochures?.length > 0 ? (
                   product.brochures.map((br, i) => (
                     <div
                       key={i}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: 14,
-                        padding: "16px 20px",
-                        borderRadius: 12,
-                        background: "rgba(79,123,247,.06)",
-                        border: "1px solid rgba(79,123,247,.12)",
-                      }}
+                      className="flex items-center justify-between gap-3.5 px-5 py-4 rounded-xl bg-[rgba(79,123,247,0.06)] border border-[rgba(79,123,247,0.12)]"
                     >
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 14,
-                        }}
-                      >
+                      <div className="flex items-center gap-3.5">
                         <svg
                           width="24"
                           height="24"
@@ -668,13 +439,7 @@ export default function ProductDetail() {
                           <line x1="16" y1="17" x2="8" y2="17" />
                           <polyline points="10 9 9 9 8 9" />
                         </svg>
-                        <span
-                          style={{
-                            color: "#8BAAFE",
-                            fontSize: 14,
-                            fontWeight: 500,
-                          }}
-                        >
+                        <span className="text-[#8BAAFE] text-sm font-medium">
                           {br.name}
                         </span>
                       </div>
@@ -683,26 +448,16 @@ export default function ProductDetail() {
                           href={br.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{
-                            padding: "8px 20px",
-                            borderRadius: 8,
-                            fontSize: 13,
-                            fontWeight: 600,
-                            background: "#4F7BF7",
-                            color: "#fff",
-                            textDecoration: "none",
-                            transition: "background 0.2s",
-                            flexShrink: 0,
-                          }}
+                          className="px-5 py-2 rounded-lg text-[13px] font-semibold bg-[#4F7BF7] text-white no-underline shrink-0 hover:bg-[#3d6be0] transition-colors"
                         >
-                          Download
+                          {t("productDetail.download")}
                         </a>
                       )}
                     </div>
                   ))
                 ) : (
-                  <p style={{ color: "#3A4A6A", fontSize: 14 }}>
-                    No brochures available.
+                  <p className="text-[#3A4A6A] text-sm">
+                    {t("productDetail.noBrochures")}
                   </p>
                 )}
               </div>
@@ -712,46 +467,22 @@ export default function ProductDetail() {
 
         {/* Accessories Section */}
         {product.accessories?.length > 0 && (
-          <div style={{ marginBottom: 48 }}>
-            <h2
-              style={{
-                fontSize: 20,
-                fontWeight: 700,
-                marginBottom: 20,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Accessories
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-5 tracking-[-0.02em]">
+              {t("productDetail.accessories")}
             </h2>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-                gap: 16,
-              }}
-            >
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
               {product.accessories.map((acc, i) => (
-                <div key={i} style={{ ...card, padding: 20 }}>
+                <div
+                  key={i}
+                  className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-6"
+                >
                   {acc.part_number && (
-                    <p
-                      style={{
-                        color: "#4F7BF7",
-                        fontSize: 12,
-                        fontWeight: 600,
-                        marginBottom: 8,
-                        letterSpacing: "0.04em",
-                      }}
-                    >
+                    <p className="text-[#4F7BF7] text-sm font-bold mb-3 tracking-[0.04em]">
                       {acc.part_number}
                     </p>
                   )}
-                  <p
-                    style={{
-                      color: "#9AABBF",
-                      fontSize: 14,
-                      lineHeight: 1.6,
-                    }}
-                  >
+                  <p className="text-[#C8D8EE] text-[15px] leading-[1.7]">
                     {acc.description}
                   </p>
                 </div>
@@ -762,59 +493,28 @@ export default function ProductDetail() {
 
         {/* Consumables Section */}
         {product.consumables?.length > 0 && (
-          <div style={{ marginBottom: 48 }}>
-            <h2
-              style={{
-                fontSize: 20,
-                fontWeight: 700,
-                marginBottom: 20,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Consumables
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-5 tracking-[-0.02em]">
+              {t("productDetail.consumables")}
             </h2>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-                gap: 16,
-              }}
-            >
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
               {product.consumables.map((con, i) => (
-                <div key={i} style={{ ...card, padding: 20 }}>
+                <div
+                  key={i}
+                  className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-6"
+                >
                   {con.name && (
-                    <p
-                      style={{
-                        color: "#fff",
-                        fontSize: 14,
-                        fontWeight: 600,
-                        marginBottom: 6,
-                      }}
-                    >
+                    <p className="text-white text-[15px] font-semibold mb-2">
                       {con.name}
                     </p>
                   )}
                   {con.part_number && (
-                    <p
-                      style={{
-                        color: "#4F7BF7",
-                        fontSize: 12,
-                        fontWeight: 600,
-                        marginBottom: 8,
-                        letterSpacing: "0.04em",
-                      }}
-                    >
+                    <p className="text-[#4F7BF7] text-sm font-bold mb-3 tracking-[0.04em]">
                       {con.part_number}
                     </p>
                   )}
                   {con.description && (
-                    <p
-                      style={{
-                        color: "#9AABBF",
-                        fontSize: 13,
-                        lineHeight: 1.6,
-                      }}
-                    >
+                    <p className="text-[#C8D8EE] text-[15px] leading-[1.7]">
                       {con.description}
                     </p>
                   )}
@@ -832,31 +532,11 @@ export default function ProductDetail() {
 /* ─── Quick spec pill ─── */
 function QuickSpec({ label, value }) {
   return (
-    <div
-      style={{
-        padding: "8px 14px",
-        borderRadius: 10,
-        background: "rgba(255,255,255,.03)",
-        border: "1px solid #1A2744",
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-      }}
-    >
-      <span
-        style={{
-          color: "#3A4A6A",
-          fontSize: 10,
-          fontWeight: 600,
-          textTransform: "uppercase",
-          letterSpacing: "0.06em",
-        }}
-      >
+    <div className="px-3.5 py-2 rounded-[10px] bg-white/3 border border-[#1A2744] flex flex-col gap-0.5">
+      <span className="text-[#6A7A9A] text-[11px] font-semibold uppercase tracking-[0.06em]">
         {label}
       </span>
-      <span style={{ color: "#9AABBF", fontSize: 13, fontWeight: 500 }}>
-        {value}
-      </span>
+      <span className="text-[#C8D8EE] text-[14px] font-medium">{value}</span>
     </div>
   );
 }

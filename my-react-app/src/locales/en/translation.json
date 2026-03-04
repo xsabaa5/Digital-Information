@@ -309,6 +309,37 @@
     "ctaDesc": "Contact us for a consultation or on-site product demonstration.",
     "ctaBtn": "Contact Us"
   },
+  "productDetail": {
+    "features": "Features",
+    "specifications": "Specifications",
+    "brochures": "Brochures",
+    "noFeatures": "No detailed features available for this product.",
+    "noSpecs": "No specifications available.",
+    "noBrochures": "No brochures available.",
+    "download": "Download",
+    "accessories": "Accessories",
+    "consumables": "Consumables",
+    "partNumber": "Part Number:",
+    "home": "Home",
+    "products": "Products",
+    "specNames": {
+      "Scanner Type": "Scanner Type",
+      "Scanning Color Mode": "Scanning Color Mode",
+      "Scanning color mode": "Scanning Color Mode",
+      "Document Size": "Document Size",
+      "Scanning Speed": "Scanning Speed",
+      "Capacity": "Capacity",
+      "Simplex / Duplex": "Simplex / Duplex",
+      "Standard Interface": "Standard Interface",
+      "Duty Cycle": "Duty Cycle",
+      "Maximum Document Size": "Maximum Document Size",
+      "Minimum Document Size": "Minimum Document Size",
+      "Long Paper Scanning": "Long Paper Scanning",
+      "Long Paper Mode": "Long Paper Mode",
+      "Interface": "Interface",
+      "Software": "Software"
+    }
+  },
   "allProducts": {
     "searchPlaceholder": "Search products...",
     "filters": {
