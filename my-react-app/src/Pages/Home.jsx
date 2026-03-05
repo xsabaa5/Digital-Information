@@ -33,19 +33,22 @@ function Hero() {
         <h1 className="font-bold text-white text-[clamp(42px,6vw,72px)] leading-[1.1] mb-6">
           {t("home.hero.title1")}
           <br />
-          {t("home.hero.title2")} <span className="text-[#4F7BF7]">{t("home.hero.titleHighlight")}</span>
+          {t("home.hero.title2")}{" "}
+          <span className="text-[#4F7BF7]">
+            {t("home.hero.titleHighlight")}
+          </span>
         </h1>
 
         <p className="text-[#b0bdd4] text-base sm:text-[18px] md:text-[22px] leading-[1.7] max-w-172 mx-auto mb-10">
           {t("home.hero.subtitle")}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <div className="flex h-full flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <Link
             to="/products"
-            className="w-full sm:w-auto px-6 py-2.5 bg-[#0075FF] text-white text-[17px] font-semibold rounded-full cursor-pointer tracking-[0.01em] no-underline shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] text-center"
+            className="w-full sm:w-auto px-6 shrink-0 h-[47.5px] flex justify-center items-center bg-[#0075FF] text-white text-[17px] font-semibold rounded-full cursor-pointer tracking-[0.01em] no-underline text-center  "
           >
-            {t("home.hero.exploreBtn")}
+            <p className="pt-1">{t("home.hero.exploreBtn")}</p>
           </Link>
           <a
             href="#about"
@@ -111,14 +114,16 @@ const Stats = React.memo(function Stats() {
 });
 
 /* ─── Shared card classes ─── */
-const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
+const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7 ";
 const iconBoxClass =
   "rounded-xl bg-[#131D36] border border-[#1E2D50] flex items-center justify-center text-[#7B9BFF] shrink-0";
 
 /* ─── Our Services ─── */
 const Services = React.memo(function Services() {
   const { t } = useTranslation();
-  const archivingItems = t("home.services.archiving.items", { returnObjects: true });
+  const archivingItems = t("home.services.archiving.items", {
+    returnObjects: true,
+  });
   return (
     <section id="services" className="py-24 bg-[#060B18]">
       <Container>
@@ -226,26 +231,28 @@ const Services = React.memo(function Services() {
           {/* Archiving */}
           <div className={cardClass}>
             <div className="mb-5">
-              {(Array.isArray(archivingItems) ? archivingItems : []).map((item) => (
-                <div
-                  key={item.label}
-                  className="bg-[#080E1E] rounded-[10px] px-3.5 py-2.5 border border-[#151F3A] mb-2"
-                >
-                  <div className="flex items-center justify-between mb-0.5">
-                    <span
-                      className={`${item.colorClass} text-xs font-semibold`}
-                    >
-                      {item.label}
-                    </span>
-                    {item.time && (
-                      <span className="text-[#5A6A8A] text-[11px]">
-                        {item.time}
+              {(Array.isArray(archivingItems) ? archivingItems : []).map(
+                (item) => (
+                  <div
+                    key={item.label}
+                    className="bg-[#080E1E] rounded-[10px] px-3.5 py-2.5 border border-[#151F3A] mb-2"
+                  >
+                    <div className="flex items-center justify-between mb-0.5">
+                      <span
+                        className={`${item.colorClass} text-xs font-semibold`}
+                      >
+                        {item.label}
                       </span>
-                    )}
+                      {item.time && (
+                        <span className="text-[#5A6A8A] text-[11px]">
+                          {item.time}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[#6A7A9A] text-[11px]">{item.text}</p>
                   </div>
-                  <p className="text-[#6A7A9A] text-[11px]">{item.text}</p>
-                </div>
-              ))}
+                ),
+              )}
             </div>
             <h3 className="text-white font-bold text-xl mb-1.5">
               {t("home.services.archiving.title")}
@@ -292,7 +299,7 @@ function Products() {
             <Link
               key={p.id}
               to={`/products/${p.id}`}
-              className="bg-[#1A1A1A] rounded-4xl p-2.5 flex flex-col no-underline text-inherit transition-[transform,box-shadow] duration-250 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,.4)]"
+              className="bg-[#1A1A1A] rounded-4xl p-2.5 flex flex-col no-underline text-inherit transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,.4)]"
             >
               {/* Image area */}
               <div className="relative w-full aspect-square rounded-[22px] overflow-hidden bg-white flex items-center justify-center">
@@ -335,14 +342,17 @@ function Products() {
                 </h3>
 
                 {/* Description as bullet points */}
-                <ul className="text-[#9cabc4] text-[17px] leading-[1.9] flex-1 list-disc pl-5 m-0">
+                <ul className="text-[#9cabc4] text-[17px] leading-[1.9] flex-1 list-disc ps-2 m-0">
                   {p.short_description
                     .split("\n")
                     .map((s) => s.trim())
                     .filter(Boolean)
                     .map((point, i) => (
-                      <li key={i} className="text-white">
-                        <span className="text-[#B0B4BB]">{point}</span>
+                      <li
+                        key={i}
+                        className="text-[#B0B4BB] marker:text-[#B0B4BB]"
+                      >
+                        {point}
                       </li>
                     ))}
                 </ul>
@@ -360,7 +370,7 @@ function Products() {
         <div className="text-center mt-12">
           <Link
             to="/products"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-[17px] font-semibold no-underline bg-[#0075FF] text-white shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em] transition-all duration-200"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-[17px] font-semibold no-underline bg-[#0075FF] text-white tracking-[0.01em] transition-all duration-200"
           >
             {t("home.products.allProducts")}
             <svg
@@ -398,7 +408,10 @@ const About = React.memo(function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
             <h2 className="text-white font-bold text-[clamp(28px,3.5vw,40px)] mb-4 leading-[1.15]">
-              {t("home.about.heading")} <span className="text-[#4F7BF7]">{t("home.about.headingHighlight")}</span>
+              {t("home.about.heading")}{" "}
+              <span className="text-[#4F7BF7]">
+                {t("home.about.headingHighlight")}
+              </span>
             </h2>
             <p className="text-[#8492af] text-base leading-[1.7] mb-6 max-w-115">
               {t("home.about.para1")}
@@ -423,7 +436,7 @@ const About = React.memo(function About() {
 
             <Link
               to="/contact-us"
-              className="inline-block px-6 py-2.5 bg-[#0075FF] text-white text-[17px] font-semibold rounded-full cursor-pointer shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em] no-underline"
+              className="inline-block px-6 py-2.5 bg-[#0075FF] text-white text-[17px] font-semibold rounded-full cursor-pointer tracking-[0.01em] no-underline"
             >
               {t("home.about.getInTouch")}
             </Link>

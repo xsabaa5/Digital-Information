@@ -90,7 +90,7 @@ export default function SecurityElectronics() {
             </p>
             <a
               href="mailto:info@diginfoiq.com"
-              className="inline-block py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white no-underline shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em]"
+              className="inline-block py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white no-underline tracking-[0.01em]"
             >
               {t("security.ctaBtn")}
             </a>

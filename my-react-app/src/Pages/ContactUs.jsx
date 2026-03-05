@@ -130,7 +130,10 @@ export default function ContactUs() {
             {t("contact.badge")}
           </span>
           <h1 className="text-[clamp(32px,4vw,48px)] font-bold leading-[1.2] mb-5 tracking-[-0.03em]">
-            {t("contact.heading")} <span className="text-[#4F7BF7]">{t("contact.headingHighlight")}</span>
+            {t("contact.heading")}{" "}
+            <span className="text-[#4F7BF7]">
+              {t("contact.headingHighlight")}
+            </span>
           </h1>
           <p className="text-[#8492af] text-base leading-[1.8] max-w-165 mx-auto">
             {t("contact.subheading")}
@@ -145,7 +148,7 @@ export default function ContactUs() {
             {contactInfo.map((item, i) => (
               <div
                 key={i}
-                className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-6 transition-all duration-300 hover:border-[#2A3F6F] hover:shadow-[0_4px_24px_rgba(79,123,247,.1)]"
+                className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-6 transition-all duration-300 hover:border-[#4F7BF7] "
               >
                 <div className="w-12 h-12 rounded-xl bg-[rgba(79,123,247,.1)] border border-[rgba(79,123,247,.15)] flex items-center justify-center text-[#4F7BF7] shrink-0 mb-4">
                   {item.icon}
@@ -265,7 +268,7 @@ export default function ContactUs() {
 
                 <button
                   type="submit"
-                  className="py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white border-none cursor-pointer shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em] transition-all duration-200 self-start hover:shadow-[0_0_30px_rgba(79,123,247,.5),0_4px_16px_rgba(79,123,247,.3)]"
+                  className="py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white border-none cursor-pointer tracking-[0.01em] transition-all duration-200 self-start"
                 >
                   {t("contact.sendMessage")}
                 </button>
@@ -292,7 +295,9 @@ export default function ContactUs() {
 
               {/* Social Links */}
               <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-4">{t("contact.followUs")}</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  {t("contact.followUs")}
+                </h3>
                 <div className="flex gap-3">
                   {socialLinks.map((social) => (
                     <a
@@ -315,15 +320,13 @@ export default function ContactUs() {
         {/* CTA */}
         <section className="text-center py-12">
           <div className="bg-[#0B1222] border border-[rgba(79,123,247,.2)] rounded-2xl py-12 px-8">
-            <h2 className="text-2xl font-bold mb-3">
-              {t("contact.ctaTitle")}
-            </h2>
+            <h2 className="text-2xl font-bold mb-3">{t("contact.ctaTitle")}</h2>
             <p className="text-[#8492af] text-base mb-7 max-w-130 mx-auto leading-[1.7]">
               {t("contact.ctaDesc")}
             </p>
             <Link
               to="/products"
-              className="inline-block py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white no-underline shadow-[0_0_20px_rgba(79,123,247,.35),0_4px_12px_rgba(79,123,247,.2)] tracking-[0.01em]"
+              className="inline-block py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white no-underline tracking-[0.01em]"
             >
               {t("contact.exploreProducts")}
             </Link>

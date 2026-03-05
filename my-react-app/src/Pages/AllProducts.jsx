@@ -13,7 +13,7 @@ const selectClasses =
 const selectArrowBg = `url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`;
 
 const cardClasses =
-  "bg-[#1A1A1A] rounded-[32px] p-2.5 flex flex-col no-underline text-inherit transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,.4)]";
+  "bg-[#1A1A1A] rounded-[32px] p-2.5 flex flex-col no-underline text-inherit transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,.4)]";
 
 /* ─── Filter config ─── */
 const FILTER_FIELDS = [
@@ -276,14 +276,17 @@ export default function AllProducts() {
                   </h3>
 
                   {/* Description as bullet points */}
-                  <ul className="text-[#8492af] text-base leading-[1.9] flex-1 list-disc pl-5 m-0">
+                  <ul className="text-[#8492af] text-base leading-[1.9] flex-1 list-disc ps-2 m-0">
                     {p.short_description
                       .split("\n")
                       .map((s) => s.trim())
                       .filter(Boolean)
                       .map((point, i) => (
-                        <li key={i} className="text-white">
-                          <span className="text-[#B0B4BBFF]">{point}</span>
+                        <li
+                          key={i}
+                          className="text-[#B0B4BB] marker:text-[#B0B4BB]"
+                        >
+                          {point}
                         </li>
                       ))}
                   </ul>
