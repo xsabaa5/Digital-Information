@@ -1,0 +1,23 @@
+services:
+  diginfoiq-website:
+    build: .
+    container_name: diginfoiq-website
+    restart: unless-stopped
+    networks:
+      - traefik-network
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      start_period: 5s
+      retries: 3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.diginfoiq.rule=Host(`diginfoiq.com`) || Host(`www.diginfoiq.com`)"
+      - "traefik.http.routers.diginfoiq.entrypoints=websecure"
+      - "traefik.http.routers.diginfoiq.tls.certresolver=letsencrypt"
+      - "traefik.http.services.diginfoiq.loadbalancer.server.port=80"
+
+networks:
+  traefik-network:
+    external: true
