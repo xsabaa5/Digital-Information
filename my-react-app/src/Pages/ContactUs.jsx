@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
+const API_URL = "https://api.diginfoiq.com";
+
 export default function ContactUs() {
   const { t } = useTranslation();
   const [form, setForm] = useState({
@@ -13,20 +15,36 @@ export default function ContactUs() {
     subject: "",
     message: "",
   });
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const mailtoSubject = encodeURIComponent(
-      form.subject || "Contact Form Inquiry",
-    );
-    const mailtoBody = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\n${form.message}`,
-    );
-    window.location.href = `mailto:info@diginfoiq.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch(`${API_URL}/contacts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => null);
+        throw new Error(err?.error?.message || t("contact.errorGeneric"));
+      }
+
+      setStatus("success");
+      setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err.message);
+    }
   };
 
   const contactInfo = [
@@ -266,12 +284,28 @@ export default function ContactUs() {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white border-none cursor-pointer tracking-[0.01em] transition-all duration-200 self-start"
-                >
-                  {t("contact.sendMessage")}
-                </button>
+                {status !== "success" && (
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="py-2.5 px-6 rounded-full text-[17px] font-semibold bg-[#0075FF] text-white border-none cursor-pointer tracking-[0.01em] transition-all duration-200 self-start disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {status === "loading"
+                      ? t("contact.sending")
+                      : t("contact.sendMessage")}
+                  </button>
+                )}
+
+                {status === "success" && (
+                  <div className="w-full py-4 px-6 rounded-xl bg-green-500 text-white text-center text-base font-semibold">
+                    {t("contact.successMessage")}
+                  </div>
+                )}
+                {status === "error" && (
+                  <div className="w-full py-4 px-6 rounded-xl bg-red-500 text-white text-center text-base font-semibold">
+                    {errorMsg}
+                  </div>
+                )}
               </form>
             </div>
 
