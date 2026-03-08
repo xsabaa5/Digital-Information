@@ -16,6 +16,7 @@ export default function ProductDetail() {
   const [zoomActive, setZoomActive] = useState(false);
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
   const imgContainerRef = useRef(null);
+  const descRef = useRef(null);
   const THUMB_COUNT = 5;
 
   useEffect(() => {
@@ -27,6 +28,25 @@ export default function ProductDetail() {
       })
       .catch(() => {});
   }, [id]);
+
+  const activeDescription =
+    product && i18n.language === "ar" && product.description_ar
+      ? product.description_ar
+      : product?.description;
+
+  // Classify description images as icons or photos based on natural size
+  useEffect(() => {
+    if (!descRef.current) return;
+    const imgs = descRef.current.querySelectorAll("img");
+    imgs.forEach((img) => {
+      const classify = () => {
+        const isIcon = img.naturalWidth <= 300 && img.naturalHeight <= 300;
+        img.classList.add(isIcon ? "desc-icon" : "desc-photo");
+      };
+      if (img.complete) classify();
+      else img.addEventListener("load", classify);
+    });
+  }, [activeTab, activeDescription]);
 
   if (!product) {
     return (
@@ -48,17 +68,35 @@ export default function ProductDetail() {
       : []),
   ];
 
-  const activeDescription =
-    i18n.language === "ar" && product.description_ar
-      ? product.description_ar
-      : product.description;
-
   return (
     <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
       <style>{`
         .product-description img {
-          margin-top: 24px;
-          margin-bottom: 24px;
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+        .product-description img.desc-icon {
+          max-width: 80px;
+          max-height: 80px;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          display: inline-block;
+          vertical-align: middle;
+          margin: 6px 4px;
+          border-radius: 8px;
+          opacity: 1;
+        }
+        .product-description img.desc-photo {
+          max-width: 100%;
+          max-height: 500px;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          display: block;
+          margin: 20px 0;
+          border-radius: 12px;
+          opacity: 1;
         }
         .product-description ul {
           list-style: disc;
@@ -351,6 +389,7 @@ export default function ProductDetail() {
               <div>
                 {activeDescription ? (
                   <div
+                    ref={descRef}
                     className="product-description text-[#9AABBF] text-lg leading-[1.8]"
                     dangerouslySetInnerHTML={{ __html: activeDescription }}
                   />
