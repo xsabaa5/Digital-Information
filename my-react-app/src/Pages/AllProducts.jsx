@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -29,7 +30,7 @@ const FILTER_FIELDS = [
 ];
 
 export default function AllProducts() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
@@ -98,6 +99,33 @@ export default function AllProducts() {
 
   return (
     <div className="bg-black min-h-screen text-white font-sans antialiased">
+      <Helmet>
+        <html lang={i18n.language} />
+        <title>{t("seo.products.title")}</title>
+        <meta name="description" content={t("seo.products.description")} />
+        <meta property="og:title" content={t("seo.products.title")} />
+        <meta property="og:description" content={t("seo.products.description")} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://diginfoiq.com/products" />
+        <link rel="canonical" href="https://diginfoiq.com/products" />
+        {products.length > 0 && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              name: "Digital Information Products",
+              numberOfItems: products.length,
+              itemListElement: products.map((p, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `https://diginfoiq.com/products/${p.id}`,
+                name: p.name,
+                image: `https://diginfoiq.com${p.image}`,
+              })),
+            })}
+          </script>
+        )}
+      </Helmet>
       <Navbar />
 
       {/* Page Content */}

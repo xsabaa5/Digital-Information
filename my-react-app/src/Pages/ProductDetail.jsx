@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -17,7 +18,13 @@ export default function ProductDetail() {
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
   const imgContainerRef = useRef(null);
   const descRef = useRef(null);
-  const THUMB_COUNT = 5;
+  const [thumbCount, setThumbCount] = useState(window.innerWidth < 640 ? 3 : 5);
+
+  useEffect(() => {
+    const handleResize = () => setThumbCount(window.innerWidth < 640 ? 3 : 5);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     fetch("/products.json")
@@ -70,6 +77,41 @@ export default function ProductDetail() {
 
   return (
     <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
+      <Helmet>
+        <html lang={i18n.language} />
+        <title>{`${product.name} — Digital Information`}</title>
+        <meta name="description" content={product.short_description?.split("\n")[0] || product.name} />
+        <meta property="og:title" content={`${product.name} — Digital Information`} />
+        <meta property="og:description" content={product.short_description?.split("\n")[0] || product.name} />
+        <meta property="og:type" content="product" />
+        <meta property="og:image" content={`https://diginfoiq.com${product.image}`} />
+        <meta property="og:url" content={`https://diginfoiq.com/products/${product.id}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href={`https://diginfoiq.com/products/${product.id}`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name,
+            image: `https://diginfoiq.com${product.image}`,
+            description: product.short_description?.split("\n").join(" ") || product.name,
+            brand: { "@type": "Brand", name: product.brand },
+            category: product.category,
+            ...(product.part_number && { sku: product.part_number }),
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://diginfoiq.com/" },
+              { "@type": "ListItem", position: 2, name: "Products", item: "https://diginfoiq.com/products" },
+              { "@type": "ListItem", position: 3, name: product.name, item: `https://diginfoiq.com/products/${product.id}` },
+            ],
+          })}
+        </script>
+      </Helmet>
       <style>{`
         .product-description img {
           opacity: 0;
@@ -148,9 +190,9 @@ export default function ProductDetail() {
       {/* Main Content */}
       <div className="max-w-280 mx-auto px-6 pt-8 pb-16">
         {/* Top grid: image + info */}
-        <div className="grid grid-cols-2 gap-10 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
           {/* Left: Image Gallery */}
-          <div>
+          <div className="w-full lg:max-w-none mx-auto">
             {/* Main Image */}
             <div className="bg-[#0B1222] border border-[#1A2744] rounded-2xl overflow-hidden mb-3">
               <div
@@ -189,10 +231,10 @@ export default function ProductDetail() {
             {product.images?.length > 1 && (
               <div className="flex items-center gap-2">
                 {/* Left arrow */}
-                {product.images.length > THUMB_COUNT && (
+                {product.images.length > thumbCount && (
                   <button
                     onClick={() =>
-                      setThumbStart((prev) => Math.max(0, prev - THUMB_COUNT))
+                      setThumbStart((prev) => Math.max(0, prev - thumbCount))
                     }
                     disabled={thumbStart === 0}
                     className={`w-8 h-8 shrink-0 rounded-lg border border-[#1A2744] flex items-center justify-center p-0 transition-colors ${
@@ -219,14 +261,14 @@ export default function ProductDetail() {
                 {/* Visible thumbnails */}
                 <div className="flex gap-2 flex-1 justify-center">
                   {product.images
-                    .slice(thumbStart, thumbStart + THUMB_COUNT)
+                    .slice(thumbStart, thumbStart + thumbCount)
                     .map((img, i) => {
                       const realIndex = thumbStart + i;
                       return (
                         <button
                           key={realIndex}
                           onClick={() => setActiveImg(realIndex)}
-                          className={`w-18 h-18 shrink-0 rounded-[10px] bg-white cursor-pointer overflow-hidden flex items-center justify-center p-1 transition-all ${
+                          className={`w-14 h-14 sm:w-18 sm:h-18 shrink-0 rounded-[10px] bg-white cursor-pointer overflow-hidden flex items-center justify-center p-1 transition-all ${
                             realIndex === activeImg
                               ? "border-2 border-[#4F7BF7]"
                               : "border border-[#1A2744]"
@@ -243,19 +285,19 @@ export default function ProductDetail() {
                 </div>
 
                 {/* Right arrow */}
-                {product.images.length > THUMB_COUNT && (
+                {product.images.length > thumbCount && (
                   <button
                     onClick={() =>
                       setThumbStart((prev) =>
                         Math.min(
-                          product.images.length - THUMB_COUNT,
-                          prev + THUMB_COUNT,
+                          product.images.length - thumbCount,
+                          prev + thumbCount,
                         ),
                       )
                     }
-                    disabled={thumbStart + THUMB_COUNT >= product.images.length}
+                    disabled={thumbStart + thumbCount >= product.images.length}
                     className={`w-8 h-8 shrink-0 rounded-lg border border-[#1A2744] flex items-center justify-center p-0 transition-colors ${
-                      thumbStart + THUMB_COUNT >= product.images.length
+                      thumbStart + thumbCount >= product.images.length
                         ? "bg-transparent text-[#2A3352] cursor-default"
                         : "bg-[#0B1222] text-[#8BAAFE] cursor-pointer"
                     }`}
@@ -372,7 +414,7 @@ export default function ProductDetail() {
               <button
                 key={key}
                 onClick={() => setActiveTab(key)}
-                className={`px-7 py-3.5 rounded-t-[10px] text-[15px] font-semibold cursor-pointer border-0 transition-all duration-200 tracking-[0.02em] border-b-2 -mb-px ${
+                className={`px-3 sm:px-7 py-3.5 rounded-t-[10px] text-[13px] sm:text-[15px] font-semibold cursor-pointer border-0 transition-all duration-200 tracking-[0.02em] border-b-2 -mb-px flex-1 text-center ${
                   activeTab === key
                     ? "bg-[#0B1222] text-[#8BAAFE] border-[#4F7BF7]"
                     : "bg-transparent text-[#5A6A8A] border-transparent hover:text-[#8BAAFE]"

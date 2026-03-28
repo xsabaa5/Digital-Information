@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -5,12 +6,21 @@ import Footer from "../components/Footer";
 const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
 
 export default function SecurityElectronics() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const sections = t("security.sections", { returnObjects: true });
   const whyChoose = t("security.why", { returnObjects: true });
 
   return (
     <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
+      <Helmet>
+        <html lang={i18n.language} />
+        <title>{t("seo.security.title")}</title>
+        <meta name="description" content={t("seo.security.description")} />
+        <meta property="og:title" content={t("seo.security.title")} />
+        <meta property="og:description" content={t("seo.security.description")} />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://diginfoiq.com/security-electronics" />
+      </Helmet>
       <Navbar />
 
       {/* Hero */}

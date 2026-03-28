@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -7,7 +8,7 @@ import Footer from "../components/Footer";
 const API_URL = "https://api.diginfoiq.com";
 
 export default function ContactUs() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -139,6 +140,15 @@ export default function ContactUs() {
 
   return (
     <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
+      <Helmet>
+        <html lang={i18n.language} />
+        <title>{t("seo.contact.title")}</title>
+        <meta name="description" content={t("seo.contact.description")} />
+        <meta property="og:title" content={t("seo.contact.title")} />
+        <meta property="og:description" content={t("seo.contact.description")} />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://diginfoiq.com/contact-us" />
+      </Helmet>
       <Navbar />
 
       {/* Hero */}

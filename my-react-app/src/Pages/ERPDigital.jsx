@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -5,7 +6,7 @@ import Footer from "../components/Footer";
 const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
 
 export default function ERPDigital() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const erpModules = t("erp.erpModules", { returnObjects: true });
   const transformationServices = t("erp.transformServices", { returnObjects: true });
   const torchFeatures = t("erp.torchFeatures", { returnObjects: true });
@@ -13,6 +14,15 @@ export default function ERPDigital() {
 
   return (
     <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
+      <Helmet>
+        <html lang={i18n.language} />
+        <title>{t("seo.erp.title")}</title>
+        <meta name="description" content={t("seo.erp.description")} />
+        <meta property="og:title" content={t("seo.erp.title")} />
+        <meta property="og:description" content={t("seo.erp.description")} />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://diginfoiq.com/erp-digital-transformation" />
+      </Helmet>
       <Navbar />
 
       {/* Hero */}

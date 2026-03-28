@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import "./i18n";
 import "./index.css";
 import Home from "./Pages/Home";
@@ -16,19 +17,21 @@ import PromoWidget from "./components/PromoWidget";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <ScrollToTop />
-      <PromoWidget />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<AllProducts />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
-        <Route path="/archiving-systems" element={<ArchivingSystems />} />
-        <Route path="/erp-digital-transformation" element={<ERPDigital />} />
-        <Route path="/security-electronics" element={<SecurityElectronics />} />
-        <Route path="/cybersecurity" element={<Cybersecurity />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <PromoWidget />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/archiving-systems" element={<ArchivingSystems />} />
+          <Route path="/erp-digital-transformation" element={<ERPDigital />} />
+          <Route path="/security-electronics" element={<SecurityElectronics />} />
+          <Route path="/cybersecurity" element={<Cybersecurity />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   </StrictMode>,
 );

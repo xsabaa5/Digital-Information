@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -5,7 +6,7 @@ import Footer from "../components/Footer";
 const cardClass = "bg-[#0B1222] border border-[#1A2744] rounded-2xl p-7";
 
 export default function ArchivingSystems() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const capabilities = t("archiving.capabilities", { returnObjects: true });
   const mediaInfoFeatures = t("archiving.features", { returnObjects: true });
   const mediaInfoUsers = t("archiving.users", { returnObjects: true });
@@ -13,6 +14,15 @@ export default function ArchivingSystems() {
 
   return (
     <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
+      <Helmet>
+        <html lang={i18n.language} />
+        <title>{t("seo.archiving.title")}</title>
+        <meta name="description" content={t("seo.archiving.description")} />
+        <meta property="og:title" content={t("seo.archiving.title")} />
+        <meta property="og:description" content={t("seo.archiving.description")} />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://diginfoiq.com/archiving-systems" />
+      </Helmet>
       <Navbar />
 
       {/* Hero */}

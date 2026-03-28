@@ -1,4 +1,34 @@
 {
+  "seo": {
+    "home": {
+      "title": "Digital Information — Technology Solutions in Iraq",
+      "description": "Iraq's leading technology provider offering document scanners, ERP systems, cybersecurity, archiving solutions, and security electronics since 2020."
+    },
+    "products": {
+      "title": "Products — Digital Information",
+      "description": "Explore our full range of document scanners from world-leading brands like Ricoh, Epson, Avision, and Image Access."
+    },
+    "archiving": {
+      "title": "Archiving Solutions — Digital Information",
+      "description": "Enterprise-grade archiving software for Iraqi organizations to digitize, organize, and protect records with compliance and scalability."
+    },
+    "erp": {
+      "title": "ERP & Digital Transformation — Digital Information",
+      "description": "Streamline operations with advanced ERP solutions and our in-house Torch ERP platform. Serving businesses across Iraq."
+    },
+    "security": {
+      "title": "Security & Office Electronics — Digital Information",
+      "description": "X-ray scanners, metal detectors, access control, surveillance systems from RAPISCAN, HIKVISION, and Motorola for Iraqi businesses."
+    },
+    "cybersecurity": {
+      "title": "Cybersecurity Solutions — Digital Information",
+      "description": "AI-powered cybersecurity with 24/7 SOC monitoring, zero-day protection, and 99.7% threat detection rate for Iraqi enterprises."
+    },
+    "contact": {
+      "title": "Contact Us — Digital Information",
+      "description": "Get in touch with Digital Information for technology solutions, consultations, and support. Based in Baghdad, serving all of Iraq."
+    }
+  },
   "nav": {
     "home": "Home",
     "about": "About",

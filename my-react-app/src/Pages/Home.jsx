@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -593,8 +594,44 @@ function Icon({ name, size = 22 }) {
 
 /* ─── Page ─── */
 export default function Home() {
+  const { t, i18n } = useTranslation();
   return (
     <div className="bg-[#060B18] min-h-screen text-white font-sans antialiased">
+      <Helmet>
+        <html lang={i18n.language} />
+        <title>{t("seo.home.title")}</title>
+        <meta name="description" content={t("seo.home.description")} />
+        <meta property="og:title" content={t("seo.home.title")} />
+        <meta property="og:description" content={t("seo.home.description")} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://diginfoiq.com/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={t("seo.home.title")} />
+        <meta name="twitter:description" content={t("seo.home.description")} />
+        <link rel="canonical" href="https://diginfoiq.com/" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Digital Information",
+            url: "https://diginfoiq.com",
+            logo: "https://diginfoiq.com/logo32.png",
+            foundingDate: "2020",
+            description: t("seo.home.description"),
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Al-Sinaa Street, Karrada",
+              addressLocality: "Baghdad",
+              addressCountry: "IQ",
+            },
+            sameAs: [
+              "https://www.facebook.com/diginfoiq",
+              "https://www.linkedin.com/company/diginfoiq",
+              "https://t.me/diginfoiq",
+            ],
+          })}
+        </script>
+      </Helmet>
       <Navbar />
       <Hero />
       <Stats />
